@@ -1,0 +1,83 @@
+<form id="form" align="center" [formGroup]="ProductDetails" (ngSubmit)="submit()">
+    <div>
+        <h1 class="heading">ProductDetails</h1>
+    </div>
+    <div class="container fluid">
+        <div class="col-2">
+
+            <mat-form-field appearance="outline" id="SlNo">
+                <mat-label> SlNo</mat-label>
+                <input matInput type="number" placeholder="SlNo" formControlName="SlNo">
+            </mat-form-field>
+            <mat-form-field appearance="outline" id="Code">
+                <mat-label>
+                    Code
+                </mat-label>
+                <input matInput type="text" placeholder="Code" [(ngModel)]="Code" [ngModelOptions]="{standalone:true}">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <div class=col-2>
+                <mat-form-field appearance="outline" id="Descrption">
+                    <mat-label>
+                        Description
+                    </mat-label>
+                    <input matInput type="text" placeholder="Descrption" formControlName="Descrption">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Type</mat-label>
+                    <mat-select #mode value="select"  formControlName="Type">
+                        <mat-option value="Select">Select</mat-option>
+                      <mat-option value="Tablet">Tablet</mat-option>
+                      <mat-option value="Tonic">Tonic</mat-option>
+                      <mat-option value="Powder">Powder</mat-option>
+
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field appearance="outline" id="UOM">
+                    <mat-label>
+                        UOM
+                    </mat-label>
+                    <input matInput type="text" placeholder="UOM" formControlName="UOM">
+                </mat-form-field>
+                <mat-form-field appearance="outline" id="StdRate">
+                    <mat-label>
+                        StdRate
+                    </mat-label>
+                    <input matInput type="number" placeholder="StdRate" formControlName="StdRate">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline" class="Notes">
+                    <mat-label>
+                        Notes
+                    </mat-label>
+                    <textarea matInput placeholder="Notes" formControlName="Notes"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div [ngStyle]="{'background-color':textColor,'color':'white'}" class="msg">
+            {{msg}}
+
+        </div>
+        <div>
+            <button mat-raised-button color="accent" type="submit">Submit
+                <mat-icon>assignment_turned_in</mat-icon>
+            </button>
+            <button mat-raised-button color="warn" class="btnDelete" type="button" (click)="Delete()">
+                <mat-icon>close</mat-icon>Delete
+            </button>
+            <!-- <button mat-raised-button color="warn" type="submit" class="delete"><mat-icon>close</mat-icon>Delete</button> -->
+            <button mat-raised-button color="warn" class="btnClear" type="button" (click)="Clear()">Clear
+                <mat-icon> notes</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" id="update" type="button" (click)="Update()">Update
+                <mat-icon>update</mat-icon></button>
+            <button mat-raised-button class="btnGet" type="button" (click)="Get()"> Get
+                <mat-icon>get_app</mat-icon></button>
+
+        </div>
+    </div>
+</form>

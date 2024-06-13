@@ -5,18 +5,18 @@ mat-toolbar {
 
 mat-sidenav {
   margin: 16px;
-  width: 230px;
+  width: 250px;
+  height: auto;
   border-right: none;
-  background: #002b5c;
+  background-color: rgb(29, 104, 132);
   color: white;
   border-radius: 10px;
   padding: 16px;
   text-align: center;
-  font-size: small;
 }
 
 .content {
-  height: calc(100vh - 130px);
+  height: auto;
   border-radius: 10px;
   margin: 16px;
   margin-left: 32px;
@@ -28,48 +28,55 @@ mat-sidenav {
 
 mat-sidenav-container {
   height: calc(100vh - 65px);
+  position: relative;
 }
 
-.menu-button {
+.home-button {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   font-size: 1rem;
+}
+.company {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  background-color: burlywood;
+}
 
-    mat-icon {
-      margin-right: 8px;
-    }
-  }
+.avatar {
+  margin-top: 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
 
-  .avatar {
-    margin-top: 16px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-  }
+.name {
+  margin-top: 8px;
+  font-weight: normal;
+}
 
-  .name {
-    margin-top: 8px;
-    font-weight: normal;
+.designation {
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color: lightgrey;
+}
 
-  }
+mat-divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
 
-  .designation {
-    margin-top: 2px;
-    font-size: 0.7rem;
-    color: lightgrey;
+.active {
+  background-color: white;
+  color: burlywood;
+}
+.menu-button:hover {
+  background-color: burlywood;
+  color: white;
+}
 
-  }
-
-  mat-divider {
-    margin-top: 16px;
-    margin-bottom: 16px;
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-
-  .active{
-    background-color:rgb(18, 47, 209);
-    font-size: small;
-
-  }

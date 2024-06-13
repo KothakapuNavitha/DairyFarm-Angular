@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import{MatSnackBarModule} from '@angular/material/snack-bar';
 import { ToastrModule } from 'ngx-toastr';
+import { MatListModule } from '@angular/material/list';
+
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
@@ -30,6 +32,9 @@ import { NgFor } from '@angular/common';
 import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +43,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     SidebarComponent,
     HomePageComponent,
     CattleDetailsComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +62,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatRadioModule,
+    MatListModule,
     HttpClientModule,
+    MatCardModule,
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
