@@ -1,69 +1,36 @@
-<!-- <mat-toolbar class="mat-elevation-z8">
+<mat-toolbar class="mat-elevation-z8">
   <button mat-icon-button (click)="sidenav.toggle()">
-    <mat-icon> menu </mat-icon>
+    <mat-icon>menu</mat-icon>
   </button>
-  <h1>DAIRYFARM MANAGEMENT</h1>
+  <h1>Dairy Farm Management</h1>
 </mat-toolbar>
 
 <mat-sidenav-container>
+
+  
   <mat-sidenav mode="side" open="true" #sidenav="matSidenav" class="mat-elevation-z8">
-    <h2 class="name">Navitha Reddy</h2>
-    <button style="color:white" mat-button class="menu-button"routerLinkActive="active">
-      <mat-icon>home</mat-icon>
-      <span><a routerLink="homepage" style="color:white">Home</a></span>
-    </button>
-    <mat-accordion>
-      <mat-expansion-panel style="margin-top: 10px;" >
+   <img class="avatar mat-elevation-z8" src="assets/IMG-20240613-WA0011.jpg" routerLink="Home">
+  <h2 class="name">Dairy Farm</h2>
+    <mat-nav-list class="mat-list">
+     
+      <mat-divider></mat-divider>
+      <mat-expansion-panel style="margin-top: 10px;">
         <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>person</mat-icon>
-         Admin
-        </mat-panel-title>
-        <mat-panel-description> -->
-          <!-- Click here to expand the panel	  -->
-        <!-- </mat-panel-description>
+          <mat-panel-title class="Admin">
+            <mat-icon style="margin-right: 10px;" class="mat-icon"></mat-icon>
+            ProductsDetails
+          </mat-panel-title>
         </mat-expansion-panel-header>
-        <div>
-        <button style="color:black" mat-button class="menu-button"routerLinkActive="active"> -->
-          <!-- <mat-icon>Company</mat-icon> -->
-          <!-- <span><a routerLink="clientDetails" style="color:black">Client Details</a></span>
-        </button>
-      </div>
-      <div>
-        <button style="color:black" mat-button class="menu-button"routerLinkActive="active"> -->
-          <!-- <mat-icon>User</mat-icon> -->
-          <!-- <span><a routerLink="CattleDetails" style="color:black">Cattle Details</a></span>
-        </button>
-      </div>
-    </mat-expansion-panel>
-
-      </mat-accordion>
-
-    <mat-accordion>
-      <mat-expansion-panel style="margin-top: 10px;" >
-        <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>person</mat-icon>
-         Products
-        </mat-panel-title>
-        <mat-panel-description> -->
-          <!-- Click here to expand the panel	  -->
-        <!-- </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div>
-        <button style="color:black" mat-button class="menu-button"routerLinkActive="active"> -->
-          <!-- <mat-icon>Company</mat-icon> -->
-          <!-- <span><a routerLink="products" style="color:black">Products Details</a></span>
-        </button>
-      </div>
+        <mat-nav-list class="mat-list">
+          <a mat-list-item routerLinkActive="active" routerLink="ProductDetails">Products</a>
+         
+        </mat-nav-list>
       </mat-expansion-panel>
-
-      </mat-accordion>
-   </mat-sidenav>
+    </mat-nav-list>
+  </mat-sidenav>
   <mat-sidenav-content>
     <div class="content mat-elevation-z8">
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
-</mat-sidenav-container> -->
-
+</mat-sidenav-container>

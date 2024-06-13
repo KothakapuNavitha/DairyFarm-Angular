@@ -4,7 +4,9 @@ import { ClientDetailsComponent } from './client-details/client-details.componen
 import { HomePageComponent } from './home-page/home-page.component';
 import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 
-const routes: Routes = [
+const routes: 
+Routes = [
+  {path: '',  component:HomePageComponent},
   {path:'homepage',component:HomePageComponent},
   {path:'clientDetails',component:ClientDetailsComponent},
   {path:'CattleDetails',component:CattleDetailsComponent}

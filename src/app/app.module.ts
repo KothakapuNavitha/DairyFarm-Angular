@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import{MatSnackBarModule} from '@angular/material/snack-bar';
 import { ToastrModule } from 'ngx-toastr';
-
+import { MatListModule } from '@angular/material/list';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule, NgbAlertModule,} from '@ng-bootstrap/ng-bootstrap';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -26,12 +25,15 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { NgFor } from '@angular/common';
 import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 import { MatRadioModule } from '@angular/material/radio';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { ProductionComponent } from './production/production.component';
-import { ProductionDetailsComponent } from './production-details/production-details.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDialogModule } from '@angular/material/dialog';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { MatCardModule } from '@angular/material/card';
+
+
 
 @NgModule({
   declarations: [
@@ -41,7 +43,7 @@ import {MatDialogModule } from '@angular/material/dialog';
     HomePageComponent,
     CattleDetailsComponent,
     ProductionComponent,
-    ProductionDetailsComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,9 @@ import {MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     MatSnackBarModule,
     MatRadioModule,
+    MatListModule,
     HttpClientModule,
+    MatCardModule,
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
