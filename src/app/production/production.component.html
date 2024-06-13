@@ -1,0 +1,49 @@
+<form align="center" [formGroup]="ProductionForm" >
+    <div class="heading">
+        <h1 ><b>Production  <button mat-raised-button color="accent" class="details"  (click)="openDialog()">Details</button>
+        </b></h1>
+    </div>
+    <div class="container fluid">
+    <div class="col" align="center">
+        <mat-form-field appearance="outline">
+            <mat-label>TranNo</mat-label>
+            <input matInput type="number" placeholder="TranNo" [(ngModel)]="TranNo" [ngModelOptions]="{standalone:true}">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="Date">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker"  formControlName="date">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+    </div>
+    <div>
+        <mat-form-field appearance="outline" class="session">
+            <mat-label>Session</mat-label>
+            <mat-select #mode value="Select" aria-placeholder="Session" formControlName="session">
+              <mat-option value="">Select</mat-option>
+              <mat-option value="AM">AM</mat-option>
+              <mat-option value="PM">PM</mat-option>
+            </mat-select>
+          </mat-form-field> 
+       
+    </div>
+    <div>
+      <mat-form-field  appearance="outline" class="notes">
+        <mat-label>Notes</mat-label>
+        <textarea matInput  type="textarea" placeholder="Notes" formControlName="notes" ></textarea>
+      </mat-form-field>
+    </div>
+   </div>
+<div  [ngStyle]="{'background-color':textcolor,'color':'white'}">{{msg}}</div>
+ 
+<div>
+    <button mat-raised-button  color="primary" id="Apply" type="submit" (click)="submit()"><mat-icon>save</mat-icon>Submit</button>
+    <button mat-raised-button id="update" type="button" (click)="update()"><mat-icon>cached</mat-icon>Update</button>
+    <button mat-raised-button id="reset" type="button" (click)="get()"><mat-icon>get_app</mat-icon>Get</button>
+    <button mat-raised-button id="Clear" type="button" (click)="Clear()"><mat-icon>clear</mat-icon>Clear</button>
+    <button mat-raised-button id="delete" type="button" (click)="delete()"><mat-icon> clear_all</mat-icon>Delete</button>
+</div>
+     
+</form>
+

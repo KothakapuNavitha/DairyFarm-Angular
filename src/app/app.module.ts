@@ -15,10 +15,7 @@ import{MatSnackBarModule} from '@angular/material/snack-bar';
 import { ToastrModule } from 'ngx-toastr';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {
-  NgbPaginationModule,
-  NgbAlertModule,
-} from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbAlertModule,} from '@ng-bootstrap/ng-bootstrap';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -30,6 +27,11 @@ import { NgFor } from '@angular/common';
 import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ProductionComponent } from './production/production.component';
+import { ProductionDetailsComponent } from './production-details/production-details.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     SidebarComponent,
     HomePageComponent,
     CattleDetailsComponent,
+    ProductionComponent,
+    ProductionDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     NgbPaginationModule,
     NgbAlertModule,
     NgFor,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ToastrModule,
     ToastrModule.forRoot({
       timeOut:10000,
