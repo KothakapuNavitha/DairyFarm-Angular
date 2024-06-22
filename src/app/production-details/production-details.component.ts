@@ -1,11 +1,10 @@
 import { Component ,OnDestroy, OnInit} from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { productiondetailscls } from '../Classes/ProductionDetailsClass';
 import { HttpClient } from '@angular/common/http';
 import { ProductionDetailsServiceService} from '../production-details-service.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
-// import { ColDef } from 'ag-grid-community';
 
 @Component({
   selector: 'app-production-details',
@@ -163,17 +162,13 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
        }
      });
    }
-  //  rowData=[
 
-  //  ];
-  //  colDefs:ColDef[]= [
-  //   {headerName: 'SL.NO', field:'sl.no'},
-  //   {headerName:'TagNo',field:'tagno'},
-  //   {headerName:'TranNo',field:'tranno'},
-
-  //  ];
 
  }
+
+
+
+ 
    
 
 

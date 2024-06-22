@@ -1,0 +1,113 @@
+::ng-deep .mat-mdc-form-field-infix {
+  min-height: 40px;
+  font-size: small;
+}
+ mat-mdc-text-field-wrapper
+mdc-text-field
+ng-tns-c1205077789-4
+mdc-text-field--filled {
+top: -1.5em !important;
+} 
+::ng-deep .mat-mdc-form-field-flex > .mat-mdc-form-field-infix {
+  padding: 0.4em 0px !important;
+}
+::ng-deep .mat-mdc-text-field-wrapper {
+  top: -1.5em !important;
+} 
+mat-form-field {
+  gap: 1;
+  padding-right: 9px;
+  width: 30%;
+}
+.container {
+  padding-top: 2%;
+}
+.heading{
+  background-color: rgb(11, 11, 228);
+  color: white;
+  margin-bottom: 40px; 
+
+}
+#delete{
+  background-color: rgb(242, 10, 10);
+  color: white;
+  margin-bottom: 10px;
+  margin-left: 30px;
+   border-radius: 20px; 
+
+}
+#Apply{
+  margin-bottom: 10px;
+  margin-right: 5px;
+  border-radius: 20px; 
+  background-color: #1c2abe;
+  color: white;
+  margin-left: 30px;
+  
+
+}
+#reset{
+  background-color: green;
+  color: white;
+  margin-bottom: 10px;
+  margin-left: 30px;
+   border-radius: 20px;
+   margin-right: 5px; 
+
+}
+#Clear{
+      background-color: orangered;
+      color: white;
+      margin-bottom: 10px;
+      margin-left: 30px;
+      border-radius: 20px; 
+      margin-right: 5px;
+    
+}
+#update{
+      background-color: rgb(234, 23, 202);
+      color: white;
+      margin-bottom: 10px;
+      margin-left: 30px;
+       border-radius: 20px;
+       margin-right: 5px;       
+}
+/* .closeicon :hover{
+background-color:#ff0000;
+border-radius:1px; 
+color: white;
+margin-top:5px ;
+margin-right: 5px; 
+padding: 15px 20px;
+} */
+
+/* .closeicon:hover {
+transform: rotate(90deg);
+} */
+.closeicon{
+float: right;
+top:-24px;
+right:-24px;
+transition: 1s ease-in-out;
+}
+
+.ag-theme-alpine{
+--ag-header-height: 30px;
+--ag-header-foreground-color: white;
+--ag-header-background-color: rgb(32, 143, 246);
+/* --ag-header-cell-hover-background-color: rgb(80, 40, 140); */
+--ag-header-cell-moving-background-color: rgb(80, 40, 140);
+
+}
+.ag-theme-alpine .ag-header {
+font-family: cursive;
+}
+.ag-theme-alpine .ag-header-group-cell {
+font-weight: normal;
+font-size: 22px;
+
+}
+.ag-theme-alpine .ag-header-cell {
+font-size: 18px;
+
+}

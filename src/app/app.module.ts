@@ -4,36 +4,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClientDetailsComponent } from './client-details/client-details.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import{MatSnackBarModule} from '@angular/material/snack-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-import { MatListModule } from '@angular/material/list';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbPaginationModule, NgbAlertModule,} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatSelectModule } from '@angular/material/select';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NgFor } from '@angular/common';
 import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
-import { MatRadioModule } from '@angular/material/radio';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { ProductionComponent } from './production/production.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatDialogModule } from '@angular/material/dialog';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-import { MatCardModule } from '@angular/material/card';
-
-
+import { MaterialdesignModule } from './materialdesign/materialdesign.module';
+import { ProductionDetailsComponent } from './production-details/production-details.component';
 
 @NgModule({
   declarations: [
@@ -43,45 +25,28 @@ import { MatCardModule } from '@angular/material/card';
     HomePageComponent,
     CattleDetailsComponent,
     ProductionComponent,
-    ProductDetailsComponent,
+    ProductionDetailsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatCheckboxModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatExpansionModule,
-    MatSelectModule,
-    MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule,
-    MatRadioModule,
-    MatListModule,
     HttpClientModule,
-    MatCardModule,
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
     NgFor,
-    MatDialogModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    ToastrModule,
+    MaterialdesignModule, // Make sure this is imported
     ToastrModule.forRoot({
-      timeOut:10000,
-      positionClass:'toast-top-right',
-      preventDuplicates:true,
-    })
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
   ],
-  providers: [
-
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
