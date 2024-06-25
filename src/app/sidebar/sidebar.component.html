@@ -4,10 +4,7 @@
   </button>
   <h1>Dairy Farm Management</h1>
 </mat-toolbar>
-
 <mat-sidenav-container>
-
-  
   <mat-sidenav mode="side" open="true" #sidenav="matSidenav" class="mat-elevation-z8">
    <img class="avatar mat-elevation-z8" src="assets/IMG-20240613-WA0011.jpg" routerLink="Home">
   <h2 class="name">Dairy Farm</h2>
@@ -22,8 +19,9 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list class="mat-list">
-          <a mat-list-item routerLinkActive="active" routerLink="ProductDetails">Products</a>
-         
+           <a mat-list-item routerLinkActive="active" routerLink="Products">Products</a>
+          <a mat-list-item routerLinkActive="active" routerLink="Production">Production</a> 
+          
         </mat-nav-list>
       </mat-expansion-panel>
     </mat-nav-list>

@@ -5,8 +5,8 @@ mat-toolbar {
 
 mat-sidenav {
   margin: 16px;
-  width: 250px;
-  height: auto;
+  width: 230px;
+  /* height: auto; */
   border-right: none;
   background-color: rgb(29, 104, 132);
   color: white;
@@ -16,19 +16,17 @@ mat-sidenav {
 }
 
 .content {
-  height: auto;
+  height: calc(100vh - 130px);
   border-radius: 10px;
   margin: 16px;
   margin-left: 32px;
-
   padding: 16px;
-
   overflow: auto;
 }
 
 mat-sidenav-container {
   height: calc(100vh - 65px);
-  position: relative;
+  /* position: relative; */
 }
 
 .home-button {
@@ -79,4 +77,4 @@ mat-divider {
   background-color: burlywood;
   color: white;
 }
-
+  
