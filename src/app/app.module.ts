@@ -10,12 +10,12 @@ import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NgFor } from '@angular/common';
-import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductionComponent } from './production/production.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { MaterialdesignModule } from './materialdesign/materialdesign.module';
 import { ProductionDetailsComponent } from './production-details/production-details.component';
+import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +23,10 @@ import { ProductionDetailsComponent } from './production-details/production-deta
     ClientDetailsComponent,
     SidebarComponent,
     HomePageComponent,
-    CattleDetailsComponent,
     ProductionComponent,
     ProductionDetailsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    MilkPurchaseComponent
   ],
   imports: [
     BrowserModule,
