@@ -5,6 +5,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 import { ProductionComponent } from './production/production.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { FeedDetailsComponent } from './feed-details/feed-details.component';
 
 const routes: 
 Routes = [
@@ -13,6 +14,7 @@ Routes = [
   {path:'CattleDetails',component:CattleDetailsComponent},
   {path:'Production',component:ProductionComponent},
   {path:'Products',component:ProductDetailsComponent},
+  {path:'feedDetails',component:FeedDetailsComponent},
 
 ];
 

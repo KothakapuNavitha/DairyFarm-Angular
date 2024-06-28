@@ -16,6 +16,7 @@ import { ProductionComponent } from './production/production.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { MaterialdesignModule } from './materialdesign/materialdesign.module';
 import { ProductionDetailsComponent } from './production-details/production-details.component';
+import { FeedDetailsComponent } from './feed-details/feed-details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProductionDetailsComponent } from './production-details/production-deta
     CattleDetailsComponent,
     ProductionComponent,
     ProductionDetailsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    FeedDetailsComponent
   ],
   imports: [
     BrowserModule,
