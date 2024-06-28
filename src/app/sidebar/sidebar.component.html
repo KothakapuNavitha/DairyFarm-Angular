@@ -9,8 +9,33 @@
    <img class="avatar mat-elevation-z8" src="assets/IMG-20240613-WA0011.jpg" routerLink="Home">
   <h2 class="name">Dairy Farm</h2>
     <mat-nav-list class="mat-list">
-     
       <mat-divider></mat-divider>
+      <mat-expansion-panel style="margin-top: 10px;">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="Admin">
+            <mat-icon style="margin-right: 10px;" class="mat-icon"></mat-icon>
+            Client Details
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list class="mat-list">
+           <a mat-list-item routerLinkActive="active" routerLink="clientDetails">ClientDetails</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    <mat-divider></mat-divider>
+
+    <mat-expansion-panel style="margin-top: 10px;">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="Admin">
+          <mat-icon style="margin-right: 10px;" class="mat-icon"></mat-icon>
+          Milk Purchase
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-nav-list class="mat-list">
+         <a mat-list-item routerLinkActive="active" routerLink="milkPurchase">Milk Purchase</a>
+      </mat-nav-list>
+    </mat-expansion-panel>
+
+  <mat-divider></mat-divider>
       <mat-expansion-panel style="margin-top: 10px;">
         <mat-expansion-panel-header>
           <mat-panel-title class="Admin">
@@ -22,7 +47,9 @@
            <a mat-list-item routerLinkActive="active" routerLink="Products">Products</a>
           <a mat-list-item routerLinkActive="active" routerLink="Production">Production</a> 
           <a mat-list-item routerLinkActive="active" routerLink="feedDetails">Feed Details</a> 
-          
+
+          <a mat-list-item routerLinkActive="active" routerLink="Production">Production</a>
+
         </mat-nav-list>
       </mat-expansion-panel>
     </mat-nav-list>
