@@ -72,18 +72,7 @@ mat-form-field {
        border-radius: 20px;
        margin-right: 5px;       
 }
-/* .closeicon :hover{
-background-color:#ff0000;
-border-radius:1px; 
-color: white;
-margin-top:5px ;
-margin-right: 5px; 
-padding: 15px 20px;
-} */
 
-/* .closeicon:hover {
-transform: rotate(90deg);
-} */
 .closeicon{
 float: right;
 top:-24px;
@@ -109,5 +98,5 @@ font-size: 22px;
 }
 .ag-theme-alpine .ag-header-cell {
 font-size: 18px;
-
 }
+

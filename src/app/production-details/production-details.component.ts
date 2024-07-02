@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ProductionDetailsServiceService} from '../production-details-service.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
+import { ColDef } from 'ag-grid-community';
 
 @Component({
   selector: 'app-production-details',
@@ -13,6 +14,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class ProductionDetailsComponent implements OnInit,OnDestroy{
+  rowData=[];
+
+  colDefs:any[]=[
+    {headerName:'TranNo',field:'tranNo'},
+    {headerName:'TagNo',field:'tagNo'},
+    {headerName:'Quantity',field:'quantity'},
+    {headerName:'SNF',field:'snf'},
+  ]
   hide: boolean = true;
   public ProductionDetailsform!:FormGroup;
   public prodcls!:productiondetailscls;
@@ -27,6 +36,7 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
 
   }
   ngOnInit(): void {
+
      }
   formInit(){
     this.ProductionDetailsform=this.fb.group({
@@ -51,7 +61,7 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
         const formValues=this.ProductionDetailsform.value;
         this.prodcls.mode='Insert';
         this.prodcls.tranNo=formValues.tranNo;
-        this.prodcls.tagNo=formValues.tagNo;
+        this.prodcls.tagNo=this.TagNo;
         this.prodcls.quantity=formValues.quantity;
         this.prodcls.SNF=formValues.SNF;
         this.snackBar.open('Details inserted','okay');
@@ -62,6 +72,7 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
           if(res.status==="Success"){
             this.msg=res.dbMsg;
             this.textcolor="green";
+            this.GetAllProductionDetails();
           }
           else{
             this.msg=res.dbMsg;
@@ -92,19 +103,19 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
       try{
         const formValues=this.ProductionDetailsform.value;
         this.prodcls.mode='Update';
-        this.prodcls.tagNo=formValues.TagNo ;
+        this.prodcls.tagNo=this.TagNo ;
         this.prodcls.tranNo=formValues.tranNo;
        this.prodcls.quantity=formValues.quantity;
-       this.prodcls.SNF=formValues.SNF;
+       this.prodcls.SNF=formValues.snf;
        this.snackBar.open('Details inserted','okay');
        this.toastr.success("Details inserted","SUCCESS");
-
-       console.log(this.prodcls)
+       console.log(this.prodcls);
        this.prodSrv.updateproductiondetails(this.prodcls).subscribe((res:any)=>{
       console.log(res);
       if(res.status==="Success"){
         this.msg=res.dbMsg;
         this.textcolor="green";
+        this.GetAllProductionDetails();
       }
       else{
         this.msg=res.dbMsg;
@@ -148,7 +159,7 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
           this.ProductionDetailsform.patchValue({
             'tranNo':res.tranNo,
             'quantity':res.quantity,
-            'SNF':res.SNF
+            'SNF':res.snf
           });
 
          this.msg=res.dbMsg;
@@ -162,7 +173,18 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
      });
    }
 
-
+clear(){
+  this.TagNo="";
+  this.formInit();
+  this.msg="";
+  this.textcolor="red";
+}
+GetAllProductionDetails() {
+  this.prodSrv.getAllProductionData().subscribe((res: any) => {
+    console.log(res);
+    this.rowData = res;
+  });
+}
  }
 
 

@@ -15,6 +15,7 @@ mat-form-field {
     /* background: linear-gradient(to bottom, #84aee8 0%, #8a92f7 100%); */
     background-color: salmon;
     color: white;
+  
   }
   ::ng-deep .mat-mdc-form-field-infix {
     min-height: 40px;
@@ -75,4 +76,43 @@ mat-form-field {
 .description{
     width: 60%;
     height: 100px;
+
 }
+
+.ag-theme-alpine{
+  --ag-header-height: 30px;
+  --ag-header-foreground-color: white;
+  --ag-header-background-color: rgb(32, 143, 246);
+  --ag-header-cell-moving-background-color: rgb(94, 30, 191);
+ 
+}
+.ag-theme-alpine .ag-header {
+  font-family: cursive;
+    height: 20px; /* Adjust the height as needed */
+    line-height: 20px; /* Ensure the text is vertically centered */
+  
+}
+.ag-theme-alpine .ag-header-group-cell {
+  font-weight: normal;
+  font-size: 22px;
+  
+}
+.ag-theme-alpine .ag-header-cell {
+  font-size: 18px;
+  
+} 
+
+
+/* Adjust the row height */
+.ag-theme-alpine .ag-row {
+  height: 10px; /* Ensure this matches the rowHeight set in TypeScript */
+}
+
+/* Adjust the font size and padding of row cells */
+.ag-theme-alpine .ag-cell {
+  font-size: 12px; /* Adjust font size as needed */
+  padding: 2px 5px; /* Adjust padding as needed */
+}
+
+
+

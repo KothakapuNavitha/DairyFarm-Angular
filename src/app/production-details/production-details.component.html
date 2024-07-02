@@ -47,13 +47,22 @@
     <button mat-raised-button id="reset" type="button" (click)="get()">
       <mat-icon>get_app</mat-icon>Get
     </button>
-    <button mat-raised-button id="Clear" type="button" >
+    <button mat-raised-button id="Clear" type="button" (click)="clear()">
       <mat-icon>clear</mat-icon>Clear
     </button>
     <button mat-raised-button id="delete" type="button" (click)="delete()">
       <mat-icon>clear_all</mat-icon>Delete
     </button>
   </div>
+  <div>
+    <ag-grid-angular class="grid"
+    style="width:auto;height:200px;"
+    class="ag-theme-alpine"
+    [columnDefs]="colDefs"
+    [rowData]="rowData" >
+    </ag-grid-angular>
+  </div>
+
 </form>
 </body>
 </html>

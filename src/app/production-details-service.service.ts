@@ -23,5 +23,8 @@ export class ProductionDetailsServiceService {
     return this.http.post(this.url+"ProductionDetails/GetProductionDetailsType",producls)
 
   }
+  getAllProductionData(){
+    return this.http.get(this.url+"ProductionDetails/GetProductionDetailsType")
+  }
 
 }

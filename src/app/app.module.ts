@@ -46,6 +46,8 @@ import { AgGridModule } from 'ag-grid-angular';
     NgbPaginationModule,
     NgbAlertModule,
     NgFor,
+    AgGridModule,
+    MaterialdesignModule, // Make sure this is imported
     MaterialdesignModule,
     AgGridModule,
     ToastrModule.forRoot({
