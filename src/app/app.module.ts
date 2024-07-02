@@ -17,6 +17,7 @@ import { MaterialdesignModule } from './materialdesign/materialdesign.module';
 import { ProductionDetailsComponent } from './production-details/production-details.component';
 import { FeedDetailsComponent } from './feed-details/feed-details.component';
 import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
+import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 import { AgGridModule } from 'ag-grid-angular';
 
 
@@ -29,6 +30,8 @@ import { AgGridModule } from 'ag-grid-angular';
     ProductionComponent,
     ProductionDetailsComponent,
     ProductDetailsComponent,
+    MilkPurchaseComponent,
+    CattleDetailsComponent,
     FeedDetailsComponent,
     MilkPurchaseComponent,
   ],
@@ -45,6 +48,8 @@ import { AgGridModule } from 'ag-grid-angular';
     NgFor,
     AgGridModule,
     MaterialdesignModule, // Make sure this is imported
+    MaterialdesignModule,
+    AgGridModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-top-right',

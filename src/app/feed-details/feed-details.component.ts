@@ -24,6 +24,15 @@ export class FeedDetailsComponent {
     {headerName:'Quantity',field:'quantity'},
     {headerName:'Rate',field:'rate'},
   ]
+  
+  defaultColDef = {
+    resizable: true,
+    sortable: true,
+    filter: true,
+  };
+
+  rowHeight = 10; // Set the row height in pixels
+
   public feedDetailsForm!:FormGroup;
   public feedDetails!:feedDetailscls;
   public msg:string="";
@@ -64,21 +73,21 @@ constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuil
       const formValues = this.feedDetailsForm.value;
       this.feedDetails.Mode = 'Insert';
       this.feedDetails.TranNo = 0;
-      // this.feedDetails.Date=formValues.Date;
-      // this.feedDetails.TagNo=formValues.TagNo;
-      // this.feedDetails.Gender=formValues.Gender;
-      // this.feedDetails.Description=formValues.Description;
-      // this.feedDetails.Quantity=formValues.Quantity;
-      // this.feedDetails.Rate=formValues.Rate;
+      this.feedDetails.Date=formValues.Date;
+      this.feedDetails.TagNo=formValues.TagNo;
+      this.feedDetails.Gender=formValues.Gender;
+      this.feedDetails.Description=formValues.Description;
+      this.feedDetails.Quantity=formValues.Quantity;
+      this.feedDetails.Rate=formValues.Rate;
       this.snackBar.open('Details inserted','okay');
       this.toastr.success("Details inserted","SUCCESS");
       console.log(this.feedDetails);
-      this.GetAllFeedDetails();
       this.feedDetailsSrv.insertFeedDetailsData(this.feedDetails).subscribe((res:any)=>{
       console.log(res);
       if(res.status==="Success"){
         this.msg= res.dbMsg;
         this.textcolor= "green";
+        this.GetAllFeedDetails();
       }
       else{
         this.msg=res.dbMsg;
@@ -108,21 +117,21 @@ constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuil
       const formValues=this.feedDetailsForm.value;
       this.feedDetails.Mode="Update";
       this.feedDetails.TranNo=this.TranNo;
-      // this.feedDetails.Date=formValues.Date;
-      // this.feedDetails.TagNo=formValues.TagNo;
-      // this.feedDetails.Gender=formValues.Gender;
-      // this.feedDetails.Description=formValues.Description;
-      // this.feedDetails.Quantity=formValues.Quantity;
-      // this.feedDetails.Rate=formValues.Rate;
+      this.feedDetails.Date=formValues.Date;
+      this.feedDetails.TagNo=formValues.TagNo;
+      this.feedDetails.Gender=formValues.Gender;
+      this.feedDetails.Description=formValues.Description;
+      this.feedDetails.Quantity=formValues.Quantity;
+      this.feedDetails.Rate=formValues.Rate;
       this.snackBar.open('Details inserted','okay');
       this.toastr.success("Details updated","SUCCESS");
       console.log(this.feedDetails);
-      this.GetAllFeedDetails();
       this.feedDetailsSrv.updatefeedDetails(this.feedDetails).subscribe((res:any)=>{
         console.log(res);
         if(res.status==="Success"){
           this.msg= res.dbMsg;
           this.textcolor= "green";
+          this.GetAllFeedDetails();
         }
         else{
           this.msg=res.dbMsg;

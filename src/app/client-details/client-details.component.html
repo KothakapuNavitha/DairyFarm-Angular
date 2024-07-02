@@ -3,7 +3,7 @@
     <h1>Client Details</h1>
   </div>
   <div class="container-fluid">
-    <div class="col-8">
+    <div class="col-6">
       <mat-form-field appearance="outline" class="desc">
         <mat-label>Client</mat-label>
         <mat-icon class="searchicon" matSuffix>search</mat-icon>
@@ -11,19 +11,19 @@
       </mat-form-field>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Client Id</mat-label>
           <input id="clientid" matInput placeholder="Client Id" [(ngModel)]="ClientId" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Client Name</mat-label>
           <input id="ClientName" matInput placeholder="Client Name" formControlName="name">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Client Type</mat-label>
           <mat-select formControlName="type" multiple>
@@ -34,19 +34,19 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Contact Number1</mat-label>
           <input id="ContactNumber1" matInput placeholder="Contact Number1" formControlName="contactNumber1">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Contact Number2</mat-label>
           <input id="ContactNumber2" matInput placeholder="Contact Number2" formControlName="contactNumber2">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Contact Name</mat-label>
           <input id="ContactName" matInput placeholder="Contact Name" formControlName="contactName">
@@ -54,19 +54,19 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Email</mat-label>
           <input id="email" matInput placeholder="Email" formControlName="email">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Department</mat-label>
           <input id="dept" matInput placeholder="Department" formControlName="department">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Designation</mat-label>
           <input id="designation" matInput placeholder="Designation" formControlName="designation">
@@ -74,19 +74,19 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Address1</mat-label>
           <input id="Address1" matInput placeholder="Address1" formControlName="address1">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Address2</mat-label>
           <input id="Address2" matInput placeholder="Address2" formControlName="address2">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Address3</mat-label>
           <input id="Address3" matInput placeholder="Address3" formControlName="address3">
@@ -94,26 +94,26 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>City</mat-label>
           <input  matInput placeholder="City" formControlName="city">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>State</mat-label>
           <input  matInput placeholder="State" formControlName="state">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Country</mat-label>
           <input matInput placeholder="Country" formControlName="country">
         </mat-form-field>
       </div>
     </div>
-    <div class="col-12">
+    <div class="col-9">
       <mat-form-field appearance="outline" class="desc">
         <mat-label>Description</mat-label>
         <textarea id="description" matInput placeholder="Description" formControlName="description"></textarea>
@@ -129,5 +129,13 @@
     <button id="btnreset" type="button" mat-raised-button color="accent" (click)="update()"><mat-icon>cached</mat-icon>Update</button>
     <button id="btnclear" type="button" mat-raised-button color="red" (click)="Delete()"><mat-icon>clear_all</mat-icon>Delete</button>
     <button id="btnclose" type="button" mat-raised-button color="red" (click)="clear()"><mat-icon>clear</mat-icon>Clear</button>
+  </div>
+  <div>
+    <ag-grid-angular class="grid"
+    style="width:auto;height:200px;"
+    class="ag-theme-alpine"
+    [columnDefs]="colDefs"
+    [rowData]="rowData" >
+    </ag-grid-angular>
   </div>
 </form>

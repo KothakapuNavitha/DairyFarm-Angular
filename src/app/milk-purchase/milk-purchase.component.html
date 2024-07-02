@@ -1,113 +1,121 @@
+<!DOCTYPE html>
+<body>
 <form class="form" [formGroup]="milkPurchaseForm">
   <div class="header">
     <h1>Milk Purchase</h1>
   </div>
   <div class="container-fluid">
     <div class="row">
-    <div class="col-4">
-      <mat-form-field appearance="outline" class="desc">
-        <mat-label>Tran No</mat-label>
-        <input id="clientid" matInput placeholder="Tran Number" [(ngModel)]="TranNumber" [ngModelOptions]="{standalone: true}">
-      </mat-form-field>
-    </div>
-    <div class="col-4">
+      <div class="col-3">
+        <mat-form-field appearance="outline" class="desc">
+          <mat-label>Tran No</mat-label>
+          <input class="TranNumber" matInput placeholder="Tran No" [(ngModel)]="TranNumber" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+      </div>
+    <div class="col-3">
       <button class="btnget" type="button" mat-raised-button color="accent" (click)="Get()"><mat-icon>cached</mat-icon>Get</button>
    </div>
+   <div class="col-3">
+    <mat-form-field  appearance="outline" class="Date">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
    </div>
   </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Client Id</mat-label>
-          <input id="clientid" matInput placeholder="Client Id" formControlName="clientId">
+          <input  type="number"  id="clientid" matInput placeholder="Client Id" formControlName="clientId">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
+        <mat-form-field appearance="outline" class="desc">
+          <mat-label>Client Name</mat-label>
+          <input id="uom"  type="text"  matInput placeholder="Client Name" formControlName="Client Name">
+        </mat-form-field>
+      </div>
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>UOM</mat-label>
-          <input id="uom" matInput placeholder="UOM" formControlName="uom">
+          <input id="uom"  type="text"  matInput placeholder="UOM" formControlName="uom">
         </mat-form-field>
       </div>
-      <div class="col-4">
-        <mat-form-field appearance="outline" class="Date">
-          <mat-label>Date</mat-label>
-          <input matInput [matDatepicker]="picker"  formControlName="date">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
       </div>
-    </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Quantity</mat-label>
-          <input id="quantity" matInput placeholder="quantity" formControlName="quantity">
+          <input id="quantity" type="number" matInput placeholder="quantity" formControlName="quantity">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Unit Rate</mat-label>
-          <input id="unitRate" matInput placeholder="Unit Rate" formControlName="unitRate">
+          <input id="unitRate"  type="number"  matInput placeholder="Unit Rate" formControlName="unitRate">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Total Amount</mat-label>
-          <input id="totalAmt" matInput placeholder="totalAmt" formControlName="totalAmt">
+          <input id="totalAmt"  type="number"  matInput placeholder="totalAmt" formControlName="totalAmt">
         </mat-form-field>
       </div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Fat Content</mat-label>
-          <input id="fatContent" matInput placeholder="Fat Content" formControlName="fatContent">
+          <input id="fatContent"  type="number"  matInput placeholder="Fat Content" formControlName="fatContent">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Protein Content</mat-label>
-          <input id="proteinContent" matInput placeholder="Protein Content" formControlName="proteinContent">
+          <input id="proteinContent"  type="number"  matInput placeholder="Protein Content" formControlName="proteinContent">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Latose Content</mat-label>
-          <input id="latoseContent" matInput placeholder="Latose Content" formControlName="latoseContent">
+          <input id="latoseContent"  type="number"  matInput placeholder="Latose Content" formControlName="latoseContent">
         </mat-form-field>
       </div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>TotalSolid Content</mat-label>
-          <input id="totalSolidContent" matInput placeholder="TotalSolid Content" formControlName="totalSolidContent">
+          <input id="totalSolidContent"  type="number"  matInput placeholder="TotalSolid Content" formControlName="totalSolidContent">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Bacterial Content</mat-label>
-          <input id="bacterialContent" matInput placeholder="Bacterial Content" formControlName="bacterialContent">
+          <input id="bacterialContent"  type="number"  matInput placeholder="Bacterial Content" formControlName="bacterialContent">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>PhLevel</mat-label>
-          <input id="phLevel" matInput placeholder="PhLevel" formControlName="phLevel">
+          <input id="phLevel"  type="number"  matInput placeholder="PhLevel" formControlName="phLevel">
         </mat-form-field>
       </div>
     </div>
     <div class="row">
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Antibiotic Residue</mat-label>
-          <input  matInput placeholder="Antibiotic Residue" formControlName="antibioticResidue">
+          <input  type="number"  matInput placeholder="Antibiotic Residue" formControlName="antibioticResidue">
         </mat-form-field>
       </div>
-      <div class="col-4">
+      <div class="col-3">
         <mat-form-field appearance="outline" class="desc">
           <mat-label>Qualitygrade</mat-label>
-          <input  matInput placeholder="Qualitygrade" formControlName="qualitygrade">
+          <input  type="number"  matInput placeholder="Qualitygrade" formControlName="qualitygrade">
         </mat-form-field>
       </div>
       </div>
@@ -120,5 +128,14 @@
     <button id="btnclear" type="button" mat-raised-button color="red" (click)="Delete()"><mat-icon>clear_all</mat-icon>Delete</button>
     <button id="btnclose" type="button" mat-raised-button color="red" (click)="clear()"><mat-icon>clear</mat-icon>Clear</button>
   </div>
+  <div>
+    <ag-grid-angular class="grid"
+    style="width:auto;height:200px;"
+    class="ag-theme-alpine"
+    [columnDefs]="colDefs"
+    [rowData]="rowData" >
+    </ag-grid-angular>
+  </div>
 </form>
+</body>
 

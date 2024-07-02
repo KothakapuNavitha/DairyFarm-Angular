@@ -9,12 +9,14 @@ import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
 
 const routes:
 Routes = [
-  {path:'Home',component:HomePageComponent},
+  {path:'homepage',component:HomePageComponent},
   {path:'clientDetails',component:ClientDetailsComponent},
   {path:'milkPurchase',component:MilkPurchaseComponent},
+  {path:'production',component:ProductionComponent},
+  {path:'products',component:ProductDetailsComponent},
   {path:'Production',component:ProductionComponent},
   {path:'Products',component:ProductDetailsComponent},
-  {path:'feedDetails',component:FeedDetailsComponent},
+  {path:'feedDetails',component:FeedDetailsComponent}
 
 ];
 

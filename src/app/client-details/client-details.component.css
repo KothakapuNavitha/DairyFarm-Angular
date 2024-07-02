@@ -2,8 +2,8 @@
   background-color: white;
 }
 .header{
-  width:100%;
-  height:30px;
+  width:auto;
+  /* height:30px; */
   color: white;
   margin-bottom: 60px;
   padding-top:1px;
@@ -14,13 +14,15 @@
 mat-form-field {
   /* gap: 1; */
   padding-right:-3px;
+  margin-left:145px ;
+  text-align: center;
   /* width: 33%; */
 }
 /* .container {
   padding-top: 2%;
 } */
 .desc{
-  width: 98%;
+  width: 99%;
   padding-right:-3px ;
 }
  ::ng-deep .mat-mdc-form-field-infix {
@@ -60,21 +62,53 @@ mat-form-field {
 
 #btnapply{
   margin-left:20px;
+  margin-bottom:20px ;
 
 }
 #btnreset{
   margin-left:20px ;
   color:white;
+  margin-bottom:20px ;
 }
 #btnclear{
   background-color:red ;
   margin-left:20px;
   color:white;
+  margin-bottom:20px ;
 }
 #btnclose{
   background-color:orangered;
   margin-left:20px;
   color:white;
+  margin-bottom:20px ;
 
+}
+.ag-theme-alpine{
+  --ag-header-height:10px;
+  --ag-header-foreground-color: white;
+  --ag-header-background-color: rgb(13, 124, 228);
+  /* --ag-header-cell-hover-background-color: rgb(80, 40, 140); */
+  --ag-header-cell-moving-background-color: rgb(80, 40, 140);
+
+}
+.ag-theme-alpine .ag-header {
+  font-family: cursive;
+}
+.ag-theme-alpine .ag-header-group-cell {
+  font-weight: normal;
+
+  font-size: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.ag-theme-alpine .ag-header-cell {
+  font-size: 16px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+}
+.grid{
+  /* height:-10px; */
+  --ag-header-height:10px;
 }
 

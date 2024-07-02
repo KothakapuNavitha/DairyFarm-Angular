@@ -78,16 +78,19 @@ mat-form-field {
     height: 100px;
 
 }
-/* 
+
 .ag-theme-alpine{
   --ag-header-height: 30px;
   --ag-header-foreground-color: white;
   --ag-header-background-color: rgb(32, 143, 246);
-  --ag-header-cell-moving-background-color: rgb(80, 40, 140);
+  --ag-header-cell-moving-background-color: rgb(94, 30, 191);
  
 }
 .ag-theme-alpine .ag-header {
   font-family: cursive;
+    height: 20px; /* Adjust the height as needed */
+    line-height: 20px; /* Ensure the text is vertically centered */
+  
 }
 .ag-theme-alpine .ag-header-group-cell {
   font-weight: normal;
@@ -97,77 +100,19 @@ mat-form-field {
 .ag-theme-alpine .ag-header-cell {
   font-size: 18px;
   
-} */
-
-
-/* Set the overall style for the grid container */
-:host ::ng-deep .ag-theme-alpine {
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-/* Style the header */
-:host ::ng-deep .ag-theme-alpine .ag-header {
-  background-color: #f4f4f4;
-  color: #333;
-  font-weight: bold;
-}
-
-/* Style the header cells */
-:host ::ng-deep .ag-theme-alpine .ag-header-cell {
-  border-right: 1px solid #ddd;
-  text-align: center;
-}
-
-/* Style the body cells */
-:host ::ng-deep .ag-theme-alpine .ag-cell {
-  border-right: 1px solid #eee;
-  text-align: center;
-}
-
-/* Add zebra striping to rows */
-:host ::ng-deep .ag-theme-alpine .ag-row:nth-child(even) {
-  background-color: #fafafa;
-}
-
-/* Style the grid lines */
-:host ::ng-deep .ag-theme-alpine .ag-row {
-  border-bottom: 1px solid #eee;
-}
-
-/* Style the pagination controls (if used) */
-:host ::ng-deep .ag-theme-alpine .ag-paging-panel {
-  background-color: #f4f4f4;
-  border-top: 1px solid #ccc;
-}
-
-/* Add padding to cells */
-:host ::ng-deep .ag-theme-alpine .ag-cell {
-  padding: 5px 10px;
-}
-
-/* Add a hover effect on rows */
-:host ::ng-deep .ag-theme-alpine .ag-row:hover {
-  background-color: #e6f7ff;
-}
-
-/* Customize the scrollbar */
-:host ::ng-deep .ag-theme-alpine .ag-body-viewport::-webkit-scrollbar {
-  width: 10px;
-}
-
-:host ::ng-deep .ag-theme-alpine .ag-body-viewport::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 5px;
-}
-
-:host ::ng-deep .ag-theme-alpine .ag-body-viewport::-webkit-scrollbar-thumb:hover {
-  background-color: #999;
 } 
 
+
+/* Adjust the row height */
+.ag-theme-alpine .ag-row {
+  height: 10px; /* Ensure this matches the rowHeight set in TypeScript */
+}
+
+/* Adjust the font size and padding of row cells */
+.ag-theme-alpine .ag-cell {
+  font-size: 12px; /* Adjust font size as needed */
+  padding: 2px 5px; /* Adjust padding as needed */
+}
 
 
 

@@ -1,8 +1,13 @@
+body{
+  overflow:hidden ;
+}
 .form{
   background-color: white;
+  text-align: center;
+  overflow: hidden;
 }
 .header{
-  width:100%;
+  width:auto;
   height:30px;
   color: white;
   margin-bottom: 60px;
@@ -12,24 +17,27 @@
   background: linear-gradient(to bottom,rgb(126, 126, 246),rgb(20, 100, 198));
  }
 mat-form-field {
-  /* gap: 1; */
-  padding-right:-3px;
+  margin-left:160px ;
   /* width: 33%; */
 }
 /* .container {
-  padding-top: 2%;
+  padding-top:10px;
 } */
 .desc{
   width: 98%;
-  padding-right:-3px ;
+}
+.TranNumber{
+  width:98%;
+  margin-right:20px ;
 }
 .Date{
-  width:98%;
+  width:100%;
 }
 .btnget{
   margin-bottom: 30px;
-  margin-left: -1px;
-  width: 35%;
+  margin-left:220px ;
+  margin-top:-20px ;
+  width: 50%;
 }
  ::ng-deep .mat-mdc-form-field-infix {
     min-height: 39px;
@@ -47,42 +55,51 @@ mat-form-field {
   ::ng-deep .mat-mdc-text-field-wrapper {
     top: -1.5em !important;
   }
-.searchicon{
-  background-color:rgb(66, 72, 183) ;
-  color: white;
-  /* height:31px; */
-  width:40px;
-  transform: scale(1.0);
-  border-radius:5px;
-}
-.mat-select-panel .mat-option .mat-button {
-  width: 100%;
-  text-align: left;
-}
-.button-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 5px;
-}
 
 #btnapply{
   margin-left:20px;
+  margin-bottom:20px ;
 
 }
 #btnupdate{
   margin-left:20px ;
   color:white;
+  margin-bottom:20px ;
 }
 #btnclear{
   background-color:red ;
   margin-left:20px;
   color:white;
+  margin-bottom:20px ;
 }
 #btnclose{
   background-color:orangered;
   margin-left:20px;
   color:white;
+  margin-bottom:20px ;
 
 }
 
+.ag-theme-alpine{
+  width:auto;
+  max-width: 100%;
+  overflow: hidden;
+  --ag-header-height: 10px;
+  --ag-header-foreground-color: white;
+  --ag-header-background-color: rgb(13, 124, 228);
+  /* --ag-header-cell-hover-background-color: rgb(80, 40, 140); */
+  --ag-header-cell-moving-background-color: rgb(80, 40, 140);
+
+}
+.ag-theme-alpine .ag-header {
+  font-family: cursive;
+}
+.ag-theme-alpine .ag-header-group-cell {
+  font-weight: normal;
+  font-size: 22px;
+
+}
+.ag-theme-alpine .ag-header-cell {
+  font-size: 18px;
+
+}

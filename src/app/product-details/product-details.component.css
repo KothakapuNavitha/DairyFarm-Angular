@@ -1,0 +1,104 @@
+.form{
+  background-color: white;
+}
+.header{
+  width:auto;
+  /* height:30px; */
+  color: white;
+  margin-bottom: 60px;
+  padding-top:1px;
+  text-align:left;
+  padding-left: 3px;
+  background: linear-gradient(to bottom,rgb(126, 126, 246),rgb(20, 100, 198));
+ }
+mat-form-field {
+  /* gap: 1; */
+  padding-right:-3px;
+  margin-left: 295px;
+  /* width: 33%; */
+}
+/* .container {
+  padding-top: 2%;
+} */
+.desc{
+  width: 100%;
+  padding-right:-3px ;
+}
+ ::ng-deep .mat-mdc-form-field-infix {
+    min-height: 39px;
+    font-size: x-small;
+  }
+   mat-mdc-text-field-wrapper
+  mdc-text-field
+  ng-tns-c1205077789-4
+  mdc-text-field--filled {
+  top: -1.5em !important;
+}
+::ng-deep .mat-mdc-form-field-flex > .mat-mdc-form-field-infix {
+    padding: 0.4em 0px !important;
+  }
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    top: -1.5em !important;
+  }
+.searchicon{
+  background-color:rgb(66, 72, 183) ;
+  color: white;
+  /* height:31px; */
+  width:40px;
+  transform: scale(1.0);
+  border-radius:5px;
+}
+.mat-select-panel .mat-option .mat-button {
+  width: 50%;
+  text-align: left;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+#btnapply{
+  margin-left:20px;
+  margin-bottom:20px ;
+
+}
+#btnreset{
+  margin-left:20px ;
+  color:white;
+  margin-bottom:20px ;
+}
+#btnclear{
+  background-color:red ;
+  margin-left:20px;
+  color:white;
+  margin-bottom:20px ;
+}
+#btnclose{
+  background-color:orangered;
+  margin-left:20px;
+  color:white;
+  margin-bottom:20px ;
+
+}
+.ag-theme-alpine{
+  --ag-header-height: 10px;
+  --ag-header-foreground-color: white;
+  --ag-header-background-color: rgb(13, 124, 228);
+  /* --ag-header-cell-hover-background-color: rgb(80, 40, 140); */
+  --ag-header-cell-moving-background-color: rgb(80, 40, 140);
+
+}
+.ag-theme-alpine .ag-header {
+  font-family: cursive;
+}
+.ag-theme-alpine .ag-header-group-cell {
+  font-weight: normal;
+  font-size: 22px;
+
+}
+.ag-theme-alpine .ag-header-cell {
+  font-size: 18px;
+
+}

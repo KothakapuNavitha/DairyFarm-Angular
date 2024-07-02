@@ -13,8 +13,10 @@ export class ClientsDetailsService {
   insertClientDetails(clntcls:ClientDetailsCls){
     return this.http.post(this.url +"ClientData/InsertClientData",clntcls)
   }
-
   GetClientDetails(clntcls:ClientDetailsCls){
     return this.http.post(this.url +"ClientDetails/GetClientData",clntcls)
+  }
+  getData(){
+    return this.http.get(this.url + "ClientDetails/GetAllClientData")
   }
 }

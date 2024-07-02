@@ -61,19 +61,19 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
       try{
         const formValues=this.ProductionDetailsform.value;
         this.prodcls.mode='Insert';
-        // this.prodcls.tranNo=formValues.tranNo;
-        // this.prodcls.tagNo=formValues.tagNo;
-        // this.prodcls.quantity=formValues.quantity;
-        // this.prodcls.SNF=formValues.SNF;
+        this.prodcls.tranNo=formValues.tranNo;
+        this.prodcls.tagNo=this.TagNo;
+        this.prodcls.quantity=formValues.quantity;
+        this.prodcls.SNF=formValues.SNF;
         this.snackBar.open('Details inserted','okay');
         this.toastr.success("Details inserted","SUCCESS");
         console.log(this.prodcls)
         this.prodSrv.insertproductionData(this.prodcls).subscribe((res:any)=>{
           console.log(res);
-          this.GetAllProductionDetails();
           if(res.status==="Success"){
             this.msg=res.dbMsg;
             this.textcolor="green";
+            this.GetAllProductionDetails();
           }
           else{
             this.msg=res.dbMsg;
@@ -104,19 +104,19 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
       try{
         const formValues=this.ProductionDetailsform.value;
         this.prodcls.mode='Update';
-      //   this.prodcls.tagNo=formValues.TagNo ;
-      //   this.prodcls.tranNo=formValues.tranNo;
-      //  this.prodcls.quantity=formValues.quantity;
-      //  this.prodcls.SNF=formValues.SNF;
+        this.prodcls.tagNo=this.TagNo ;
+        this.prodcls.tranNo=formValues.tranNo;
+       this.prodcls.quantity=formValues.quantity;
+       this.prodcls.SNF=formValues.snf;
        this.snackBar.open('Details inserted','okay');
        this.toastr.success("Details inserted","SUCCESS");
        console.log(this.prodcls);
-       this.GetAllProductionDetails();
        this.prodSrv.updateproductiondetails(this.prodcls).subscribe((res:any)=>{
       console.log(res);
       if(res.status==="Success"){
         this.msg=res.dbMsg;
         this.textcolor="green";
+        this.GetAllProductionDetails();
       }
       else{
         this.msg=res.dbMsg;
@@ -160,7 +160,7 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
           this.ProductionDetailsform.patchValue({
             'tranNo':res.tranNo,
             'quantity':res.quantity,
-            'SNF':res.SNF
+            'SNF':res.snf
           });
          
          this.msg=res.dbMsg;
