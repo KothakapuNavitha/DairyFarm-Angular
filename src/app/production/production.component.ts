@@ -22,9 +22,6 @@ export class ProductionComponent implements OnInit,OnDestroy {
   constructor(private productionSrv:ProductionServiceService,private fb:FormBuilder,private http:HttpClient,private dialogRef: MatDialog, private renderer: Renderer2,private snackBar: MatSnackBar,public toastr:ToastrService){
     this.formInit();
     this.Production = new productioncls;
-
-   
-
     }
    
     openDialog(): void {
@@ -179,10 +176,10 @@ export class ProductionComponent implements OnInit,OnDestroy {
 
   }
     Clear(){  
-  //  this.TranNo="";
-  //    this.formInit();
-   //   this.msg="";
-  //   this.textcolor="";
+  //  this.tranNo="";
+    this.formInit();
+      this.msg="";
+     this.textcolor="";
   }
 
 }

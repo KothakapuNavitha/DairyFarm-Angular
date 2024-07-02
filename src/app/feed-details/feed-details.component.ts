@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import{feedDetailscls}from '../Classes/FeedDetailsClass';
 import { HttpClient } from '@angular/common/http';
-import{FeedDetailsServiceService}from '../feed-details-service.service'
+import{FeedDetailsServiceService}from '../feed-details-service.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-feed-details',
@@ -10,6 +13,17 @@ import{FeedDetailsServiceService}from '../feed-details-service.service'
   styleUrls: ['./feed-details.component.css']
 })
 export class FeedDetailsComponent {
+  rowData=[];
+
+  colDefs:any[]=[
+    {headerName:'TranNo',field:'tranNo'},
+    {headerName:'Date',field:'date'},
+    {headerName:'TagNo',field:'tagNo'},
+    {headerName:'Gender',field:'gender'},
+    {headerName:'Description',field:'description'},
+    {headerName:'Quantity',field:'quantity'},
+    {headerName:'Rate',field:'rate'},
+  ]
   public feedDetailsForm!:FormGroup;
   public feedDetails!:feedDetailscls;
   public msg:string="";
@@ -17,11 +31,14 @@ export class FeedDetailsComponent {
   TranNo!:number;
 
 
-constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuilder,private http:HttpClient){
+constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuilder,private http:HttpClient,private snackBar: MatSnackBar,public toastr:ToastrService){
   this.formInit();
   this.feedDetails = new feedDetailscls;
-
   }
+  ngOnInit(): void {
+    this.GetAllFeedDetails();
+
+     }
   formInit(){
     this.feedDetailsForm=this.fb.group({
       TranNo:['',Validators.nullValidator],
@@ -36,6 +53,9 @@ constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuil
   submit(){
     console.log(this.feedDetailsForm.value);
     if(this.feedDetailsForm.invalid){
+      this.snackBar.open('Please enter required fields','okay');
+      this.toastr.error("please enter required details","ERROR");
+
       return;
   
   }
@@ -44,13 +64,16 @@ constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuil
       const formValues = this.feedDetailsForm.value;
       this.feedDetails.Mode = 'Insert';
       this.feedDetails.TranNo = 0;
-      this.feedDetails.Date=formValues.Date;
-      this.feedDetails.TagNo=formValues.TagNo;
-      this.feedDetails.Gender=formValues.Gender;
-      this.feedDetails.Description=formValues.Description;
-      this.feedDetails.Quantity=formValues.Quantity;
-      this.feedDetails.Rate=formValues.Rate;
-      console.log(this.feedDetails)
+      // this.feedDetails.Date=formValues.Date;
+      // this.feedDetails.TagNo=formValues.TagNo;
+      // this.feedDetails.Gender=formValues.Gender;
+      // this.feedDetails.Description=formValues.Description;
+      // this.feedDetails.Quantity=formValues.Quantity;
+      // this.feedDetails.Rate=formValues.Rate;
+      this.snackBar.open('Details inserted','okay');
+      this.toastr.success("Details inserted","SUCCESS");
+      console.log(this.feedDetails);
+      this.GetAllFeedDetails();
       this.feedDetailsSrv.insertFeedDetailsData(this.feedDetails).subscribe((res:any)=>{
       console.log(res);
       if(res.status==="Success"){
@@ -76,6 +99,8 @@ constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuil
   update(){
     console.log(this.feedDetailsForm.value);
     if(this.feedDetailsForm.invalid){
+      this.snackBar.open('Please enter required fields','okay');
+      this.toastr.error("please enter required details","ERROR");
       return;
   }
   else{
@@ -83,13 +108,16 @@ constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuil
       const formValues=this.feedDetailsForm.value;
       this.feedDetails.Mode="Update";
       this.feedDetails.TranNo=this.TranNo;
-      this.feedDetails.Date=formValues.Date;
-      this.feedDetails.TagNo=formValues.TagNo;
-      this.feedDetails.Gender=formValues.Gender;
-      this.feedDetails.Description=formValues.Description;
-      this.feedDetails.Quantity=formValues.Quantity;
-      this.feedDetails.Rate=formValues.Rate;
-      console.log(this.feedDetails)
+      // this.feedDetails.Date=formValues.Date;
+      // this.feedDetails.TagNo=formValues.TagNo;
+      // this.feedDetails.Gender=formValues.Gender;
+      // this.feedDetails.Description=formValues.Description;
+      // this.feedDetails.Quantity=formValues.Quantity;
+      // this.feedDetails.Rate=formValues.Rate;
+      this.snackBar.open('Details inserted','okay');
+      this.toastr.success("Details updated","SUCCESS");
+      console.log(this.feedDetails);
+      this.GetAllFeedDetails();
       this.feedDetailsSrv.updatefeedDetails(this.feedDetails).subscribe((res:any)=>{
         console.log(res);
         if(res.status==="Success"){
@@ -109,7 +137,6 @@ constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuil
     finally{
 
     }
-     
     }
   }
   get()
@@ -154,10 +181,20 @@ constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuil
           this.msg=res.dbMsg;
           this.textcolor="red";
         }
-
     })
   }
-
+  clear(){
+    // this.TranNo="";
+    this.formInit();
+    this.msg="";
+    this.textcolor="green";
+  }
+  GetAllFeedDetails() {
+    this.feedDetailsSrv.getAllFeedData().subscribe((res: any) => {
+      console.log(res);
+      this.rowData = res;
+    });
+  }
 }
 
 

@@ -6,12 +6,14 @@ import { HttpClient } from '@angular/common/http';
 import { MatSnackBar} from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent {
+  
   public  ProductDetails!: FormGroup;
   public productDetailsCls!: ProductDetailsCls;
   public getProductDetails!:string;

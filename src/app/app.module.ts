@@ -17,6 +17,7 @@ import { MaterialdesignModule } from './materialdesign/materialdesign.module';
 import { ProductionDetailsComponent } from './production-details/production-details.component';
 import { FeedDetailsComponent } from './feed-details/feed-details.component';
 import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
     NgbPaginationModule,
     NgbAlertModule,
     NgFor,
+    AgGridModule,
     MaterialdesignModule, // Make sure this is imported
     ToastrModule.forRoot({
       timeOut: 10000,

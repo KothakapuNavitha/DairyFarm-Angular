@@ -25,7 +25,9 @@ export class FeedDetailsServiceService {
     deleteFeedDetails(feedcls:feedDetailscls){
       return this.http.post(this.url+"FeedData/GetFeedDetails",feedcls)
     }
-   
+    getAllFeedData(){
+      return this.http.get(this.url+"FeedDetails/GetFeedDetailsType")
+    }
 }
 
 
