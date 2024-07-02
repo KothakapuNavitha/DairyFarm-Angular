@@ -24,10 +24,9 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
     this.prodcls = new productiondetailscls;
   }
   ngOnDestroy(): void {
-  
+
   }
   ngOnInit(): void {
-
      }
   formInit(){
     this.ProductionDetailsform=this.fb.group({
@@ -151,10 +150,10 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
             'quantity':res.quantity,
             'SNF':res.SNF
           });
-         
+
          this.msg=res.dbMsg;
          this.textcolor="green";
- 
+
        }
        else{
          this.msg=res.dbMsg;
@@ -168,8 +167,8 @@ export class ProductionDetailsComponent implements OnInit,OnDestroy{
 
 
 
- 
-   
+
+
 
 
 
