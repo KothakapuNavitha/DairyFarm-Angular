@@ -11,6 +11,26 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./milk-purchase.component.css']
 })
 export class MilkPurchaseComponent implements OnInit{
+rowData = [];
+
+colDefs :any[]=[
+    { headerName: 'Tran No', field: 'tranNumber' },
+    { headerName: 'ClientId', field: 'clientId' },
+    { headerName: 'UOM', field: 'uom' },
+    { headerName: 'Date', field: 'date' },
+    { headerName: 'Quantity', field: 'quantity' },
+    { headerName: 'UnitRate', field: 'unitRate' },
+    { headerName: 'TotalAmt', field: 'totalAmt' },
+    { headerName: 'Fat Content', field: 'fatContent' },
+    { headerName: 'Protein Content', field: 'proteinContent' },
+    { headerName: 'Latose Content', field: 'latoseContent' },
+    { headerName: 'TotalSolid Content', field: 'totalSolidContent' },
+    { headerName: 'Bacterial Content', field: 'bacterialContent' },
+    { headerName: 'PhLevel', field: 'phLevel' },
+    { headerName: 'AntibioticResidue', field: 'antibioticResidue' },
+    { headerName: 'Qualitygrade', field: 'qualitygrade' }
+]
+
 public milkPurchaseForm!:FormGroup;
 public milkCls! :milkPurchaseCls;
 getMilkPurchaseDetails!:string;
@@ -23,10 +43,12 @@ this.formInit();
 this.milkCls= new milkPurchaseCls();
 }
 
-ngOnInit(){}
+ngOnInit(){
+  this.getAllMilkDetails();
+}
 formInit(){
  this.milkPurchaseForm = this.fb.group({
-tranNumber :['',Validators.required],
+// tranNumber :['',Validators.required],
 clientId :['',Validators.required],
 uom	:['',Validators.required],
 date :['',Validators.required],
@@ -46,8 +68,10 @@ qualitygrade	:['',Validators.required]	,
 }
 
 submit() {
+  debugger;
+  console.log(this.TranNumber);
   console.log('from submit');
-  console.log(this.milkPurchaseForm.value);
+  // console.log(this.milkPurchaseForm.value);
   if (this.milkPurchaseForm.invalid) {
     this.snackbar.open('Please enter required fields','Okay');
     this.toastr.error('Please Enter Reqiured Feilds','ERROR');
@@ -56,7 +80,7 @@ submit() {
     try {
       const formValues = this.milkPurchaseForm.value;
       this.milkCls.mode = 'Insert';
-      this.milkCls.tranNumber = formValues.tranNumber;
+      this.milkCls.tranNumber = this.TranNumber;
       this.milkCls.clientId = formValues.clientId;
       this.milkCls.uom = formValues.uom;
       this.milkCls.date = formValues.date;
@@ -81,6 +105,7 @@ submit() {
           if (res.status ==='Success') {
             this.msg = res.dbMsg;
             this.textcolor = "green";
+            this.getAllMilkDetails();
           } else {
             this.msg = res.dbMsg;
             this.textcolor = "red";
@@ -105,7 +130,7 @@ update(){
     try {
       const formValues = this.milkPurchaseForm.value;
       this.milkCls.mode = 'Update';
-      this.milkCls.tranNumber =formValues.tranNumber;
+      this.milkCls.tranNumber = this.TranNumber;
       this.milkCls.clientId = formValues.clientId;
       this.milkCls.uom = formValues.uom;
       this.milkCls.date = formValues.date;
@@ -130,6 +155,7 @@ update(){
           if (res.status==='Success') {
             this.msg = "updated successfully";
             this.textcolor = "green";
+            this.getAllMilkDetails();
           } else {
             this.msg = "not updated";
             this.textcolor = "red";
@@ -183,6 +209,13 @@ Get(){
    })
 }
 
+getAllMilkDetails(){
+ this.milkService.getAllMilkData().subscribe((res: any) =>{
+  console.log(res);
+  this.rowData = res;
+ });
+}
+
 Delete(){
  this.milkCls.mode='Delete';
  this.milkCls.tranNumber = this.TranNumber;
@@ -204,7 +237,7 @@ Delete(){
     this.textcolor = "red"
   }
  })
-}
+ }
 catch (ex:any) {
   this.msg = ex.message;
   this.textcolor = "red";

@@ -11,10 +11,14 @@ export class MilkPurchaseService {
 
   }
   insertMilkPurchaseDetails(milkcls:milkPurchaseCls){
-   return this.http.post(this.url +"",milkcls)
+   return this.http.post(this.url +"milkProdData/InsertMilkProduction",milkcls)
   }
   GetMilkPurchaseDetails(milkcls:milkPurchaseCls){
-    return this.http.post(this.url +"",milkcls)
+    return this.http.post(this.url +"MilkPurchase/GetMilkPurchaseData",milkcls)
+  }
+
+  getAllMilkData(){
+    return this.http.get(this.url +"MilkPurchase/GetAllMilkDetails")
   }
 
 }

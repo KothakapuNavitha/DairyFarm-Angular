@@ -71,10 +71,10 @@ mat-divider {
 
 .active {
   background-color: white;
-  color: burlywood;
+  color: rgb(45, 8, 194);
 }
 .menu-button:hover {
   background-color: burlywood;
   color: white;
 }
-  
+

@@ -23,13 +23,8 @@ export class ProductDetailsComponent {
     this.formInit();
     this.productDetailsCls=new ProductDetailsCls();
 
-    
-  }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
   }
   ngOnInit(): void{
-
   }
   formInit(){
     this.ProductDetails=this.fb.group({
@@ -45,7 +40,7 @@ export class ProductDetailsComponent {
   submit(){
     debugger;
     if(this.ProductDetails.invalid){
-   
+
       this.snackbar.open('Enter Product Details','okay');
       this.toastr.error("Enter Product Details","400");
       return;
@@ -83,7 +78,7 @@ export class ProductDetailsComponent {
         this.textColor = "red";
       }
     }
-    
+
   }
    Update() {
     if(this.ProductDetails.invalid){
@@ -98,13 +93,13 @@ export class ProductDetailsComponent {
       try{
         const formValues=this.ProductDetails.value;
         this.productDetailsCls.Mode = 'Update';
-        this.productDetailsCls.SlNo=formValues.SlNo;
-        this.productDetailsCls.Code =formValues.Code;
-        this.productDetailsCls.Descrption=formValues.Descrption;
-        this.productDetailsCls.Type=formValues.Type;
-        this.productDetailsCls.UOM=formValues.UOM;
-        this.productDetailsCls.StdRate=formValues.StdRate;
-        this.productDetailsCls.Notes=formValues.Notes;
+        this.productDetailsCls.SlNo = formValues.SlNo;
+        this.productDetailsCls.Code = formValues.Code;
+        this.productDetailsCls.Descrption = formValues.Descrption;
+        this.productDetailsCls.Type = formValues.Type;
+        this.productDetailsCls.UOM = formValues.UOM;
+        this.productDetailsCls.StdRate = formValues.StdRate;
+        this.productDetailsCls.Notes = formValues.Notes;
         console.log(this.productDetailsCls)
         this.formService.insertProductDetails(this.productDetailsCls).subscribe((res:any)=>{
           console.log(res);
@@ -128,7 +123,7 @@ export class ProductDetailsComponent {
 
       }
    }
-    
+
   }
   Get(){
     this.productDetailsCls.Mode='Get';
@@ -160,13 +155,8 @@ export class ProductDetailsComponent {
 
     })
   }
-      
-
-    
-
-  
   Delete(){
-   
+
     this.productDetailsCls.Mode='Delete';
     this.productDetailsCls.Code=this.Code;
     console.log(this.productDetailsCls);
@@ -182,10 +172,10 @@ export class ProductDetailsComponent {
           this.msg = res.dbMsg;
           this.textColor = "red";
         }
-       
+
       })
-    
-   
+
+
   }
   Clear(){
     this.Code = "";
@@ -194,4 +184,7 @@ export class ProductDetailsComponent {
     this.textColor = "";
   }
 
+  ngOnDestroy(): void {
+    // throw new Error('Method not implemented.');
+  }
 }

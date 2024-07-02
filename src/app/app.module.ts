@@ -16,6 +16,8 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { MaterialdesignModule } from './materialdesign/materialdesign.module';
 import { ProductionDetailsComponent } from './production-details/production-details.component';
 import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
+import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
     ProductionComponent,
     ProductionDetailsComponent,
     ProductDetailsComponent,
-    MilkPurchaseComponent
+    MilkPurchaseComponent,
+    CattleDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
     NgbPaginationModule,
     NgbAlertModule,
     NgFor,
-    MaterialdesignModule, // Make sure this is imported
+    MaterialdesignModule,
+    AgGridModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-top-right',
