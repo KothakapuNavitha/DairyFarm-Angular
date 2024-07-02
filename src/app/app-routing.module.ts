@@ -4,6 +4,7 @@ import { ClientDetailsComponent } from './client-details/client-details.componen
 import { HomePageComponent } from './home-page/home-page.component';
 import { ProductionComponent } from './production/production.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { FeedDetailsComponent } from './feed-details/feed-details.component';
 import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
 
 const routes:
@@ -13,6 +14,9 @@ Routes = [
   {path:'milkPurchase',component:MilkPurchaseComponent},
   {path:'production',component:ProductionComponent},
   {path:'products',component:ProductDetailsComponent},
+  {path:'Production',component:ProductionComponent},
+  {path:'Products',component:ProductDetailsComponent},
+  {path:'feedDetails',component:FeedDetailsComponent}
 
 ];
 

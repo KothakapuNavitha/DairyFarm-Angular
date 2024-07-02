@@ -15,9 +15,11 @@ import { ProductionComponent } from './production/production.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { MaterialdesignModule } from './materialdesign/materialdesign.module';
 import { ProductionDetailsComponent } from './production-details/production-details.component';
+import { FeedDetailsComponent } from './feed-details/feed-details.component';
 import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
 import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 import { AgGridModule } from 'ag-grid-angular';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { AgGridModule } from 'ag-grid-angular';
     ProductionDetailsComponent,
     ProductDetailsComponent,
     MilkPurchaseComponent,
-    CattleDetailsComponent
+    CattleDetailsComponent,
+    FeedDetailsComponent,
+    MilkPurchaseComponent,
   ],
   imports: [
     BrowserModule,
