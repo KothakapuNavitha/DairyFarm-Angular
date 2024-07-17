@@ -7,7 +7,6 @@ import { ClientDetailsComponent } from './client-details/client-details.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NgFor } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,13 +18,18 @@ import { FeedDetailsComponent } from './feed-details/feed-details.component';
 import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
 import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { PurchaceDetailsComponent } from './purchace-details/purchace-details.component';
+import { PurchaseReportsComponent } from './purchase-reports/purchase-reports.component';
+import { LoginComponent } from './login/login.component';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientDetailsComponent,
-    SidebarComponent,
     HomePageComponent,
     ProductionComponent,
     ProductionDetailsComponent,
@@ -34,6 +38,11 @@ import { AgGridModule } from 'ag-grid-angular';
     CattleDetailsComponent,
     FeedDetailsComponent,
     MilkPurchaseComponent,
+    PurchaceDetailsComponent,
+    PurchaseReportsComponent,
+    LoginComponent,
+    SidemenuComponent,
+
   ],
   imports: [
     BrowserModule,

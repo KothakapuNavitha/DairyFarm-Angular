@@ -27,6 +27,7 @@ export class ClientDetailsComponent implements OnInit {
   rowData = [];
 
   colDefs: any[] = [
+    {headerName:  'SlNO', field:'slno'},
     { headerName: 'ClientId', field: 'clientId' },
     { headerName: 'Name', field: 'name' },
     { headerName: 'Type', field: 'type' },
@@ -44,6 +45,10 @@ export class ClientDetailsComponent implements OnInit {
     { headerName: 'Country', field: 'country' },
     { headerName: 'Description', field: 'description' },
   ];
+
+  gridOptions = {
+    headerHeight :24
+  };
 
   public clientDetailsForm!: FormGroup;
   public clientcls!: ClientDetailsCls;

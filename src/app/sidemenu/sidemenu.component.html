@@ -1,0 +1,171 @@
+<div class="example-container">
+  <mat-toolbar class="mat-elevation-z8 header primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h4>Dairy Farm Management</h4>
+  </mat-toolbar>
+
+  <!-- <mat-sidenav-container>
+  <mat-sidenav mode="side" [opened]="true" #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      class="avatar mat-elevation-z8"
+      src="assets\IMG-20240613-WA0011.jpg" />
+    <h5 class="name">Dairy Farm</h5>
+
+    <mat-accordion>
+      <button mat-button class="menu-button" routerLinkActive="active">
+        <mat-icon>home</mat-icon>
+        <span><a routerLink="homepage">Home</a></span>
+      </button>
+      <mat-expansion-panel >
+        <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>person</mat-icon>
+         Admin
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div>
+        <button style="color:black" mat-button class="menu-button"routerLinkActive="active">
+          <span><a routerLink="clientDetails" style="color:black">ClientDetails</a></span>
+        </button>
+      </div>
+      <div>
+        <button style="color:black" mat-button class="menu-button"routerLinkActive="active">
+          <span><a routerLink="cattleDetails" style="color:black">CattleDetails</a></span>
+        </button>
+      </div>
+      <div>
+        <button style="color:black" mat-button class="menu-button"routerLinkActive="active">
+          <span><a routerLink="milkPurchase" style="color:black">MilkPurchase</a></span>
+        </button>
+      </div>
+    </mat-expansion-panel>
+      </mat-accordion>
+    <mat-accordion>
+      <mat-expansion-panel style="margin-top: 10px;" >
+        <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>person</mat-icon>
+         Products
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div>
+        <button style="color:black" mat-button class="menu-button"routerLinkActive="active">
+          <span><a routerLink="products" style="color:black">Products</a></span>
+        </button>
+      </div>
+      <div>
+        <button style="color:black" mat-button class="menu-button"routerLinkActive="active">
+          <span><a routerLink="production" style="color:black">Production</a></span>
+        </button>
+        <button style="color:black" mat-button class="menu-button"routerLinkActive="active">
+          <span><a routerLink="feedDetails" style="color:black">FeedDetails</a></span>
+        </button>
+      </div>
+      <div>
+        <button style="color:black" mat-button class="menu-button"routerLinkActive="active">
+          <span><a routerLink="purchaseReports" style="color:black">PurchaseReports</a></span>
+        </button>
+      </div>
+      <div>
+        <button style="color:black" mat-button class="menu-button"routerLinkActive="active">
+          <span><a routerLink="purchaseDetails" style="color:black">PurchaseDetails</a></span>
+        </button>
+      </div>
+      </mat-expansion-panel>
+      </mat-accordion>
+   </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <!-- <mat-sidenav mode="side" [opened]="true" #sidenav="matSidenav">
+      <mat-nav-list>
+        <span *ngFor="let item of menu">
+          <span *ngIf="item.children && item.children.length > 0">
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                      <mat-icon>{{item.iconName}}</mat-icon>
+                      {{item.displayName}}
+                    </div>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <span *ngFor="let child of item.children">
+                  <mat-list-item routerLink="[child.route]">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                      <mat-icon>{{child.iconName}}</mat-icon>
+                      {{child.displayName}}
+                    </div>
+                  </mat-list-item>
+                </span>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </span>
+          <span *ngIf="!item.children || item.children.length === 0">
+            <mat-list-item routerLink="[item.route]">
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-icon>{{item.iconName}}</mat-icon>
+                {{item.displayName}}
+              </div>
+            </mat-list-item>
+          </span>
+        </span>
+      </mat-nav-list>
+    </mat-sidenav> -->
+
+    <mat-sidenav mode="side" [opened]="true" #sidenav="matSidenav">
+      <mat-nav-list>
+        <span *ngFor="let item of menu">
+          <span *ngIf="item.children && item.children.length > 0">
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                      <mat-icon>{{item.iconName}}</mat-icon>
+                      {{item.displayName}}
+                    </div>
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <span *ngFor="let child of item.children">
+                  <mat-list-item [routerLink]="child.route">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                      <mat-icon>{{child.iconName}}</mat-icon>
+                      {{child.displayName}}
+                    </div>
+                  </mat-list-item>
+                </span>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </span>
+          <span *ngIf="!item.children || item.children.length === 0">
+            <mat-list-item [routerLink]="item.route">
+              <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-icon>{{item.iconName}}</mat-icon>
+                {{item.displayName}}
+              </div>
+            </mat-list-item>
+          </span>
+        </span>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content mat-elevation-z8">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+

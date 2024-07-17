@@ -68,7 +68,7 @@ qualitygrade	:['',Validators.required]	,
 }
 
 submit() {
-  debugger;
+  //debugger;
   console.log(this.TranNumber);
   console.log('from submit');
   // console.log(this.milkPurchaseForm.value);

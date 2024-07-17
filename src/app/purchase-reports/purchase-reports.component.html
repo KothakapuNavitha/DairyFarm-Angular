@@ -1,0 +1,120 @@
+<form class="form"  [formGroup]="PurchaseReportsForm">
+  <div class="header">
+    <h1>Purchase Reports</h1>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <mat-form-field appearance="outline" class="desc">
+          <mat-label>Transaction Id</mat-label>
+          <input id="transactionId" matInput placeholder="Transaction Id">
+        </mat-form-field>
+      </div>
+        <div class="col-3">
+          <mat-form-field appearance="outline" class="desc">
+            <mat-label>Client Id</mat-label>
+            <input id="clientid" matInput placeholder="Client Id">
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <button class="btnget" type="button" mat-raised-button color="accent" (click)="Get()"><mat-icon>cached</mat-icon>Get</button>
+       </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <mat-form-field  appearance="outline" class="Date">
+          <mat-label>PurchaseDate</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field appearance="outline" class="desc">
+          <mat-label>Quantity</mat-label>
+          <input id="quantity" type="number" matInput placeholder="Quantity" formControlName="quantity">
+        </mat-form-field>
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-3">
+        <mat-form-field appearance="outline" class="desc">
+          <mat-label>PricePerLiter</mat-label>
+          <input id="pricePerLiter" type="number" matInput placeholder="PricePerLiter" formControlName="pricePerLiter">
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field appearance="outline" class="desc">
+          <mat-label>SNF</mat-label>
+          <input id="SNF" type="number" matInput placeholder="SNF" formControlName="SNF">
+        </mat-form-field>
+      </div>
+    </div>
+      <div class="row">
+        <div class="col-3">
+            <mat-form-field appearance="outline" class="desc">
+              <mat-label>fat</mat-label>
+              <input id="fat" type="number" matInput placeholder="fat" formControlName="fat">
+            </mat-form-field>
+          </div>
+          <div class="col-3">
+            <mat-form-field appearance="outline" class="desc">
+              <mat-label>TotalPrice</mat-label>
+              <input id="totalPrice" type="number" matInput placeholder="TotalPrice" formControlName="totalPrice">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+              <mat-form-field appearance="outline" class="desc">
+                <mat-label>Avg Quantity</mat-label>
+                <input type="number" matInput placeholder=" Avg Quantity">
+              </mat-form-field>
+            </div>
+          <div class="col-3">
+            <mat-form-field appearance="outline" class="desc">
+              <mat-label>Avg SNF</mat-label>
+              <input type="number" matInput placeholder="Avg SNF">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <mat-form-field appearance="outline" class="desc">
+              <mat-label> Avg Fat</mat-label>
+              <input type="number" matInput placeholder=" Avg Fat">
+            </mat-form-field>
+          </div>
+        <div class="col-3">
+          <mat-form-field appearance="outline" class="desc">
+            <mat-label>Avg Total</mat-label>
+            <input type="number" matInput placeholder="Avg Total">
+          </mat-form-field>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+              <mat-form-field  appearance="outline" class="desc">
+                <mat-label>Notes</mat-label>
+                <textarea matInput  type="textarea" placeholder="Notes" formControlName="notes" ></textarea>
+              </mat-form-field>
+          </div>
+        </div>
+      </div>
+    <div align="center" [ngStyle]="{'background-color':textcolor,'color':'white'}">
+      {{msg}}</div>
+    <div class="button-container">
+      <button id="btnapply" mat-raised-button color="primary" type="submit" (click)="submit()"><mat-icon>save</mat-icon>Apply</button>
+      <button id="btnupdate" type="button" mat-raised-button color="accent" (click)="update()" ><mat-icon>cached</mat-icon>Update</button>
+      <button id="btnclear" type="button" mat-raised-button color="red" (click)="Delete()"><mat-icon>clear_all</mat-icon>Delete</button>
+      <button id="btnclose" type="button" mat-raised-button color="red" (click)="clear()"><mat-icon>clear</mat-icon>Clear</button>
+    </div>
+    <!-- <div>
+      <ag-grid-angular
+        style="width:auto;height:200px;"
+        class="ag-theme-alpine"
+       [columnDefs]="colDefs"
+       [rowData]="rowData">
+      </ag-grid-angular>
+    </div> -->
+</form>

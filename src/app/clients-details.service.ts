@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ClientDetailsCls } from './Classes/ClientDetailsClass';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,4 +20,5 @@ export class ClientsDetailsService {
   getData(){
     return this.http.get(this.url + "ClientDetails/GetAllClientData")
   }
+
 }
