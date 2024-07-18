@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./feed-details.component.css']
 })
 export class FeedDetailsComponent {
+
   rowData=[];
 
   colDefs:any[]=[
@@ -38,20 +39,25 @@ export class FeedDetailsComponent {
   public msg:string="";
   public textcolor:string="";
   TranNo!:number;
-
+  
 
 constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuilder,private http:HttpClient,private snackBar: MatSnackBar,public toastr:ToastrService){
   this.formInit();
   this.feedDetails = new feedDetailscls;
+ 
+
   }
+
   ngOnInit(): void {
     this.GetAllFeedDetails();
-
-     }
+   
+  }
+ 
   formInit(){
+    const today = new Date();
     this.feedDetailsForm=this.fb.group({
       TranNo:['',Validators.nullValidator],
-      Date:['',Validators.required],
+      Date:[today,Validators.required],
       TagNo:['',Validators.required],
       Gender:['',Validators.required],
       Description:['',Validators.required],
@@ -59,12 +65,17 @@ constructor(private feedDetailsSrv:FeedDetailsServiceService,private fb:FormBuil
       Rate:['',Validators.required]
     });
   }
+  formatDecimal(controlName: string) {
+    let control = this.feedDetailsForm.get(controlName);
+    if (control && control.value) {
+      control.setValue(parseFloat(control.value).toFixed(4));
+    }
+  }
   submit(){
     console.log(this.feedDetailsForm.value);
     if(this.feedDetailsForm.invalid){
       this.snackBar.open('Please enter required fields','okay');
       this.toastr.error("please enter required details","ERROR");
-
       return;
   
   }

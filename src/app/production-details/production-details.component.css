@@ -1,22 +1,24 @@
-::ng-deep .mat-mdc-form-field-infix {
-  min-height: 40px;
-  font-size: small;
+.ag-theme-alpine .ag-header {
+  font-family: cursive;
 }
- mat-mdc-text-field-wrapper
-mdc-text-field
-ng-tns-c1205077789-4
-mdc-text-field--filled {
-top: -1.5em !important;
-} 
-::ng-deep .mat-mdc-form-field-flex > .mat-mdc-form-field-infix {
-  padding: 0.4em 0px !important;
+.ag-theme-alpine .ag-header-group-cell {
+  font-weight: normal;
+  font-size: 22px;
+
 }
-::ng-deep .mat-mdc-text-field-wrapper {
-  top: -1.5em !important;
+.ag-theme-alpine .ag-header-cell {
+  font-size: 18px;
+
+}
+ ::ng-deep .mat-mdc-text-field-wrapper {
+  height: 40px !important;
+}
+::ng-deep .mat-mdc-form-field-flex {
+  margin-top: -10px !important;
 } 
 mat-form-field {
   gap: 1;
-  padding-right: 9px;
+  padding-right: 10px;
   width: 30%;
 }
 .container {
@@ -28,49 +30,11 @@ mat-form-field {
   margin-bottom: 40px; 
 
 }
-#delete{
-  background-color: rgb(242, 10, 10);
-  color: white;
-  margin-bottom: 10px;
-  margin-left: 30px;
-   border-radius: 20px; 
-
-}
-#Apply{
-  margin-bottom: 10px;
-  margin-right: 5px;
-  border-radius: 20px; 
-  background-color: #1c2abe;
-  color: white;
-  margin-left: 30px;
-  
-
-}
-#reset{
-  background-color: green;
-  color: white;
-  margin-bottom: 10px;
-  margin-left: 30px;
-   border-radius: 20px;
-   margin-right: 5px; 
-
-}
-#Clear{
-      background-color: orangered;
-      color: white;
-      margin-bottom: 10px;
-      margin-left: 30px;
-      border-radius: 20px; 
-      margin-right: 5px;
-    
-}
-#update{
-      background-color: rgb(234, 23, 202);
-      color: white;
-      margin-bottom: 10px;
-      margin-left: 30px;
-       border-radius: 20px;
-       margin-right: 5px;       
+#btn{
+  margin-left:20px !important;
+  margin-bottom:10px !important;
+  font-size: 9px;
+ height: 24px !important;
 }
 
 .closeicon{
@@ -81,22 +45,27 @@ transition: 1s ease-in-out;
 }
 
 .ag-theme-alpine{
---ag-header-height: 30px;
---ag-header-foreground-color: white;
---ag-header-background-color: rgb(32, 143, 246);
-/* --ag-header-cell-hover-background-color: rgb(80, 40, 140); */
---ag-header-cell-moving-background-color: rgb(80, 40, 140);
+  width:auto;
+  max-width: 100%;
+  overflow: hidden;
+  --ag-font-size: 10px;
+  --ag-header-height: 10px;
+  --ag-header-foreground-color: white;
+  --ag-header-background-color: rgb(13, 124, 228);
+  --ag-header-cell-hover-background-color: rgb(80, 40, 140);
+  --ag-header-cell-moving-background-color: rgb(80, 40, 140);
 
 }
+
 .ag-theme-alpine .ag-header {
-font-family: cursive;
+  font-family: cursive;
 }
 .ag-theme-alpine .ag-header-group-cell {
-font-weight: normal;
-font-size: 22px;
+  font-weight: normal;
+  font-size: 22px;
 
 }
 .ag-theme-alpine .ag-header-cell {
-font-size: 18px;
-}
+  font-size: 18px;
 
+}

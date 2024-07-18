@@ -33,46 +33,13 @@ mat-form-field {
   ::ng-deep .mat-mdc-text-field-wrapper {
     top: -1.5em !important;
   } 
-  #Apply{
-    margin-bottom: 10px;
-    margin-right: 5px;
-    border-radius: 20px; 
-    background-color: #1c2abe;
-    color: white;
+  #btn{
+    margin-left:20px !important;
+    margin-bottom:10px !important;
+    font-size: 9px;
+   height: 24px !important;
+  }
   
-}
-#reset{
-    background-color: green;
-    color: white;
-    margin-bottom: 10px;
-    margin-left: 30px;
-     border-radius: 20px; 
-  
-}
-#Clear{
-        background-color: orangered;
-        color: white;
-        margin-bottom: 10px;
-        margin-left: 30px;
-        border-radius: 20px; 
-      
-}
-#update{
-        background-color: rgb(234, 23, 202);
-        color: white;
-        margin-bottom: 10px;
-        margin-left: 30px;
-         border-radius: 20px;
-        
-}
-#delete{
-    background-color: rgb(242, 10, 10);
-    color: white;
-    margin-bottom: 10px;
-    margin-left: 30px;
-    border-radius: 20px; 
-  
-}
 .description{
     width: 60%;
     height: 100px;
@@ -80,39 +47,29 @@ mat-form-field {
 }
 
 .ag-theme-alpine{
-  --ag-header-height: 30px;
+  width:auto;
+  max-width: 100%;
+  overflow: hidden;
+  --ag-font-size: 10px;
+  --ag-header-height: 10px;
   --ag-header-foreground-color: white;
-  --ag-header-background-color: rgb(32, 143, 246);
-  --ag-header-cell-moving-background-color: rgb(94, 30, 191);
- 
+  --ag-header-background-color: rgb(13, 124, 228);
+  --ag-header-cell-hover-background-color: rgb(80, 40, 140);
+  --ag-header-cell-moving-background-color: rgb(80, 40, 140);
+
 }
+
 .ag-theme-alpine .ag-header {
   font-family: cursive;
-    height: 20px; /* Adjust the height as needed */
-    line-height: 20px; /* Ensure the text is vertically centered */
-  
 }
 .ag-theme-alpine .ag-header-group-cell {
   font-weight: normal;
   font-size: 22px;
-  
+
 }
 .ag-theme-alpine .ag-header-cell {
   font-size: 18px;
-  
-} 
 
-
-/* Adjust the row height */
-.ag-theme-alpine .ag-row {
-  height: 10px; /* Ensure this matches the rowHeight set in TypeScript */
 }
-
-/* Adjust the font size and padding of row cells */
-.ag-theme-alpine .ag-cell {
-  font-size: 12px; /* Adjust font size as needed */
-  padding: 2px 5px; /* Adjust padding as needed */
-}
-
 
 

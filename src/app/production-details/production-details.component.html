@@ -19,7 +19,8 @@
       <mat-form-field appearance="outline">
         <mat-label>SL.No</mat-label>
         <input matInput type="number" placeholder="SL.No" [disabled]="true">
-      </mat-form-field>
+      </mat-form-field> 
+      <!-- <mat-label>SL.NO: <b style="color: brown;">{{Sl.No}}</b></mat-label> -->
       <mat-form-field appearance="outline">
         <mat-label>TagNo</mat-label>
         <input matInput type="text" placeholder="TagNo" [(ngModel)]="TagNo" [ngModelOptions]="{standalone: true}">
@@ -38,27 +39,29 @@
   </div>
   <div align="center" [ngStyle]="{'background-color': textcolor, 'color': 'white'}">{{msg}}</div>
   <div>
-    <button mat-raised-button color="primary" id="Apply" type="submit" (click)="submit()">
+    <button mat-raised-button color="primary" id="btn" type="submit" (click)="submit()">
       <mat-icon>save</mat-icon>Submit
     </button>
-    <button mat-raised-button id="update" type="button" (click)="update()">
+    <button mat-raised-button id="btn" color="accent" type="button" (click)="update()">
       <mat-icon>cached</mat-icon>Update
     </button>
-    <button mat-raised-button id="reset" type="button" (click)="get()">
+    <button mat-raised-button id="btn" color="warn" type="button" (click)="get()">
       <mat-icon>get_app</mat-icon>Get
     </button>
-    <button mat-raised-button id="Clear" type="button" (click)="clear()">
-      <mat-icon>clear</mat-icon>Clear
-    </button>
-    <button mat-raised-button id="delete" type="button" (click)="delete()">
+    <button mat-raised-button id="btn" color="accent" type="button" (click)="delete()">
       <mat-icon>clear_all</mat-icon>Delete
     </button>
+    <button mat-raised-button id="btn" color="warn" type="button" (click)="clear()">
+      <mat-icon>clear</mat-icon>Clear
+    </button>
+   
   </div>
   <div>
-    <ag-grid-angular class="grid"
+    <ag-grid-angular class="ag-theme-alpine"
     style="width:auto;height:200px;"
     class="ag-theme-alpine"
     [columnDefs]="colDefs"
+    [rowHeight]="20"
     [rowData]="rowData" >
     </ag-grid-angular>
   </div>

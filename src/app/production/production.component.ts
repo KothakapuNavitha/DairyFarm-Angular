@@ -37,10 +37,10 @@ export class ProductionComponent implements OnInit,OnDestroy {
 
     }
   formInit() {
-    
+    const today = new Date();
     this.ProductionForm = this.fb.group({
     tranNo:['',Validators.nullValidator],
-    date:['',Validators.required],
+    date:[today,Validators.required],
      session :['',Validators.required],
      notes:['',Validators.nullValidator]
     }) ; 

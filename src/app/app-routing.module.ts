@@ -7,6 +7,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { FeedDetailsComponent } from './feed-details/feed-details.component';
 import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
 
+
 const routes:
 Routes = [
   {path:'homepage',component:HomePageComponent},
@@ -16,8 +17,8 @@ Routes = [
   {path:'products',component:ProductDetailsComponent},
   {path:'Production',component:ProductionComponent},
   {path:'Products',component:ProductDetailsComponent},
-  {path:'feedDetails',component:FeedDetailsComponent}
-
+  {path:'feedDetails',component:FeedDetailsComponent},
+ 
 ];
 
 @NgModule({

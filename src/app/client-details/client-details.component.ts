@@ -24,7 +24,7 @@ export class ClientDetailsComponent implements OnInit {
     { itemCode: 'Medicine Supplier', itemName: 'Medicine Supplier' },
   ];
 
-  rowData = [];
+   rowData:any = [];
 
   colDefs: any[] = [
     { headerName: 'ClientId', field: 'clientId' },
@@ -51,6 +51,7 @@ export class ClientDetailsComponent implements OnInit {
   public msg: string = '';
   public textcolor: string = '';
   ClientId!: number;
+
   constructor(
     private clientService: ClientsDetailsService,
     private fb: FormBuilder,
@@ -61,10 +62,19 @@ export class ClientDetailsComponent implements OnInit {
     this.clientcls = new ClientDetailsCls();
   }
   ngOnInit(): void {
-    this.clientService.getData().subscribe((res: any) => {
+  //   sessionStorage.setItem('user', 'Niharika');
+  //   sessionStorage.setItem('data',JSON.stringify(this.rowData));
+
+  //   let obj = sessionStorage.getItem('data');
+  //   if (obj) {
+  //   let parsedData = JSON.parse(obj); // Use JSON.parse() here
+  //   console.log(parsedData);
+  //   }
+
+     this.clientService.getData().subscribe((res: any) => {
       console.log(res);
       this.rowData = res;
-    });
+     });
   }
   formInit() {
     this.clientDetailsForm = this.fb.group({
@@ -95,7 +105,7 @@ export class ClientDetailsComponent implements OnInit {
       return;
     } else {
       try {
-       this.prepareCls("Insert");
+        this.prepareCls('Insert');
         this.snackbar.open('Details Inserted', 'Okay');
         this.toastr.success('Details Inserted', 'SUCCESS');
         console.log(this.clientcls);
@@ -119,26 +129,26 @@ export class ClientDetailsComponent implements OnInit {
       }
     }
   }
-prepareCls(mode:string){
-  const formValues = this.clientDetailsForm.value;
-  this.clientcls.mode = mode;
-  this.clientcls.clientId = this.ClientId;
-  this.clientcls.name = formValues.name;
-  this.clientcls.type = formValues.type.join(',');
-  this.clientcls.contactNumber1 = formValues.contactNumber1;
-  this.clientcls.contactNumber2 = formValues.contactNumber2;
-  this.clientcls.contactName = formValues.contactName;
-  this.clientcls.email = formValues.email;
-  this.clientcls.department = formValues.department;
-  this.clientcls.designation = formValues.designation;
-  this.clientcls.address1 = formValues.address1;
-  this.clientcls.address2 = formValues.address2;
-  this.clientcls.address3 = formValues.address3;
-  this.clientcls.city = formValues.city;
-  this.clientcls.state = formValues.state;
-  this.clientcls.country = formValues.country;
-  this.clientcls.description = formValues.description;
-}
+  prepareCls(mode: string) {
+    const formValues = this.clientDetailsForm.value;
+    this.clientcls.mode = mode;
+    this.clientcls.clientId = this.ClientId;
+    this.clientcls.name = formValues.name;
+    this.clientcls.type = formValues.type.join(',');
+    this.clientcls.contactNumber1 = formValues.contactNumber1;
+    this.clientcls.contactNumber2 = formValues.contactNumber2;
+    this.clientcls.contactName = formValues.contactName;
+    this.clientcls.email = formValues.email;
+    this.clientcls.department = formValues.department;
+    this.clientcls.designation = formValues.designation;
+    this.clientcls.address1 = formValues.address1;
+    this.clientcls.address2 = formValues.address2;
+    this.clientcls.address3 = formValues.address3;
+    this.clientcls.city = formValues.city;
+    this.clientcls.state = formValues.state;
+    this.clientcls.country = formValues.country;
+    this.clientcls.description = formValues.description;
+  }
   update() {
     console.log(this.clientDetailsForm.value);
     if (this.clientDetailsForm.invalid) {
@@ -147,7 +157,7 @@ prepareCls(mode:string){
       return;
     } else {
       try {
-        this.prepareCls("Update");
+        this.prepareCls('Update');
         this.snackbar.open('Details Updated', 'Okay');
         this.toastr.success('Details Updated', 'SUCCESS');
         console.log(this.clientcls);
@@ -226,9 +236,7 @@ prepareCls(mode:string){
       });
   }
 
-  GetAllClients() {
-
-  }
+  GetAllClients() {}
   Delete() {
     this.clientcls.mode = 'Delete';
     this.clientcls.clientId = this.ClientId;

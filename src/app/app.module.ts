@@ -21,6 +21,7 @@ import { CattleDetailsComponent } from './cattle-details/cattle-details.componen
 import { AgGridModule } from 'ag-grid-angular';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { AgGridModule } from 'ag-grid-angular';
     CattleDetailsComponent,
     FeedDetailsComponent,
     MilkPurchaseComponent,
+    
   ],
   imports: [
     BrowserModule,
