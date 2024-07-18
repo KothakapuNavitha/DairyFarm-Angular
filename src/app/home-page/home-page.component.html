@@ -1,14 +1,5 @@
-<div align="center">
-
-    <div style="margin: 10px">
-        <mat-card>
-          <img
-            [src]="currentImage"
-            alt="Slide"
-            class="image"
-            [@slideAnimation]="currentIndex"
-          />
-        </mat-card>
-      </div>
-      
+<div class="mat-card">
+  <mat-card style="padding: 5px;">
+    <img style="border-radius: 2%;" [src]="currentImage" alt="Slide" class="image" [@slideAnimation]="currentIndex" />
+  </mat-card>
 </div>

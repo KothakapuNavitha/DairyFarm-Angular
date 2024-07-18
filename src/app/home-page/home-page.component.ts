@@ -21,20 +21,20 @@ import { animate, style, transition, trigger } from '@angular/animations';
 
 export class HomePageComponent implements OnInit {
   images: string[] = [
-    
+
     'assets/IMG-20240613-WA0012.jpg',
     'assets/IMG-20240613-WA0010.jpg',
     'assets/IMG-20240613-WA0009.jpg',
     'assets/IMG-20240613-WA0008.jpg',
     'assets/IMG-20240613-WA0013.jpg'
-    
-    
- 
+
+
+
    ];
    currentImage: string = this.images[0];
    currentIndex: number = 0;
    constructor() {}
- 
+
    ngOnInit(): void {
      this.startSlideshow();
    }
@@ -50,9 +50,9 @@ export class HomePageComponent implements OnInit {
    onHover(index: number) {
      this.currentIndex = index;
    }
- 
+
    onHoverOut() {
-     this.currentIndex = -1; 
+     this.currentIndex = -1;
    }
 
 }

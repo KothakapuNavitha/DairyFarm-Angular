@@ -1,0 +1,162 @@
+<form [formGroup]="cattleForm" align="center" class="form" (ngSubmit)="submit()">
+  <div class="header">
+      <h1>Cattle Details</h1>
+  </div>
+  <div class="container fluid">
+    <div class="row">
+      <div class="col-3">
+              <mat-form-field appearance="outline"  class="desc">
+                  <mat-label>Cattle Id</mat-label>
+                  <input text="text" [(ngModel)]="getCattleId" [ngModelOptions]="{standalone:true}" matInput
+                      placeholder="Cattle Id">
+              </mat-form-field>
+              </div>
+              <div class="col-3">
+              <mat-form-field appearance="outline"  class="desc">
+                  <mat-label>Client Name</mat-label>
+                  <input type="text" matInput placeholder="Client Name" [(ngModel)]="getClientId"
+                      [ngModelOptions]="{standalone:true}">
+              </mat-form-field>
+              </div>
+              <div class="col-3">
+              <mat-form-field appearance="outline"  class="desc">
+                  <mat-label>Tag No</mat-label>
+                  <input type="text" matInput placeholder="Tag Number" formControlName="tagNo">
+              </mat-form-field>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-3">
+              <!--  <mat-form-field appearance="outline">
+                  <mat-label>Animal Type</mat-label>
+                  <mat-select  [(ngModel)]= "selectedAnimaltype" (chamge)="changeAnimalType($event)" formControlName="breed">
+                      <mat-option *ngFor="let A of Animals">{{A.Name}}</mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                  <mat-label>Cattle Type</mat-label>
+                  <mat-select formControlName="cattleType">
+                      <mat-option  *ngFor="let B of breeds">{{breed}}</mat-option>
+
+                       <mat-option value="Gir">Gir</mat-option>
+                      <mat-option value="Motu">Motu</mat-option>
+                      <mat-option value="Siri">Siri</mat-option>
+                      <mat-option value="Hariana">Hariana</mat-option>
+                      <mat-option value="Ongole">Ongole</mat-option>
+                      <mat-option value="Jersey">Jersey</mat-option>
+                      <mat-option value="Murrah">Murrah</mat-option>
+                      <mat-option value="Surti ">Surti </mat-option>
+                      <mat-option value="Jaffrabadi">Jaffrabadi</mat-option>
+                      <mat-option value="Nili-Ravi">Nili-Ravi</mat-option>
+                  </mat-select>
+              </mat-form-field> -->
+              <mat-form-field appearance="outline"  class="desc">
+                  <mat-label>Cattle Type</mat-label>
+                  <mat-select formControlName="cattleType">
+                      <mat-option value="Select">--Select--</mat-option>
+                      <mat-option *ngFor="let cattleType of cattleTypes" [value]="cattleType.id">
+                          {{ cattleType.name }}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              </div>
+              <div class="col-3">
+              <mat-form-field appearance="outline"  class="desc">
+                  <mat-label>Breed</mat-label>
+                  <mat-select formControlName="breed">
+                      <mat-option value="Select">--Select--</mat-option>
+                      <mat-option *ngFor="let breed of breeds" [value]="breed">
+                          {{ breed }}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              </div>
+              <div class="col-3">
+              <mat-form-field appearance="outline"  class="desc">
+                  <mat-label>Color</mat-label>
+                  <input matInput type="text" placeholder="colour" formControlName="colour">
+              </mat-form-field>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-3">
+              <mat-form-field appearance="outline"  class="desc">
+                  <mat-label>Approximate Age</mat-label>
+                  <input matInput type="number" placeholder="approxAge" formControlName="approxAge">
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <mat-form-field appearance="outline"  class="desc">
+                  <mat-label>Gender</mat-label>
+                  <mat-select formControlName="gender">
+                      <mat-option value="Select">--Select--</mat-option>
+                      <mat-option value="Male">Male</mat-option>
+                      <mat-option value="Female">Female</mat-option>
+                      <mat-option value="Other">Other</mat-option>
+                  </mat-select>
+              </mat-form-field>
+              </div>
+              <div class="col-3">
+              <mat-form-field appearance="outline"  class="desc">
+                  <mat-label>Health Status</mat-label>
+                  <input matInput type="text" placeholder="Health Status" formControlName="healthStatus">
+              </mat-form-field>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-3">
+              <mat-form-field appearance="outline"  class="desc">
+                  <mat-label>Milk Session</mat-label>
+                  <mat-select formControlName="milkSession">
+                      <mat-option value="Select">--Select--</mat-option>
+                      <mat-option value="Moring">Moring</mat-option>
+                      <mat-option value="Evening">Evening</mat-option>
+                  </mat-select>
+              </mat-form-field>
+              </div>
+              <div class="col-3">
+              <mat-form-field appearance="outline" class="desc">
+                  <mat-label>Quantity</mat-label>
+                  <input matInput type="number" placeholder="Quantity" formControlName="quantity">
+              </mat-form-field>
+              </div>
+              </div>
+              <div class="row">
+              <div class="col-9">
+              <mat-form-field appearance="outline" class="desc">
+                  <mat-label>Description</mat-label>
+                  <textarea matInput placeholder="Description" formControlName="description"></textarea>
+              </mat-form-field>
+          </div>
+          </div>
+      <div [ngStyle]="{'background-color':textColor,'color':'white'}">
+          {{msg}} </div>
+      <div>
+          <button mat-raised-button color="primary" class="btnapply" type="submit" [disabled]="cattleForm.invalid">
+              <mat-icon>save</mat-icon>Submit
+          </button>
+          <button mat-raised-button color="accent" class="btnUpdate" (click)="update()"
+              [disabled]="cattleForm.invalid">
+              <mat-icon>cached</mat-icon>Update
+          </button>
+          <button mat-raised-button color="warn" class="btnDelete" (click)="delete()">
+              <mat-icon>clear_all</mat-icon>Delete
+          </button>
+          <button mat-raised-button class="btnUpdate" color="primary"
+              (click)="get()"><mat-icon>get_app</mat-icon>Get</button>
+          <button mat-raised-button color="warn" class="btnDelete" (click)="clear()">
+              <mat-icon>clear</mat-icon>Clear
+          </button>
+      </div>
+      <div class="grid">
+          <ag-grid-angular class=".ag-theme-alpine"
+           style="width:auto; height:200px;"
+           [columnDefs]="colDefs"
+           [rowData]="rowData"
+            [defaultColDef]="defaultColDef">
+          </ag-grid-angular>
+      </div>
+  </div>
+</form>
+
+

@@ -20,4 +20,5 @@ export class ClientsDetailsService {
   getData(){
     return this.http.get(this.url + "ClientDetails/GetAllClientData")
   }
+
 }
