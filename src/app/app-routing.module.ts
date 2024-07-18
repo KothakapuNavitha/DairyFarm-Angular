@@ -15,7 +15,6 @@ import { LoginComponent } from './login/login.component';
 
 const routes:
 Routes = [
-<<<<<<< HEAD
   {path:'homepage',component:HomePageComponent},
   {path:'clientDetails',component:ClientDetailsComponent},
   {path:'milkPurchase',component:MilkPurchaseComponent},
@@ -24,8 +23,6 @@ Routes = [
   {path:'Production',component:ProductionComponent},
   {path:'Products',component:ProductDetailsComponent},
   {path:'feedDetails',component:FeedDetailsComponent},
- 
-=======
   { path: 'homepage', component: HomePageComponent },
   { path: 'clientDetails', component: ClientDetailsComponent },
   { path: 'cattleDetails', component: CattleDetailsComponent },
@@ -40,9 +37,6 @@ Routes = [
   // { path: '', component: LoginComponent },
   // { path: 'login', component: LoginComponent },
   // { path: 'sign-up', component: SignupComponent }
-
-
->>>>>>> 2869f3150c098f25f6442b20fd6c8075be39a751
 ];
 
 @NgModule({

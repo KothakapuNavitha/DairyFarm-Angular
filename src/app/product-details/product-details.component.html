@@ -69,7 +69,7 @@
             {{msg}}
         </div>
         <div>
-          <button id="btnapply" mat-raised-button color="primary" type="submit"
+          <button id="btnapply" mat-raised-button color="primary" type="submit" [disabled]="!ProductDetails.valid"
           (click)="submit()"><mat-icon>save</mat-icon>Apply</button>
         <button id="btnreset" type="button" mat-raised-button color="accent" (click)="Get()"><mat-icon>cached</mat-icon>Get</button>
         <button id="btnreset" type="button" mat-raised-button color="accent" (click)="Update()"><mat-icon>cached</mat-icon>Update</button>

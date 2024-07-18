@@ -1,8 +1,10 @@
 mat-form-field {
-    gap: 1;
-    padding-right: 9px;
-    width: 30%;
-  }
+  gap: 1;
+  padding-right: 9px;
+  width: 30%;
+
+  
+}
   .container {
     padding-top: 2%;
   }
@@ -32,8 +34,13 @@ mat-form-field {
     font-size: 9px;
     margin-top: 10px;
     height: 24px !important;
-    
-    
+
+}
+#form{
+  background-color: white;
+  height: auto;
+  width: 100%;
+  
 }
 .notes{
   width: 62%;
@@ -44,19 +51,19 @@ mat-form-field {
 .session{
   margin-right: 420px;
 }
-::ng-deep .mat-mdc-form-field-infix {
-    min-height: 40px;
-    font-size: small;
+ ::ng-deep .mat-mdc-form-field-infix {
+    min-height: 39px;
+    font-size: x-small;
   }
    mat-mdc-text-field-wrapper
   mdc-text-field
   ng-tns-c1205077789-4
   mdc-text-field--filled {
   top: -1.5em !important;
-} 
+}
 ::ng-deep .mat-mdc-form-field-flex > .mat-mdc-form-field-infix {
     padding: 0.4em 0px !important;
   }
   ::ng-deep .mat-mdc-text-field-wrapper {
     top: -1.5em !important;
-  } 
+  }

@@ -1,4 +1,4 @@
-<form align="center" [formGroup]="ProductionForm" >
+<form  id="form" align="center" [formGroup]="ProductionForm" >
     <div class="heading">
         <h1 ><b>Production  <button mat-raised-button color="accent" class="details"  (click)="openDialog()">Details</button>
         </b></h1>
@@ -25,7 +25,6 @@
               <mat-option value="PM">PM</mat-option>
             </mat-select>
           </mat-form-field>
-
     </div>
     <div>
       <mat-form-field  appearance="outline" class="notes">
@@ -37,7 +36,7 @@
 <div  [ngStyle]="{'background-color':textcolor,'color':'white'}">{{msg}}</div>
 
 <div>
-    <button mat-raised-button  color="primary" id="btn"  type="submit" (click)="submit()"><mat-icon>save</mat-icon>Submit</button>
+    <button mat-raised-button  color="primary" id="btn"  type="submit" [disabled]="!ProductionForm.valid" (click)="submit()"><mat-icon>save</mat-icon>Submit</button>
     <button mat-raised-button id="btn" color="accent" type="button" (click)="update()"><mat-icon>cached</mat-icon>Update</button>
     <button mat-raised-button id="btn" color="warn" type="button" (click)="get()"><mat-icon>get_app</mat-icon>Get</button>
     <button mat-raised-button id="btn" color="accent" type="button" (click)="delete()"><mat-icon> clear_all</mat-icon>Delete</button>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <body>
-<form [formGroup]="ProductionDetailsform">
+<form id="form" [formGroup]="ProductionDetailsform">
 
   <div align="center" class="heading">
     <h1><b>Production Details
@@ -39,7 +39,7 @@
   </div>
   <div align="center" [ngStyle]="{'background-color': textcolor, 'color': 'white'}">{{msg}}</div>
   <div>
-    <button mat-raised-button color="primary" id="btn" type="submit" (click)="submit()">
+    <button mat-raised-button color="primary" id="btn" type="submit" [disabled]="!ProductionDetailsform.valid" (click)="submit()">
       <mat-icon>save</mat-icon>Submit
     </button>
     <button mat-raised-button id="btn" color="accent" type="button" (click)="update()">

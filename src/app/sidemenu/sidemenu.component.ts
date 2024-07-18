@@ -29,7 +29,7 @@ export class SidemenuComponent {
         },
         {
           displayName: 'Cattle Details',
-          iconName: 'waves',
+          iconName: 'pets',
           route: '/cattleDetails'
         }
       ]
@@ -45,21 +45,16 @@ export class SidemenuComponent {
           },
           {
             displayName: 'Production',
-            iconName: '',
+            iconName: 'factory',
             route: '/production'
           },  {
             displayName: 'Feed Details',
-            iconName: 'shopping_cart',
+            iconName: 'restaurant',
             route: '/feedDetails'
           }
           ,  {
-            displayName: 'Purchase Reports',
-            iconName: 'shopping_cart',
-            route: '/purchaseReports'
-          }
-          ,  {
             displayName: 'Purchase Details',
-            iconName: 'shopping_cart',
+            iconName: ' monetization_on',
             route: '/purchaseDetails'
           }
         ]

@@ -97,7 +97,9 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
                "src/styles.css",
                "node_modules/@ag-grid-community/styles/ag-grid.css",
-               "node_modules/@ag-grid-community/styles/ag-theme-alpine.css"
+               "node_modules/@ag-grid-community/styles/ag-theme-alpine.css",
+                "src/styles.css",
+                "node_modules/simple-keyboard/build/css/index.css"
 
             ],
             "scripts": []
