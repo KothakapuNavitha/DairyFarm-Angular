@@ -27,7 +27,6 @@ export class ClientDetailsComponent implements OnInit {
    rowData:any = [];
 
   colDefs: any[] = [
-    {headerName:  'SlNO', field:'slno'},
     { headerName: 'ClientId', field: 'clientId' },
     { headerName: 'Name', field: 'name' },
     { headerName: 'Type', field: 'type' },
@@ -102,6 +101,7 @@ export class ClientDetailsComponent implements OnInit {
     });
   }
   submit() {
+    debugger
     console.log('from submit');
     console.log(this.clientDetailsForm.value);
     if (this.clientDetailsForm.invalid) {
@@ -110,7 +110,25 @@ export class ClientDetailsComponent implements OnInit {
       return;
     } else {
       try {
-        this.prepareCls('Insert');
+    const formValues = this.clientDetailsForm.value;
+    this.clientcls.mode ='Insert' ;
+    this.clientcls.clientId = this.ClientId;
+    this.clientcls.name = formValues.name;
+    this.clientcls.type = formValues.type.join(',');
+    this.clientcls.contactNumber1 = formValues.contactNumber1;
+    this.clientcls.contactNumber2 = formValues.contactNumber2;
+    this.clientcls.contactName = formValues.contactName;
+    this.clientcls.email = formValues.email;
+    this.clientcls.department = formValues.department;
+    this.clientcls.designation = formValues.designation;
+    this.clientcls.address1 = formValues.address1;
+    this.clientcls.address2 = formValues.address2;
+    this.clientcls.address3 = formValues.address3;
+    this.clientcls.city = formValues.city;
+    this.clientcls.state = formValues.state;
+    this.clientcls.country = formValues.country;
+    this.clientcls.description = formValues.description;
+
         this.snackbar.open('Details Inserted', 'Okay');
         this.toastr.success('Details Inserted', 'SUCCESS');
         console.log(this.clientcls);
@@ -134,26 +152,26 @@ export class ClientDetailsComponent implements OnInit {
       }
     }
   }
-  prepareCls(mode: string) {
-    const formValues = this.clientDetailsForm.value;
-    this.clientcls.mode = mode;
-    this.clientcls.clientId = this.ClientId;
-    this.clientcls.name = formValues.name;
-    this.clientcls.type = formValues.type.join(',');
-    this.clientcls.contactNumber1 = formValues.contactNumber1;
-    this.clientcls.contactNumber2 = formValues.contactNumber2;
-    this.clientcls.contactName = formValues.contactName;
-    this.clientcls.email = formValues.email;
-    this.clientcls.department = formValues.department;
-    this.clientcls.designation = formValues.designation;
-    this.clientcls.address1 = formValues.address1;
-    this.clientcls.address2 = formValues.address2;
-    this.clientcls.address3 = formValues.address3;
-    this.clientcls.city = formValues.city;
-    this.clientcls.state = formValues.state;
-    this.clientcls.country = formValues.country;
-    this.clientcls.description = formValues.description;
-  }
+  // prepareCls(mode: string) {
+  //   const formValues = this.clientDetailsForm.value;
+  //   this.clientcls.mode = mode;
+  //   this.clientcls.clientId = this.ClientId;
+  //   this.clientcls.name = formValues.name;
+  //   this.clientcls.type = formValues.type.join(',');
+  //   this.clientcls.contactNumber1 = formValues.contactNumber1;
+  //   this.clientcls.contactNumber2 = formValues.contactNumber2;
+  //   this.clientcls.contactName = formValues.contactName;
+  //   this.clientcls.email = formValues.email;
+  //   this.clientcls.department = formValues.department;
+  //   this.clientcls.designation = formValues.designation;
+  //   this.clientcls.address1 = formValues.address1;
+  //   this.clientcls.address2 = formValues.address2;
+  //   this.clientcls.address3 = formValues.address3;
+  //   this.clientcls.city = formValues.city;
+  //   this.clientcls.state = formValues.state;
+  //   this.clientcls.country = formValues.country;
+  //   this.clientcls.description = formValues.description;
+  // }
   update() {
     console.log(this.clientDetailsForm.value);
     if (this.clientDetailsForm.invalid) {
@@ -162,7 +180,25 @@ export class ClientDetailsComponent implements OnInit {
       return;
     } else {
       try {
-        this.prepareCls('Update');
+        const formValues = this.clientDetailsForm.value;
+        this.clientcls.mode = 'Update';
+        this.clientcls.clientId = this.ClientId;
+        this.clientcls.name = formValues.name;
+        this.clientcls.type = formValues.type.join(',');
+        this.clientcls.contactNumber1 = formValues.contactNumber1;
+        this.clientcls.contactNumber2 = formValues.contactNumber2;
+        this.clientcls.contactName = formValues.contactName;
+        this.clientcls.email = formValues.email;
+        this.clientcls.department = formValues.department;
+        this.clientcls.designation = formValues.designation;
+        this.clientcls.address1 = formValues.address1;
+        this.clientcls.address2 = formValues.address2;
+        this.clientcls.address3 = formValues.address3;
+        this.clientcls.city = formValues.city;
+        this.clientcls.state = formValues.state;
+        this.clientcls.country = formValues.country;
+        this.clientcls.description = formValues.description;
+
         this.snackbar.open('Details Updated', 'Okay');
         this.toastr.success('Details Updated', 'SUCCESS');
         console.log(this.clientcls);
@@ -200,7 +236,6 @@ export class ClientDetailsComponent implements OnInit {
           //this.clientDetailsForm.controls['clientId'].setValue(res.clientId)
           this.clientDetailsForm.controls['name'].setValue(res.name);
           const result: string[] = res.type.split(',');
-          // Trim whitespace from each element
           const trimmedResult: string[] = result.map((item) => item.trim());
           this.clientDetailsForm.controls['contactNumber1'].setValue(
             res.contactNumber1

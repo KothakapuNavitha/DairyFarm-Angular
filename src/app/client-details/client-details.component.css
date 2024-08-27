@@ -1,5 +1,6 @@
 .form{
   background-color: white;
+  text-align: center;
 }
 .header{
   width:auto;
@@ -17,6 +18,7 @@ font-size: 8px !important;
 .desc{
   width: 99%;
   padding-right:-3px ;
+
 }
 
 #btn{
@@ -67,7 +69,7 @@ font-size: 8px !important;
 } */
 
 ::ng-deep .mat-mdc-text-field-wrapper {
-  height: 38px !important;
+  height: 40px !important;
 }
 ::ng-deep .mat-mdc-form-field-flex {
   margin-top: -12px !important;

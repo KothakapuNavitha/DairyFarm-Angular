@@ -9,7 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgbModule, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NgFor } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ProductionComponent } from './production/production.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { MaterialdesignModule } from './materialdesign/materialdesign.module';
@@ -22,9 +22,21 @@ import { PurchaceDetailsComponent } from './purchace-details/purchace-details.co
 import { PurchaseReportsComponent } from './purchase-reports/purchase-reports.component';
 import { LoginComponent } from './login/login.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { HeaderComponent } from './header/header.component';
+import { RouterModule } from '@angular/router';
+import { LoaderComponent } from './loader/loader.component';
+import { ExcelExportService } from './excel-export.service';
+import { AuthInterceptor } from './auth.interceptor';
+import { NgxUiLoaderModule,NgxUiLoaderConfig } from 'ngx-ui-loader';
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
+//import { LoaderService } from './loader.service';
 
 
-
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  fgsType: 'three-strings',
+  fgsColor: '#ff0000',
+  hasProgressBar: false,
+};
 
 
 @NgModule({
@@ -43,6 +55,10 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
     PurchaseReportsComponent,
     LoginComponent,
     SidemenuComponent,
+    HeaderComponent,
+    LoaderComponent,
+    UserRegistrationComponent,
+
 
 
   ],
@@ -50,6 +66,7 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -66,8 +83,13 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
-  providers: [],
+  providers: [
+    ExcelExportService,
+   // LoaderService,
+    {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

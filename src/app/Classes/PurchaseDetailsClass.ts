@@ -9,11 +9,11 @@ export class purchaseDetailsCls{
   SNF !: number;
   fat!:number;
   totalPrice!:number;
-  avgQuantity!: number;
-  avgSnf!: number;
-  avgFat!: number;
-  avgPricePerLiter!: number;
-  avgTotal!: number;
+  // avgQuantity!: number;
+  // avgSnf!: number;
+  // avgFat!: number;
+  // avgPricePerLiter!: number;
+  // avgTotal!: number;
   notes :string="";
 
 }

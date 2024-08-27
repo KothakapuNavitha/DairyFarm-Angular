@@ -1,5 +1,5 @@
 import { purchaseDetailsCls } from './Classes/PurchaseDetailsClass';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class PurchaseDetailsService {
   url = "https://localhost:7219/api/"
+  baseUrl!: string;
   constructor(private http:HttpClient) {
 
    }
@@ -18,6 +19,7 @@ export class PurchaseDetailsService {
    GetPurchaseDetails(purchcls:purchaseDetailsCls){
      return this.http.post(this.url +"purchaseData/Get_PurchaseDetails",purchcls)
    }
+
 
    getAllPurchaseData(){
     return this.http.get(this.url +"purchaseData/getAllPurchaseData")

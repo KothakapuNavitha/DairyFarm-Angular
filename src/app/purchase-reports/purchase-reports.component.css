@@ -1,92 +1,58 @@
-/* body{
-  overflow:hidden ;
-} */
 .form{
   background-color: white;
-  text-align: center;
+  /* text-align: center; */
   overflow: hidden;
 }
 .header{
   width:auto;
-  height:30px;
+  height:80px;
   color: white;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   padding-top:1px;
   text-align:left;
   padding-left: 3px;
   background: linear-gradient(to bottom,rgb(126, 126, 246),rgb(20, 100, 198));
  }
-mat-form-field {
-  margin-left:290px ;
-  /* width: 33%; */
+ mat-card-title{
+margin-bottom:20px ;
+ }
+mat-form-field{
+  font-size: 8px  !important;
 }
-/* .container {
-  padding-top:10px;
-} */
 .desc{
   width: 100%;
 }
 .Date{
   width:100%;
 }
-.btnget{
-  margin-bottom: 30px;
-  margin-left:290px ;
-  margin-top:-20px ;
-  width: 50%;
-}
- ::ng-deep .mat-mdc-form-field-infix {
-    min-height: 39px;
-    font-size: x-small;
-  }
-   mat-mdc-text-field-wrapper
-  mdc-text-field
-  ng-tns-c1205077789-4
-  mdc-text-field--filled {
-  top: -1.5em !important;
-}
-::ng-deep .mat-mdc-form-field-flex > .mat-mdc-form-field-infix {
-    padding: 0.4em 0px !important;
-  }
-  ::ng-deep .mat-mdc-text-field-wrapper {
-    top: -1.5em !important;
-  }
 
-#btnapply{
-  margin-left:20px;
-  margin-bottom:20px ;
+#btn{
+  margin-left:20px !important;
+  margin-bottom:10px !important;
+  font-size: 9px;
+ height: 24px !important;
+}
 
-}
-#btnupdate{
-  margin-left:20px ;
-  color:white;
-  margin-bottom:20px ;
-}
-#btnclear{
-  background-color:red ;
-  margin-left:20px;
-  color:white;
-  margin-bottom:20px ;
-}
-#btnclose{
-  background-color:orangered;
-  margin-left:20px;
-  color:white;
-  margin-bottom:20px ;
-
+.btn btn-md btn-outline-info {
+  margin-left:10px !important;
+  margin-bottom:10px !important;
+  font-size: 9px;
+ height: 24px !important;
 }
 
 .ag-theme-alpine{
   width:auto;
   max-width: 100%;
   overflow: hidden;
+  --ag-font-size: 10px;
   --ag-header-height: 10px;
   --ag-header-foreground-color: white;
   --ag-header-background-color: rgb(13, 124, 228);
-  /* --ag-header-cell-hover-background-color: rgb(80, 40, 140); */
+  --ag-header-cell-hover-background-color: rgb(80, 40, 140);
   --ag-header-cell-moving-background-color: rgb(80, 40, 140);
 
 }
+
 .ag-theme-alpine .ag-header {
   font-family: cursive;
 }
@@ -99,4 +65,27 @@ mat-form-field {
   font-size: 18px;
 
 }
+ ::ng-deep .mat-mdc-text-field-wrapper {
+  height: 40px !important;
+}
+::ng-deep .mat-mdc-form-field-flex {
+  margin-top: -10px !important;
+}
 
+
+/* ::ng-deep .mat-mdc-form-field-infix {
+  min-height: 39px;
+  font-size: x-small;
+}
+ mat-mdc-text-field-wrapper
+mdc-text-field
+ng-tns-c1205077789-4
+mdc-text-field--filled {
+top: -1.5em !important;
+}
+::ng-deep .mat-mdc-form-field-flex > .mat-mdc-form-field-infix {
+  padding: 0.4em 0px !important;
+}
+::ng-deep .mat-mdc-text-field-wrapper {
+  top: -1.5em !important;
+} */
