@@ -1,31 +1,4 @@
-<<<<<<< HEAD
-<form class="form" [formGroup]="clientDetailsForm">
-  <div class="header">
-    <h1>Client Details</h1>
-  </div>
-  <div class="container-fluid">
-    <div class="col-6">
-      <mat-form-field appearance="outline" class="desc">
-        <mat-label>Client</mat-label>
-        <mat-icon class="searchicon" matSuffix>search</mat-icon>
-        <input id="inputSearch" type="search" matInput placeholder="Search">
-      </mat-form-field>
-    </div>
-    <div class="row">
-      <div class="col-3">
-        <mat-form-field appearance="outline" class="desc">
-          <mat-label>Client Id</mat-label>
-          <input id="clientid" matInput placeholder="Client Id" [(ngModel)]="ClientId" [ngModelOptions]="{standalone: true}">
-        </mat-form-field>
-      </div> 
 
-      
-      <div class="col-3">
-        <mat-form-field appearance="outline" class="desc">
-          <mat-label>Client Name</mat-label>
-          <input id="ClientName" matInput placeholder="Client Name" formControlName="name">
-        </mat-form-field>
-=======
 <mat-card class="example-card">
   <mat-card-title>Client Details</mat-card-title>
   <br>
@@ -156,7 +129,7 @@
           (click)="Delete()"><mat-icon>clear_all</mat-icon>Delete</button>
         <button id="btn" type="button" mat-raised-button color="red"
           (click)="clear()"><mat-icon>clear</mat-icon>Clear</button>
->>>>>>> 2869f3150c098f25f6442b20fd6c8075be39a751
+
       </div>
       <div>
         <ag-grid-angular class="grid"

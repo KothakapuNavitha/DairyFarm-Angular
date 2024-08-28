@@ -7,6 +7,13 @@ import { ToastrService } from 'ngx-toastr';
 import { Client } from '../purchase-details.service';
 import { GridApi } from 'ag-grid-community';
 import { HttpErrorResponse } from '@angular/common/http';
+import { PdfgeneratorService } from '../pdfgenerator.service';
+
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 
 @Component({
   selector: 'app-purchace-details',
@@ -14,6 +21,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./purchace-details.component.css'],
 })
 export class PurchaceDetailsComponent implements OnInit {
+ 
   rowData: any = [];
   gridOptions = {
     headerHeight: 24, // Set the header height here
@@ -60,17 +68,24 @@ export class PurchaceDetailsComponent implements OnInit {
     private purchaseSrv: PurchaseDetailsService,
     private fb: FormBuilder,
     private snackbar: MatSnackBar,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private pdfGeneratorService: PdfgeneratorService
   ) {
     this.formInit();
     this.purchaseCls = new purchaseDetailsCls();
   }
-
+  exportToPdf(): void {
+    this.pdfGeneratorService.exportToPdf('pdfTable', 'sample');
+  }
+ 
   ngOnInit() {
     this.getAllPurchaseDetails();
     this.purchaseSrv.getClients().subscribe((data) => {
       console.log(data);
       this.clients = data;
+    });
+    this.PurchaseDetailsForm = this.fb.group({
+      milkType: ['Buffalo Milk']  // Set default value here
     });
   }
 
@@ -80,6 +95,7 @@ export class PurchaceDetailsComponent implements OnInit {
       phoneNumber: ['', Validators.required],
       date: [today, Validators.required],
       milkType: ['', Validators.required],
+
       quantity: ['', Validators.required],
       pricePerLiter: ['', Validators.nullValidator],
       SNF: ['', Validators.required],
@@ -279,10 +295,6 @@ export class PurchaceDetailsComponent implements OnInit {
       this.rowData = res;
     });
   }
-
-
-
-
 
   clear() {
     this.formInit();

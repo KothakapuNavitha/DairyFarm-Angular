@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy ,ViewChildren, QueryList } from '@angular/core';
 import { NavItem } from '../Classes/nav-item';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { MatExpansionPanel } from '@angular/material/expansion';
+
 
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
   styleUrls: ['./sidemenu.component.css']
 })
-export class SidemenuComponent {
+export class SidemenuComponent implements OnDestroy {
+ 
   mobileQuery!: MediaQueryList;
-  fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
+  fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
   private _mobileQueryListener!: () => void;
+
+
   menu: NavItem [] = [
     {
       displayName: 'Home',
@@ -54,20 +59,21 @@ export class SidemenuComponent {
           }
           ,  {
             displayName: 'Purchase Details',
-            iconName: ' monetization_on',
+            iconName: 'list_alt',
             route: '/purchaseDetails'
           }
         ]
       }
   ];
+ 
 
-  constructor(media: MediaMatcher){
-
+  constructor(media: MediaMatcher) {
+    
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-
-
+ 
+ 
 }

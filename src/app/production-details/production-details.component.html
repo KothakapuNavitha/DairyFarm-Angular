@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <body>
+<mat-card class="example-card">
+  <mat-card-title class="mat-card-header">Production Details  <mat-icon [mat-dialog-close]="true" class="closeicon" align="right">close</mat-icon></mat-card-title>
+  <br>
+  <mat-card-content>
 <form id="form" [formGroup]="ProductionDetailsform">
 
-  <div align="center" class="heading">
+  <!-- <div align="center" class="heading">
     <h1><b>Production Details
         <mat-icon [mat-dialog-close]="true" class="closeicon" align="right">close</mat-icon></b></h1>
-  </div>
-  <div class="container fluid">
+  </div> -->
+  <div class="container-fluid">
     <div class="col">
       <mat-form-field appearance="outline">
         <mat-label>TranNo</mat-label>
@@ -67,5 +68,3 @@
   </div>
 
 </form>
-</body>
-</html>

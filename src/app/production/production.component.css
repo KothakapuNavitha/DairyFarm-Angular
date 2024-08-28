@@ -17,6 +17,10 @@ mat-form-field {
     background: linear-gradient(to bottom, #3350f3 0%, #707bf4 100%);
     color: white;
   }
+  .mat-card-header{
+    background-color: rgb(166, 198, 198) !important;
+    margin-bottom: 30px;
+  }
   #btn{
     margin-left:20px !important;
     margin-bottom:10px !important;
@@ -44,12 +48,17 @@ mat-form-field {
 }
 .notes{
   width: 62%;
+  margin-left:60px ;
 }
 .Date{
-  margin-left: 30px;
+   margin-left: 100px;  
+  margin-right: 300px;
 }
+ #tranNo{
+  margin-left: 60px;
+} 
 .session{
-  margin-right: 420px;
+  margin-left: 60px;
 }
  ::ng-deep .mat-mdc-form-field-infix {
     min-height: 39px;

@@ -143,6 +143,8 @@
         <button id="btn" type="button" mat-raised-button color="accent" (click)="GetMultiple()">
           <mat-icon>search</mat-icon>Get Multiple
         </button>
+
+        <button (click)="exportToPdf()">Download PDF</button>
     </div>
     <div>
       <ag-grid-angular style="width:auto;height:200px;"  [gridOptions]="gridOptions"

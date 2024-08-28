@@ -129,8 +129,8 @@
       <mat-nav-list>
         <span *ngFor="let item of menu">
           <span *ngIf="item.children && item.children.length > 0">
-            <mat-accordion>
-              <mat-expansion-panel>
+            <mat-accordion [multi]="false">
+              <mat-expansion-panel  >
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     <div fxLayout="row" fxLayoutAlign="space-between center">
