@@ -1,9 +1,10 @@
 <div class="example-container">
-  <mat-toolbar class="mat-elevation-z8 header primary">
+  <mat-toolbar class="mat-elevation-z8 header primary" color="primary" *ngIf="isLoggedIn$ | async as isLoggedIn">
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <h4>Dairy Farm Management</h4>
+    <button class="Logout" mat-button (click)="onLogout()" *ngIf="isLoggedIn"><mat-icon>person</mat-icon>Logout</button>
   </mat-toolbar>
 
   <!-- <mat-sidenav-container>

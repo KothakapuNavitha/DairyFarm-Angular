@@ -1,3 +1,4 @@
+import { ExcelExportService } from './../excel-export.service';
 import { PurchaseDetailsService } from './../purchase-details.service';
 import { purchaseDetailsCls } from './../Classes/PurchaseDetailsClass';
 import { Component, OnInit } from '@angular/core';
@@ -42,10 +43,6 @@ export class PurchaceDetailsComponent implements OnInit {
     { headerName: 'Fat', field: 'fat' },
     { headerName: 'PricePerLiter', field: 'pricePerLiter' },
     { headerName: 'TotalPrice', field: 'totalPrice' },
-    {headerName : 'AvgQuantity', field:'avgQuantity'},
-    {headerName : 'AvgSNF', field:'avgSNF'},
-    {headerName : 'AvgFat' ,field:'avgFat'},
-    {headerName : 'AvgTotal', field:'avgTotal'},
     { headerName: 'Notes', field: 'notes' },
   ];
 
@@ -69,7 +66,8 @@ export class PurchaceDetailsComponent implements OnInit {
     private fb: FormBuilder,
     private snackbar: MatSnackBar,
     private toastr: ToastrService,
-    private pdfGeneratorService: PdfgeneratorService
+    private pdfGeneratorService: PdfgeneratorService,
+    private ExcelService:ExcelExportService
   ) {
     this.formInit();
     this.purchaseCls = new purchaseDetailsCls();
@@ -89,11 +87,15 @@ export class PurchaceDetailsComponent implements OnInit {
     });
   }
 
+  exportToExcel(){
+    this.ExcelService.exportAsExcelFile(this.rowData,'sample');
+  }
+
   formInit() {
-    const today = new Date();
+    // const today = new Date();
     this.PurchaseDetailsForm = this.fb.group({
       phoneNumber: ['', Validators.required],
-      date: [today, Validators.required],
+      date: ['', Validators.required],
       milkType: ['', Validators.required],
 
       quantity: ['', Validators.required],
@@ -113,19 +115,29 @@ export class PurchaceDetailsComponent implements OnInit {
   }
 
   submit() {
-   // debugger
+    //debugger
+    console.log('from submit');
+    console.log(this.PurchaseDetailsForm.value);
     if (this.PurchaseDetailsForm.invalid) {
       return;
-    } else {
+    }
+     else {
       try {
         this.prepareCls('Insert');
         this.purchaseSrv.insertPurchaseDetails(this.purchaseCls).subscribe((res: any) => {
+          console.log(res);
           if (res.status === 'Success') {
             this.msg = res.dbMsg;
             this.textcolor = 'green';
-            this.getAllPurchaseDetails();
+           // this.getAllPurchaseDetails();
           } else {
             this.msg = res.dbMsg;
+            this.textcolor = 'red';
+          }
+
+          (error: HttpErrorResponse) => {
+            console.error('Error Response:', error); // Log the error response
+            this.msg = 'An error occurred. Please try again.';
             this.textcolor = 'red';
           }
         });
@@ -158,14 +170,13 @@ export class PurchaceDetailsComponent implements OnInit {
       return;
     } else {
       try {
-        this.prepareCls('Update');
-        this.snackbar.open('Details Updated', 'Okay');
+        this.prepareCls('Update')
         this.toastr.success('Details Updated', 'SUCCESS');
         this.purchaseSrv.insertPurchaseDetails(this.purchaseCls).subscribe((res: any) => {
           if (res.status === 'Success') {
             this.msg = 'updated successfully';
             this.textcolor = 'green';
-            this.getAllPurchaseDetails();
+           // this.getAllPurchaseDetails();
           } else {
             this.msg = 'not updated';
             this.textcolor = 'red';
@@ -248,28 +259,6 @@ export class PurchaceDetailsComponent implements OnInit {
       this.avgPricePerLiter = totalPricePerLiter / len;
       this.avgTotal = totalPrice / len;
 
-      const avgRow = {
-        clientId: 'Averages',
-        phoneNumber: '',
-        date: '',
-        milkType: '',
-        quantity: this.avgQuantity,
-        snf: this.avgSnf,
-        fat: this.avgFat,
-        pricePerLiter: this.avgPricePerLiter,
-        totalPrice: this.avgTotal,
-        notes: ''
-      };
-
-      // Push the average row to the rowData
-      this.rowData.push(avgRow);
-
-      console.log(
-        this.avgSnf,
-        this.avgFat,
-        this.avgPricePerLiter,
-        this.avgTotal
-      );
     });
 
   }
@@ -301,6 +290,8 @@ export class PurchaceDetailsComponent implements OnInit {
     this.msg = '';
     this.textcolor = '';
   }
-  ngOnDestroy(): void {}
+
+ 
+
 }
 

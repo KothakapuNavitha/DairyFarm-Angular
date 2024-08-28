@@ -2,6 +2,8 @@ import { Component, OnDestroy ,ViewChildren, QueryList } from '@angular/core';
 import { NavItem } from '../Classes/nav-item';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatExpansionPanel } from '@angular/material/expansion';
+import { Observable } from 'rxjs';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -9,8 +11,9 @@ import { MatExpansionPanel } from '@angular/material/expansion';
   templateUrl: './sidemenu.component.html',
   styleUrls: ['./sidemenu.component.css']
 })
-export class SidemenuComponent implements OnDestroy {
- 
+export class SidemenuComponent {
+  isLoggedIn$!: Observable<boolean>;
+
   mobileQuery!: MediaQueryList;
   fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
   private _mobileQueryListener!: () => void;
@@ -61,19 +64,27 @@ export class SidemenuComponent implements OnDestroy {
             displayName: 'Purchase Details',
             iconName: 'list_alt',
             route: '/purchaseDetails'
+          },{
+            displayName: 'Purchase Reports',
+            iconName: 'new_releases',
+            route: '/purchaseReports'
           }
         ]
       }
   ];
- 
 
-  constructor(media: MediaMatcher) {
-    
+  constructor(media: MediaMatcher,private userService: UserService){
+
+  }
+
+  ngOnInit(){
+    this.isLoggedIn$ = this.userService.isLoggedIn;
+  }
+  onLogout() {
+    this.userService.logout();
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
-  }
- 
- 
+  } 
 }

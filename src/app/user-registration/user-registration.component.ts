@@ -1,15 +1,15 @@
-import { UserService } from './../user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { userDetailsCls } from '../Classes/userclass';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-user-registration',
+  templateUrl: './user-registration.component.html',
+  styleUrls: ['./user-registration.component.css']
 })
-export class LoginComponent implements OnInit {
+export class UserRegistrationComponent {
   public form!: FormGroup;
   private formSubmitAttempt!: boolean;
   public userCls!: userDetailsCls;
@@ -45,17 +45,16 @@ export class LoginComponent implements OnInit {
       this.isLoading = true;
       const userData: userDetailsCls = {
         userName: this.form.get('userName')?.value,
-        password: this.form.get('password')?.value,
-         // Ensure mode is set correctly
+        password: this.form.get('password')?.value
       };
 
-      this.userService.login(userData).subscribe(
+      this.userService.signup(userData).subscribe(
         (response: any) => {
-          console.log('Login successful', response);
-          this.router.navigate(['/dashboard']);
+          console.log('Signup successful', response);
+          this.router.navigate(['/login']);
         },
         (error: any) => {
-          console.error('Login error', error);
+          console.error('Signup error', error);
           this.isLoading = false;
         },
         () => {
@@ -72,3 +71,5 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/']);
   }
 }
+
+

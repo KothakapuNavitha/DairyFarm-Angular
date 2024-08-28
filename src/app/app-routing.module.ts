@@ -1,3 +1,4 @@
+import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { PurchaceDetailsComponent } from './purchace-details/purchace-details.component';
 import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 import { NgModule } from '@angular/core';
@@ -10,33 +11,45 @@ import { FeedDetailsComponent } from './feed-details/feed-details.component';
 import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
 import { PurchaseReportsComponent } from './purchase-reports/purchase-reports.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
+import { SidemenuComponent } from './sidemenu/sidemenu.component';
 
 
 
 const routes:
 Routes = [
-  {path:'homepage',component:HomePageComponent},
-  {path:'clientDetails',component:ClientDetailsComponent},
-  {path:'milkPurchase',component:MilkPurchaseComponent},
-  {path:'production',component:ProductionComponent},
-  {path:'products',component:ProductDetailsComponent},
-  {path:'Production',component:ProductionComponent},
-  {path:'Products',component:ProductDetailsComponent},
-  {path:'feedDetails',component:FeedDetailsComponent},
-  { path: 'homepage', component: HomePageComponent },
-  { path: 'clientDetails', component: ClientDetailsComponent },
-  { path: 'cattleDetails', component: CattleDetailsComponent },
-  { path: 'milkPurchase', component: MilkPurchaseComponent },
-  { path: 'production', component: ProductionComponent },
-  { path: 'products', component: ProductDetailsComponent },
-  { path: 'feedDetails', component: FeedDetailsComponent },
-  { path: 'purchaseDetails', component: PurchaceDetailsComponent },
-  { path: 'purchaseReports', component: PurchaseReportsComponent },
-  { path: '**', redirectTo: 'homepage' },
 
-  // { path: '', component: LoginComponent },
-  // { path: 'login', component: LoginComponent },
-  // { path: 'sign-up', component: SignupComponent }
+  // { path: 'homepage', component: HomePageComponent },
+  // { path: '**', redirectTo: 'homepage' },
+
+
+  { path: 'login', component: LoginComponent },
+  {path:'sign-up',component: UserRegistrationComponent},
+  { path: '', component: SidemenuComponent, canActivate: [AuthGuard] ,
+
+    children:[{ path: 'homepage', component: HomePageComponent },
+      { path:'clientDetails', component: ClientDetailsComponent },
+      { path: 'cattleDetails', component: CattleDetailsComponent },
+      { path: 'milkPurchase', component: MilkPurchaseComponent },
+      { path: 'production', component: ProductionComponent },
+      { path: 'products', component: ProductDetailsComponent },
+      { path: 'feedDetails', component: FeedDetailsComponent },
+      { path: 'purchaseDetails', component: PurchaceDetailsComponent },
+      { path: 'purchaseReports', component: PurchaseReportsComponent },
+
+      { path: 'dashboard', redirectTo: 'homepage', pathMatch: 'full' }
+    ],
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'Login' },
+  // { path:'clientDetails', component: ClientDetailsComponent },
+  // { path: 'cattleDetails', component: CattleDetailsComponent },
+  // { path: 'milkPurchase', component: MilkPurchaseComponent },
+  // { path: 'production', component: ProductionComponent },
+  // { path: 'products', component: ProductDetailsComponent },
+  // { path: 'feedDetails', component: FeedDetailsComponent },
+  // { path: 'purchaseDetails', component: PurchaceDetailsComponent },
+  // { path: 'purchaseReports', component: PurchaseReportsComponent },
 ];
 
 @NgModule({

@@ -2,37 +2,40 @@
   <mat-card>
     <div class="card-body auth-card">
       <mat-card-content>
-        <div class="auth-avatar">
+        <!-- <div class="auth-avatar">
           <img src="https://pluspng.com/img-png/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" alt="user" class="user-image">
-        </div>
+        </div> -->
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-          <p>Please login to continue</p>
+          <p><b style="color:red">SignUp Form</b></p>
           <mat-divider></mat-divider>
           <mat-form-field appearance="fill" class="full-width-input">
-            <input matInput placeholder="User id or email" formControlName="userName" required>
+            <input matInput placeholder="User" formControlName="userName" required>
             <mat-error *ngIf="isFieldInvalid('userName')">
-              <span *ngIf="form.get('userName')?.hasError('required')">User id or email required!</span>
+              <span *ngIf="form.get('userName')?.hasError('required')">Please inform your user name.</span>
               <span *ngIf="form.get('userName')?.hasError('pattern')">Username must be at least 3 characters long and can contain letters, numbers, dots, underscores, and hyphens.</span>
             </mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill" class="full-width-input">
             <input matInput type="password" placeholder="Password" formControlName="password" required>
             <mat-error *ngIf="isFieldInvalid('password')">
-              <span *ngIf="form.get('password')?.hasError('required')">Password required!</span>
-              <span *ngIf="form.get('password')?.hasError('pattern')">Password must be at least 6 characters long and can contain letters, numbers, and special characters (#, *, _).</span>
+              <span *ngIf="form.get('password')?.hasError('required')">Please inform your password.</span>
+              <span *ngIf="form.get('password')?.hasError('pattern')">Password must be at least 6 characters long and can contain letters, numbers, and special characters (@, #, *, _).</span>
             </mat-error>
           </mat-form-field>
-          <div class="text-right forget-pass">
+          <!-- <div class="text-right forget-pass">
             <a routerLink="/forget-password">Forget Password ?</a>
-          </div>
-          <button mat-raised-button color="primary" type="submit" class="btn"><mat-icon>login</mat-icon>Login</button>
+          </div> -->
+          <div>
+          <button mat-raised-button color="primary" type="submit" class="btn"><mat-icon>login</mat-icon>Signup</button>
           <button mat-raised-button color="accent" type="button" class="btn" (click)="OnCancel()"><mat-icon>cancel</mat-icon>Cancel</button>
+          </div>
         </form>
         <div class="text-center sign-up">
-          Don`t have an account? <a routerLink="/sign-up">Sign Up</a> here.
+          Already have an account? <a routerLink="/login">Login</a> here.
         </div>
       </mat-card-content>
     </div>
   </mat-card>
   <app-loader></app-loader>
 </div>
+

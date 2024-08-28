@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7bbdbbb3b91e26af1e5972f8c7b5e693d30262c3
 <mat-card class="example-card">
   <mat-card-title>Client Details</mat-card-title>
   <br>
@@ -28,14 +31,14 @@
               </mat-select>
             </mat-form-field>
           </div>
-        </div>
-        <div class="row">
           <div class="col-3">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Contact Number1</mat-label>
               <input id="ContactNumber1" matInput placeholder="Contact Number1" formControlName="contactNumber1">
             </mat-form-field>
           </div>
+        </div>
+        <div class="row">
           <div class="col-3">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Contact Number2</mat-label>
@@ -48,8 +51,6 @@
               <input id="ContactName" matInput placeholder="Contact Name" formControlName="contactName">
             </mat-form-field>
           </div>
-        </div>
-        <div class="row">
           <div class="col-3">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Email</mat-label>
@@ -62,14 +63,14 @@
               <input id="dept" matInput placeholder="Department" formControlName="department">
             </mat-form-field>
           </div>
+        </div>
+        <div class="row">
           <div class="col-3">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Designation</mat-label>
               <input id="designation" matInput placeholder="Designation" formControlName="designation">
             </mat-form-field>
           </div>
-        </div>
-        <div class="row">
           <div class="col-3">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Address1</mat-label>
@@ -109,11 +110,13 @@
             </mat-form-field>
           </div>
         </div>
+        <div class="row">
         <div class="col-9">
           <mat-form-field appearance="outline" class="desc">
             <mat-label>Description</mat-label>
             <textarea id="description" matInput placeholder="Description" formControlName="description"></textarea>
           </mat-form-field>
+        </div>
         </div>
       </div>
       <div align="center" [ngStyle]="{'background-color':textcolor,'color':'white'}">
@@ -125,11 +128,14 @@
           (click)="Get()"><mat-icon>cached</mat-icon>Get</button>
         <button id="btn" type="button" mat-raised-button color="accent"
           (click)="update()"><mat-icon>cached</mat-icon>Update</button>
-        <button id="btn" type="button" mat-raised-button color="red"
+        <button id="btn" type="button" mat-raised-button color="warn"
           (click)="Delete()"><mat-icon>clear_all</mat-icon>Delete</button>
         <button id="btn" type="button" mat-raised-button color="red"
           (click)="clear()"><mat-icon>clear</mat-icon>Clear</button>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7bbdbbb3b91e26af1e5972f8c7b5e693d30262c3
       </div>
       <div>
         <ag-grid-angular class="grid"
@@ -140,5 +146,4 @@
       </div>
     </form>
   </mat-card-content>
-
 </mat-card>
