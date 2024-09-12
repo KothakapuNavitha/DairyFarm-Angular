@@ -10,7 +10,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { FeedDetailsComponent } from './feed-details/feed-details.component';
 import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
 import { PurchaseReportsComponent } from './purchase-reports/purchase-reports.component';
-import { LoginComponent } from './login/login.component';
+ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
 
@@ -36,12 +36,12 @@ Routes = [
       { path: 'feedDetails', component: FeedDetailsComponent },
       { path: 'purchaseDetails', component: PurchaceDetailsComponent },
       { path: 'purchaseReports', component: PurchaseReportsComponent },
-
       { path: 'dashboard', redirectTo: 'homepage', pathMatch: 'full' }
     ],
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'Login' },
+  
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+  // { path: '**', redirectTo: 'Login' },
   // { path:'clientDetails', component: ClientDetailsComponent },
   // { path: 'cattleDetails', component: CattleDetailsComponent },
   // { path: 'milkPurchase', component: MilkPurchaseComponent },

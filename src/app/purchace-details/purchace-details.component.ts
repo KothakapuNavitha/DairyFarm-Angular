@@ -207,6 +207,7 @@ export class PurchaceDetailsComponent implements OnInit {
         this.msg = res.dbMsg;
         this.textcolor = 'green';
         this.rowData = [res];
+
         let totalQuantity = 0;
         let totalSnf = 0;
         let totalFat = 0;
@@ -290,8 +291,5 @@ export class PurchaceDetailsComponent implements OnInit {
     this.msg = '';
     this.textcolor = '';
   }
-
- 
-
 }
 
