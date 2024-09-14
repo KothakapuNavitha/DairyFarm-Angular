@@ -19,6 +19,7 @@ h1.example-app-name {
 
 .example-sidenav-container {
   flex: 1;
+
 }
 
 .example-is-mobile .example-sidenav-container {
@@ -34,5 +35,5 @@ table {
   color: white;
 }
 .Logout{
-  margin-left:900px ;
+  margin-left:850px ;
 }

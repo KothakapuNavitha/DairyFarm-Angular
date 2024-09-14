@@ -1,0 +1,79 @@
+.form{
+  background-color: white;
+  text-align: center;
+}
+.header{
+  width:auto;
+  color: white;
+  margin-bottom: 60px;
+  padding-top:1px;
+  text-align:left;
+  padding-left: 3px;
+  background: linear-gradient(to bottom,rgb(126, 126, 246),rgb(20, 100, 198));
+ }
+ ::after, ::before {
+  box-sizing: border-box;
+  font-size: small;
+ }
+mat-form-field {
+font-size: 12px !important;
+}
+
+.desc{
+  width: 99%;
+  padding-right:-3px ;
+}
+
+#btn{
+  margin-left:20px !important;
+  margin-bottom:10px !important;
+  font-size: 9px;
+  height:24px !important;
+  margin-top:10px ;
+}
+.search{
+  margin-left:13px ;
+}
+.searchbtn{
+margin-left: 20px;
+margin-top:7px;
+}
+.example-card {
+  max-width: 100%;
+  margin-top: 10px;
+}
+.mat-card-header{
+  background-color: rgb(166, 198, 198) !important;
+}
+
+.ag-theme-alpine{
+  width:auto;
+  max-width: 100%;
+  overflow: hidden;
+  --ag-font-size:10px;
+  --ag-header-height:10px;
+  --ag-header-foreground-color: white;
+  --ag-header-background-color: rgb(13, 124, 228);
+  --ag-header-cell-hover-background-color: rgb(80, 40, 140);
+  --ag-header-cell-moving-background-color: rgb(80, 40, 140);
+
+}
+.ag-theme-alpine .ag-header {
+  font-family: cursive;
+}
+.ag-theme-alpine .ag-header-group-cell {
+  font-weight: normal;
+  font-size: 22px;
+}
+.ag-theme-alpine .ag-header-cell {
+  font-size: 18px;
+
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  height: 40px !important;
+}
+::ng-deep .mat-mdc-form-field-flex {
+  margin-top: -12px !important;
+}
+

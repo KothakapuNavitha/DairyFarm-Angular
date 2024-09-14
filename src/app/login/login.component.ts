@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { userDetailsCls } from '../Classes/userclass';
+import {jwtDecode} from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -51,8 +52,15 @@ export class LoginComponent implements OnInit {
 
       this.userService.login(userData).subscribe(
         (response: any) => {
+          if (response && response.token) {
+            this.userService.setToken(response.token);
+            this.userService.setUserName(userData.userName);
+
+            const decodedToken = this.userService.decodeToken();
+            console.log('Decoded Token:', decodedToken);
           console.log('Login successful', response);
           this.router.navigate(['/dashboard']);
+          }
         },
         (error: any) => {
           console.error('Login error', error);
@@ -71,4 +79,21 @@ export class LoginComponent implements OnInit {
     this.form.reset();
     this.router.navigate(['/']);
   }
-}
+
+//   decodeToken(token: string): any {
+//     try {
+//       const decodedToken = jwtDecode(token);
+//       console.log(decodedToken);
+//       return decodedToken;
+//     } catch (error) {
+//       console.error('Invalid token', error);
+//       return null;
+//     }
+//   }
+
+// const token = 'your-jwt-token-here';
+// const decodedToken = this.decodeToken(this.token);
+
+// // You can now access the decoded token data, e.g., user roles or expiration
+// console.log(decodedToken);
+ }

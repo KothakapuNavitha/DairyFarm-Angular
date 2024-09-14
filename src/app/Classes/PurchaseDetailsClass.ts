@@ -1,9 +1,9 @@
 export class purchaseDetailsCls{
   mode :string="";
   clientId ! :  number;
-  phoneNumber :string="";
   date !:Date;
   milkType :string="" ;
+  session :string="";
   quantity !: number;
   pricePerLiter!:number;
   SNF !: number;

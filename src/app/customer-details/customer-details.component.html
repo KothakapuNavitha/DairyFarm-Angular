@@ -1,0 +1,78 @@
+<mat-card class="example-card">
+  <mat-card-title>Customer Details</mat-card-title>
+  <br>
+  <mat-card-content>
+    <div class="row">
+      <div class="col-6">
+    <mat-form-field class="search" appearance="outline">
+      <mat-label>SearchCustomer</mat-label>
+      <input matInput type="text" placeholder="Search........" [(ngModel)]="word">
+  </mat-form-field>
+  <!-- {{word}} -->
+  <button mat-raised-button class="searchbtn" color="primary" (click)="Search()"><mat-icon>search</mat-icon></button>
+  </div>
+  </div>
+  <form class="form" [formGroup]="CustomerDetailsForm">
+    <div class="container-fluid">
+      <div class="row">
+      <div class="col-2">
+          <mat-form-field appearance="outline" class="desc" style="font-size:x-small;">
+            <mat-label>Customer Id</mat-label>
+            <input type="number" matInput placeholder="Customer Id" [(ngModel)]="custId"
+            [ngModelOptions]="{standalone: true}">
+          </mat-form-field>
+      </div>
+      <div class="col-1">
+        <button id="btn" type="button" mat-raised-button color="accent" (click)="Get()"><mat-icon>cached</mat-icon>Get</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <mat-form-field appearance="outline" class="desc">
+          <mat-label>Customer Name</mat-label>
+          <input type="text" matInput placeholder="Customer Name" formControlName="CustomerName">
+        </mat-form-field>
+      </div>
+      <div class="col-2">
+        <mat-form-field appearance="outline" class="desc">
+          <mat-label>Customer Type</mat-label>
+          <mat-select formControlName="CustomerType" multiple>
+            <mat-option class="CustomerType" *ngFor="let x of CustomerTypesList"
+              [value]="x.itemCode">{{x.itemName}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-2">
+        <mat-form-field appearance="outline" class="desc">
+          <mat-label>PhoneNumber</mat-label>
+          <input id="ContactNumber1" matInput placeholder="PhoneNumber" formControlName="PhoneNumber">
+        </mat-form-field>
+      </div>
+    <div class="col-2">
+      <mat-form-field appearance="outline" class="desc">
+        <mat-label>Address</mat-label>
+        <input  matInput placeholder="Address" formControlName="Address">
+      </mat-form-field>
+    </div>
+  </div>
+  </div>
+  <div align="center" [ngStyle]="{'background-color':textcolor,'color':'white'}">
+    {{msg}}</div>
+  <div class="button-container">
+    <button id="btn" mat-raised-button color="primary" type="submit"
+      (click)="submit()"><mat-icon>save</mat-icon>Apply</button>
+    <button id="btn" type="button" mat-raised-button color="accent"
+      (click)="update()"><mat-icon>cached</mat-icon>Update</button>
+    <button id="btn" type="button" mat-raised-button color="warn"
+      (click)="Delete()"><mat-icon>delete</mat-icon>Delete</button>
+    <button id="btn" type="button" mat-raised-button color="red"
+      (click)="clear()"><mat-icon>clear</mat-icon>Clear</button>
+  </div>
+    <ag-grid-angular class="grid"
+     style="width:865px;height:200px;" [gridOptions]="gridOptions"
+    class="ag-theme-alpine" [columnDefs]="colDefs"
+    [rowData]="rowData" [rowHeight]="20" (rowClicked)="onRowClicked($event)">
+    </ag-grid-angular>
+</form>
+</mat-card-content>
+</mat-card>

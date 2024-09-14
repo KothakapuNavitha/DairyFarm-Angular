@@ -4,6 +4,7 @@ import {
   FormControl,
   FormGroup,
   Validators,
+
 } from '@angular/forms';
 import { ClientDetailsCls } from '../Classes/ClientDetailsClass';
 import { ClientsDetailsService } from '../clients-details.service';
@@ -18,7 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ClientDetailsComponent implements OnInit {
   clientTypes = new FormControl([]);
   ClientTypesList: any = [
-    { itemCode: 'Farmer', itemName: 'Farmer' },
+    { itemCode: 'Milk Supplier', itemName: 'Milk Supplier' },
     { itemCode: 'Employee', itemName: 'Employee' },
     { itemCode: 'FeedSupplier', itemName: 'Feed Supplier' },
     { itemCode: 'Medicine Supplier', itemName: 'Medicine Supplier' },
@@ -27,22 +28,22 @@ export class ClientDetailsComponent implements OnInit {
    rowData:any = [];
 
   colDefs: any[] = [
-    { headerName: 'ClientId', field: 'clientId' },
-    { headerName: 'Name', field: 'name' },
-    { headerName: 'Type', field: 'type' },
-    { headerName: 'ContactNumber1', field: 'contactNumber1' },
-    { headerName: 'ContactNumber2', field: 'contactNumber2' },
-    { headerName: 'ContactName', field: 'contactName' },
-    { headerName: 'Email', field: 'email' },
-    { headerName: 'Department', field: 'department' },
-    { headerName: 'Designation', field: 'designation' },
-    { headerName: 'Address1', field: 'address1' },
-    { headerName: 'Address2', field: 'address2' },
-    { headerName: 'Address3', field: 'address3' },
-    { headerName: 'City', field: 'city' },
-    { headerName: 'State', field: 'state' },
-    { headerName: 'Country', field: 'country' },
-    { headerName: 'Description', field: 'description' },
+    { headerName: 'ClientId', field: 'clientId',width:100 },
+    { headerName: 'Name', field: 'name',width:100  },
+    { headerName: 'Type', field: 'type' ,width:100 },
+    { headerName: 'ContactNumber1', field: 'contactNumber1',width:130  },
+    { headerName: 'ContactNumber2', field: 'contactNumber2' ,width:130 },
+    { headerName: 'ContactName', field: 'contactName' ,width:130 },
+    { headerName: 'Email', field: 'email',width:130  },
+    { headerName: 'Department', field: 'department',width:120  },
+    { headerName: 'Designation', field: 'designation',width:120  },
+    { headerName: 'Address1', field: 'address1',width:130  },
+    { headerName: 'Address2', field: 'address2' ,width:130 },
+    { headerName: 'Address3', field: 'address3',width:130  },
+    { headerName: 'City', field: 'city' ,width:110 },
+    { headerName: 'State', field: 'state',width:110  },
+    { headerName: 'Country', field: 'country' ,width:110 },
+    { headerName: 'Description', field: 'description',width:120  },
   ];
 
   gridOptions = {
@@ -55,6 +56,9 @@ export class ClientDetailsComponent implements OnInit {
   public msg: string = '';
   public textcolor: string = '';
   ClientId!: number;
+  data: any;
+  word: string = "";
+  originalData: any;
 
   constructor(
     private clientService: ClientsDetailsService,
@@ -74,38 +78,88 @@ export class ClientDetailsComponent implements OnInit {
   //   let parsedData = JSON.parse(obj); // Use JSON.parse() here
   //   console.log(parsedData);
   //   }
+this.getAllClientData();
 
-     this.clientService.getData().subscribe((res: any) => {
+  }
+  getAllClientData(){
+    this.clientService.getData().subscribe((res: any) => {
       console.log(res);
       this.rowData = res;
      });
   }
+  search(){
+    // console.log('Before filtering:', this.rowData);
+    // const filteredData = this.filterData(this.rowData, this.word);
+    // console.log('After filtering:', filteredData);
+    // this.rowData = filteredData;
+    if (this.word === '') {
+      this.rowData = this.originalData;
+    } else {
+      this.rowData = this.filterData(this.originalData, this.word);
+    }
+
+  }
+  filterData(data: any[], word: string) {
+    const lowercasedWord = word.toLowerCase();
+    return data.filter((d: any) => {
+      return d.clientId?.toString().toLowerCase().includes(lowercasedWord)
+         || d.name?.toLowerCase().includes(lowercasedWord)
+         || d.contactNumber1?.toLowerCase().includes(lowercasedWord)
+         || d.contactName?.toLowerCase().includes(lowercasedWord)
+         || d.email?.toString().toLowerCase().includes(lowercasedWord)
+         || d.address1?.toLowerCase().includes(lowercasedWord)
+         || d.city?.toLowerCase().includes(lowercasedWord)
+         || d.state?.toLowerCase().includes(lowercasedWord);
+    });
+  }
+
+  onRowClicked(event: any): void {
+    const selectedData = event.data;
+    this.clientDetailsForm.patchValue({
+      clientId: selectedData.clientId,
+      name: selectedData.name,
+      type: selectedData.type.split(','),
+      contactNumber1: selectedData.contactNumber1,
+      contactNumber2: selectedData.contactNumber2,
+      contactName: selectedData.contactName,
+      email: selectedData.email,
+      department: selectedData.department,
+      designation: selectedData.designation,
+      address1: selectedData.address1,
+      address2: selectedData.address2,
+      address3: selectedData.address3,
+      city: selectedData.city,
+      state: selectedData.state,
+      country: selectedData.country,
+      description: selectedData.description
+    });
+  }
+
   formInit() {
     this.clientDetailsForm = this.fb.group({
       clientId: ['', Validators.nullValidator],
       name: ['', Validators.required],
       type: ['', Validators.required],
       contactNumber1: ['', Validators.required],
-      contactNumber2: ['', Validators.required],
+      contactNumber2: ['', Validators.nullValidator],
       contactName: ['', Validators.required],
-      email: ['', Validators.required],
-      department: ['', Validators.required],
-      designation: ['', Validators.required],
+      email: ['', Validators.nullValidator],
+      department: ['', Validators.nullValidator],
+      designation: ['', Validators.nullValidator],
       address1: ['', Validators.required],
-      address2: ['', Validators.required],
-      address3: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      country: ['', Validators.required],
+      address2: ['', Validators.nullValidator],
+      address3: ['', Validators.nullValidator],
+      city: ['', Validators.nullValidator],
+      state: ['', Validators.nullValidator],
+      country: ['', Validators.nullValidator],
       description: ['', Validators.nullValidator],
     });
   }
   submit() {
-    debugger
+   // debugger
     console.log('from submit');
     console.log(this.clientDetailsForm.value);
     if (this.clientDetailsForm.invalid) {
-      this.snackbar.open('Please enter required fields', 'Okay');
       this.toastr.error('Please Enter Reqiured Feilds', 'ERROR');
       return;
     } else {
@@ -129,7 +183,6 @@ export class ClientDetailsComponent implements OnInit {
     this.clientcls.country = formValues.country;
     this.clientcls.description = formValues.description;
 
-        this.snackbar.open('Details Inserted', 'Okay');
         this.toastr.success('Details Inserted', 'SUCCESS');
         console.log(this.clientcls);
         this.clientService
@@ -152,6 +205,7 @@ export class ClientDetailsComponent implements OnInit {
       }
     }
   }
+
   // prepareCls(mode: string) {
   //   const formValues = this.clientDetailsForm.value;
   //   this.clientcls.mode = mode;
@@ -175,7 +229,6 @@ export class ClientDetailsComponent implements OnInit {
   update() {
     console.log(this.clientDetailsForm.value);
     if (this.clientDetailsForm.invalid) {
-      this.snackbar.open('Please Enter Required Fields', 'okay');
       this.toastr.error('Please Enter Reqiured Feilds', 'ERROR');
       return;
     } else {
@@ -199,7 +252,6 @@ export class ClientDetailsComponent implements OnInit {
         this.clientcls.country = formValues.country;
         this.clientcls.description = formValues.description;
 
-        this.snackbar.open('Details Updated', 'Okay');
         this.toastr.success('Details Updated', 'SUCCESS');
         console.log(this.clientcls);
         this.clientService
@@ -262,13 +314,11 @@ export class ClientDetailsComponent implements OnInit {
           this.clientDetailsForm.controls['description'].setValue(
             res.description
           );
-          this.snackbar.open('Details Retrieved', 'Okay');
           this.toastr.success('Details Retrieved', 'SUCCESS');
 
           this.msg = res.dbMsg;
           this.textcolor = 'green';
         } else {
-          this.snackbar.open('Please Enter CliendId ', 'Okay');
           this.toastr.error('Please Enter CliendId ', 'ERROR');
           this.msg = res.dbMsg;
           this.textcolor = 'red';
@@ -289,7 +339,6 @@ export class ClientDetailsComponent implements OnInit {
         if (res.status === 'Success') {
           this.msg = res.dbMsg;
           this.textcolor = 'green';
-          this.snackbar.open('Details Deleted', 'Okay');
           this.toastr.success('Details Deleted', 'SUCCESS');
         } else {
           this.snackbar.open('Please Enter CliendId ', 'Okay');

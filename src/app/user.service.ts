@@ -3,11 +3,35 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { userDetailsCls } from './Classes/userclass';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private jwtToken: string | null = null;
+  setUserName(userName: string) {
+    sessionStorage.setItem('userName', userName);
+  }
+
+  setToken(token: string) {
+    this.jwtToken = token;
+    sessionStorage.setItem('jwtToken', token);
+  }
+  getToken() {
+    return this.jwtToken || sessionStorage.getItem('jwtToken');
+  }
+  getUserName() {
+    return sessionStorage.getItem('userName');
+  }
+
+  decodeToken() {
+    const token = this.getToken();
+    if (token) {
+      return jwtDecode(token);
+    }
+    return null;
+  }
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   get isLoggedIn() {

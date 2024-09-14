@@ -2,23 +2,43 @@
   <mat-card-title>Client Details</mat-card-title>
   <br>
   <mat-card-content>
+    <div class="row">
+      <div class="col-6">
+    <mat-form-field class="search" appearance="outline">
+      <mat-label>SearchClient</mat-label>
+      <input matInput type="text" placeholder="Search........" [(ngModel)]="word"  (ngModelChange)="search()" autocomplete="off">
+  </mat-form-field>
+  <!-- {{word}} -->
+  <!-- <button mat-raised-button class="searchbtn" color="primary" (click)="search()"><mat-icon>search</mat-icon></button> -->
+  </div>
+  </div>
     <form class="form" [formGroup]="clientDetailsForm">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-3">
+        <div class="col-6">
+          <!-- <mat-form-field appearance="outline" class="desc">
+            <mat-label>Client</mat-label>
+            <mat-icon class="searchicon " matSuffix>search</mat-icon>
+            <input  type="search" matInput placeholder="Search" [(ngModel)]="word">
+          </mat-form-field>
+          {{word}} -->
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Client Id</mat-label>
               <input id="clientid" matInput placeholder="Client Id" [(ngModel)]="ClientId"
                 [ngModelOptions]="{standalone: true}">
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Client Name</mat-label>
               <input id="ClientName" matInput placeholder="Client Name" formControlName="name">
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Client Type</mat-label>
               <mat-select formControlName="type" multiple>
@@ -27,33 +47,33 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
-              <mat-label>Contact Number1</mat-label>
-              <input id="ContactNumber1" matInput placeholder="Contact Number1" formControlName="contactNumber1">
+              <mat-label>Phone1</mat-label>
+              <input id="ContactNumber1" matInput placeholder="Phone Number1" formControlName="contactNumber1">
             </mat-form-field>
           </div>
         </div>
         <div class="row">
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
-              <mat-label>Contact Number2</mat-label>
-              <input id="ContactNumber2" matInput placeholder="Contact Number2" formControlName="contactNumber2">
+              <mat-label>Phone2</mat-label>
+              <input id="ContactNumber2" matInput placeholder="Phone Number2" formControlName="contactNumber2">
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Contact Name</mat-label>
               <input id="ContactName" matInput placeholder="Contact Name" formControlName="contactName">
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Email</mat-label>
               <input id="email" matInput placeholder="Email" formControlName="email">
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Department</mat-label>
               <input id="dept" matInput placeholder="Department" formControlName="department">
@@ -61,25 +81,25 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Designation</mat-label>
               <input id="designation" matInput placeholder="Designation" formControlName="designation">
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Address1</mat-label>
               <input id="Address1" matInput placeholder="Address1" formControlName="address1">
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Address2</mat-label>
               <input id="Address2" matInput placeholder="Address2" formControlName="address2">
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Address3</mat-label>
               <input id="Address3" matInput placeholder="Address3" formControlName="address3">
@@ -87,19 +107,19 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>City</mat-label>
               <input matInput placeholder="City" formControlName="city">
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>State</mat-label>
               <input matInput placeholder="State" formControlName="state">
             </mat-form-field>
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Country</mat-label>
               <input matInput placeholder="Country" formControlName="country">
@@ -107,7 +127,7 @@
           </div>
         </div>
         <div class="row">
-        <div class="col-9">
+        <div class="col-6">
           <mat-form-field appearance="outline" class="desc">
             <mat-label>Description</mat-label>
             <textarea id="description" matInput placeholder="Description" formControlName="description"></textarea>
@@ -133,7 +153,7 @@
         <ag-grid-angular class="grid"
         style="width:auto;height:200px;" [gridOptions]="gridOptions"
         class="ag-theme-alpine" [columnDefs]="colDefs"
-        [rowData]="rowData" [rowHeight]="20">
+        [rowData]="rowData" [rowHeight]="20" (rowClicked)="onRowClicked($event)">
         </ag-grid-angular>
       </div>
     </form>

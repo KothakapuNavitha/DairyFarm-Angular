@@ -42,9 +42,6 @@ export class PurchaseReportsComponent {
  this.loadPurchaseData();
  }
 
-//  submit(){}
-
-//  update(){}
 
   Get(){
    // debugger;
@@ -81,8 +78,6 @@ export class PurchaseReportsComponent {
   }
 }
 
-//  Delete(){}
-
 //  clear(){
 
 //  }
@@ -99,16 +94,30 @@ gridOptions = {
 }
 
 colDefs = [
-  { headerName: 'Client', field: 'clientId' },
-  { headerName: 'PhoneNumber', field: 'phoneNumber' },
-  { headerName: 'Date', field: 'date' },
-  { headerName: 'MilkType', field: 'milkType' },
-  { headerName: 'Quantity', field: 'quantity' },
-  { headerName: 'SNF No', field: 'snf' },
-  { headerName: 'Fat', field: 'fat' },
-  { headerName: 'PricePerLiter', field: 'pricePerLiter' },
-  { headerName: 'TotalPrice', field: 'totalPrice' },
-  // { headerName: 'Notes', field: 'notes' },
+  { headerName: 'ClientId', field: 'clientId' ,width: 80 },
+    {
+      headerName: 'Client Name', width: 100,
+      valueGetter: (params: any) => {
+        const client = this.clients.find(c => c.clientId === params.data.clientId);
+        return client ? client.name : '';
+      }
+    },
+    { headerName: 'Date', field: 'date' ,width: 100,
+      valueFormatter: function(params: { value: string | number | Date; }) {
+        if (!params.value) return '';
+        const date = new Date(params.value);
+        return date.toISOString().substring(0, 10);
+      }
+  },
+    { headerName: 'MilkType', field: 'milkType', width: 100},
+    { headerName: 'Session', field: 'session',width: 80 },
+    { headerName: 'Quantity', field: 'quantity' ,width: 80},
+    { headerName: 'SNF No', field: 'snf',width: 80 },
+    { headerName: 'Fat', field: 'fat',width: 80 },
+    { headerName: 'PricePerLiter', field: 'pricePerLiter',width: 110 },
+    { headerName: 'TotalAmount', field: 'totalPrice',width: 120 },
+    // { headerName: 'Notes', field: 'notes',width: 150 },
+
 ];
 
 totalQuantity: number = 0;

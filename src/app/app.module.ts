@@ -29,6 +29,9 @@ import { ExcelExportService } from './excel-export.service';
 import { AuthInterceptor } from './auth.interceptor';
 import { NgxUiLoaderModule,NgxUiLoaderConfig } from 'ngx-ui-loader';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { SalesComponent } from './sales/sales.component';
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 //import { LoaderService } from './loader.service';
 
 
@@ -58,6 +61,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     HeaderComponent,
     LoaderComponent,
     UserRegistrationComponent,
+    SalesComponent,
+    CustomerDetailsComponent
+
 
 
 
@@ -70,6 +76,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatAutocompleteModule,
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,

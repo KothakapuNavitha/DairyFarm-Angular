@@ -34,6 +34,11 @@ export class SidemenuComponent {
           displayName: 'Cattle Details',
           iconName: 'pets',
           route: '/cattleDetails'
+        },
+        {
+          displayName: 'Customer Details',
+          iconName: 'people',
+          route: '/customerDetails'
         }
       ]
     },
@@ -74,6 +79,17 @@ export class SidemenuComponent {
 
         ]
       },
+      {
+        displayName: 'Sales',
+        iconName :'business',
+        children :[
+          {
+            displayName :'Sales Details',
+            iconName : 'receipt',
+            route : '/salesDetails'
+          }
+        ]
+      }
   ]
 
   constructor(media: MediaMatcher,private userService: UserService){

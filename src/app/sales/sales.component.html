@@ -1,0 +1,95 @@
+<mat-card>
+  <mat-card-title>Sales Details</mat-card-title>
+    <br>
+    <mat-card-content>
+    <form class="form" [formGroup]="SalesDetailsForm" >
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-2">
+            <mat-form-field appearance="outline" class="desc">
+              <mat-label>Customer</mat-label>
+              <input matInput [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayClientName">
+                <mat-option *ngFor="let customer of filteredCustomers | async" [value]="customer">
+                  {{customer.customerName}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="col-2">
+              <mat-form-field appearance="outline"  class="Date">
+                <mat-label>Sale Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="saleDate">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+          </div>
+        </div>
+              <div class="row">
+                <div class="col-2">
+                  <mat-form-field appearance="outline"  class="desc">
+                     <mat-label>Item</mat-label>
+                     <mat-select #mode value="Select" aria-placeholder="Item" formControlName="item">
+                       <mat-option value="">Select</mat-option>
+                       <mat-option value="AM">Milk</mat-option>
+                       <mat-option value="PM">Curd</mat-option>
+                     </mat-select>
+                   </mat-form-field>
+                 </div>
+                  <div class="col-2">
+                    <mat-form-field appearance="outline"  class="desc">
+                      <mat-label>Quantity</mat-label>
+                      <input id="quantity" type="number" matInput placeholder="Quantity" formControlName="quantity">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-2">
+                    <mat-form-field appearance="outline"  class="desc">
+                      <mat-label>Rate</mat-label>
+                      <input  type="number" matInput placeholder="Rate" formControlName="Rate">
+                    </mat-form-field>
+                  </div>
+                  <!-- <div class="details-container">
+                      <div>Amount: <b class="highlight">{{ amount }}</b></div>
+                  </div> -->
+                  <div class="col-2">
+                    <mat-form-field appearance="outline" class="desc">
+                      <mat-label>Amount</mat-label>
+                      <input matInput type="number" formControlName="amount" readonly>
+                    </mat-form-field>
+                  </div>
+                </div>
+              <!-- </div>
+                  <div class="update-container">
+                    <mat-checkbox>Day Sale</mat-checkbox>
+                    <div class="input-group">
+                      <mat-form-field appearance="outline" >
+                        <mat-label>Liter</mat-label>
+                        <input matInput type="number" value="0">
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Amount</mat-label>
+                        <input matInput type="number" value="0">
+                      </mat-form-field>
+                   </div>-->
+                </div>
+                <div  [ngStyle]="{'background-color':textcolor,'color':'white'}">
+                  {{msg}}</div>
+          <div class="button-container">
+            <button id="btn" mat-raised-button color="primary" type="submit" (click)="submit()"><mat-icon>save</mat-icon>Submit</button>
+            <button id="btn" type="button" mat-raised-button color="warn" (click)="clear()"><mat-icon>clear</mat-icon>Clear</button>
+            <button class="btn btn-md btn-outline-info" style="margin-left:40px;margin-bottom:10px;height:30px ;" (click)="exportToExcel()">Export to Excel</button>
+
+          </div>
+    </form>
+    <div>
+      <ag-grid-angular style="width:auto;height:200px;"  [gridOptions]="gridOptions"
+       class="ag-theme-alpine" [columnDefs]="colDefs"  [rowHeight]="20" (rowClicked)="onRowClicked($event)"
+        [rowData]="rowData">
+      </ag-grid-angular>
+    </div>
+<div class="total-row">
+  <div>Total Liters: <b style="color: brown;">{{ totalLiters }}</b></div>
+  <div>Total Amount:<b style="color: brown;">{{ totalAmount }}</b></div>
+</div>
+  </mat-card-content>
+</mat-card>

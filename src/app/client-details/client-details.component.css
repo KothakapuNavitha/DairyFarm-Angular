@@ -13,11 +13,11 @@
  }
 mat-form-field {
 font-size: 8px !important;
+ /* margin-top:2px ; */
 }
 
 .desc{
-  width: 99%;
-  padding-right:-3px ;
+  width: 109%;
 
 }
 
@@ -28,7 +28,24 @@ font-size: 8px !important;
   height:24px !important;
 
 }
+   /* .searchicon{
+   background-color:rgb(66, 72, 183) ;
+  color: white;
+  height: 17px;
+  width:35px;
+  transform: scale(1.0);
+  border-radius:5px;
+   margin-top:8px ;
+    margin-left:100px ;
+}   */
 
+.search{
+  margin-left:13px ;
+}
+.searchbtn{
+margin-left: 30px;
+margin-top:7px;
+}
 .ag-theme-alpine{
   width:auto;
   max-width: 100%;
@@ -69,9 +86,26 @@ font-size: 8px !important;
 } */
 
 ::ng-deep .mat-mdc-text-field-wrapper {
-  height: 40px !important;
+  height: 33px !important;
+  font-size: x-small;
+  /* font-size: var(--ag-header-height); */
 }
 ::ng-deep .mat-mdc-form-field-flex {
   margin-top: -12px !important;
+ font-weight:normal;
 }
+/* .desc input {
+  padding: 8px;
+  font-size: 14px;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+.desc .mat-form-field-label {
+  font-size: 16px;   color: #1976d2;   font-weight: bold;
+}
+
+.desc.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  border-width: 2px;
+} */
 

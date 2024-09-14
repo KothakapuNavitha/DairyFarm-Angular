@@ -13,6 +13,8 @@ import { PurchaseReportsComponent } from './purchase-reports/purchase-reports.co
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
+import { SalesComponent } from './sales/sales.component';
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 
 
 
@@ -29,6 +31,7 @@ Routes = [
 
     children:[{ path: 'homepage', component: HomePageComponent },
       { path:'clientDetails', component: ClientDetailsComponent },
+      {path:'customerDetails',component:CustomerDetailsComponent},
       { path: 'cattleDetails', component: CattleDetailsComponent },
       { path: 'milkPurchase', component: MilkPurchaseComponent },
       { path: 'production', component: ProductionComponent },
@@ -36,6 +39,7 @@ Routes = [
       { path: 'feedDetails', component: FeedDetailsComponent },
       { path: 'purchaseDetails', component: PurchaceDetailsComponent },
       { path: 'purchaseReports', component: PurchaseReportsComponent },
+      {path:'salesDetails',component :SalesComponent},
 
       { path: 'dashboard', redirectTo: 'homepage', pathMatch: 'full' }
     ],

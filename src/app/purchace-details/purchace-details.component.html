@@ -12,27 +12,34 @@
               [ngModelOptions]="{standalone:true}">
           </mat-form-field>
         </div> -->
-        <div class="col-3">
-          <mat-form-field appearance="outline" class="desc">
+        <div class="col-2">
+          <!-- <mat-form-field appearance="outline" class="desc">
             <mat-label>Clients</mat-label>
             <mat-select  [(ngModel)]="ClientId" [ngModelOptions]="{standalone:true}" >
               <mat-option class="ClientId" *ngFor="let client of clients" [value]="client.clientId">
               {{client.name}}</mat-option>
             </mat-select>
+          </mat-form-field> -->
+          <mat-form-field appearance="outline" class="desc">
+            <mat-label>Clients</mat-label>
+            <input type="text"
+                   placeholder="Select a client"
+                   matInput
+                   formControlName="clientId"
+                   [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayClientName">
+              <mat-option *ngFor="let client of filteredClients | async" [value]="client">
+                {{client.name}}
+              </mat-option>
+            </mat-autocomplete>
           </mat-form-field>
         </div>
         <div class="col-1">
           <button id="btn" type="button" mat-raised-button color="accent"
-            (click)="Get()"><mat-icon>cached</mat-icon>Get</button>
+            (click)="GetLastRecord()"><mat-icon>cached</mat-icon>Get</button>
         </div>
       </div>
       <div class="row">
-        <div class="col-3">
-          <mat-form-field appearance="outline" class="desc">
-            <mat-label>Phone Number</mat-label>
-            <input id="PhoneNumber" type="text" matInput placeholder="PhoneNumber" formControlName="phoneNumber">
-          </mat-form-field>
-        </div>
         <div class="col-3">
           <mat-form-field appearance="outline" class="Date">
             <mat-label>Purchase Date</mat-label>
@@ -41,7 +48,7 @@
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <mat-form-field appearance="outline" class="desc">
             <mat-label>Milk Type</mat-label>
             <mat-select #mode value="Select" aria-placeholder="Milk Type" formControlName="milkType">
@@ -51,42 +58,52 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <mat-form-field appearance="outline" class="desc">
-            <mat-label>Quantity</mat-label>
-            <input id="quantity" type="number" matInput placeholder="Quantity" formControlName="quantity">
+            <mat-label>Session</mat-label>
+            <mat-select #mode value="Select" aria-placeholder="Session" formControlName="session">
+              <mat-option value="">Select</mat-option>
+              <mat-option value="AM">AM</mat-option>
+              <mat-option value="PM">PM</mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
-        <div class="col-3">
+        <div class="col-2">
           <mat-form-field appearance="outline" class="desc">
             <mat-label>SNF</mat-label>
             <input id="SNF" type="number" matInput placeholder="SNF" formControlName="SNF">
           </mat-form-field>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <mat-form-field appearance="outline" class="desc">
             <mat-label>fat</mat-label>
             <input id="fat" type="number" matInput placeholder="fat" formControlName="fat">
           </mat-form-field>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <mat-form-field appearance="outline" class="desc">
             <mat-label>PricePerLiter</mat-label>
             <input id="pricePerLiter" type="number" matInput placeholder="PricePerLiter" formControlName="pricePerLiter"
-              readonly>
+              readonly >
           </mat-form-field>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <mat-form-field appearance="outline" class="desc">
-            <mat-label>TotalPrice</mat-label>
+            <mat-label>Quantity</mat-label>
+            <input id="quantity" type="number" matInput placeholder="Quantity" formControlName="quantity">
+          </mat-form-field>
+        </div>
+        <div class="col-2">
+          <mat-form-field appearance="outline" class="desc">
+            <mat-label>TotalAmount</mat-label>
             <input id="totalPrice" type="number" matInput placeholder="TotalPrice" formControlName="totalPrice" readonly>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
-        <div class="col-3">
+        <div class="col-2">
           <!-- <mat-form-field  appearance="outline" class="desc">
             <mat-label>Avg Quantity</mat-label>
             <input type="number" matInput placeholder=" Avg Quantity" [(ngModel)]="avgQuantity"
@@ -94,7 +111,7 @@
           </mat-form-field> -->
           <mat-label>Quantity Avg: <b style="color: brown;">{{avgSnf}}</b></mat-label>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <!-- <mat-form-field appearance="outline" class="desc">
             <mat-label>Avg SNF</mat-label>
             <input type="number" matInput placeholder="Avg SNF" [(ngModel)]="avgSnf" [ngModelOptions]="{standalone:true}"
@@ -102,7 +119,7 @@
           </mat-form-field> -->
           <mat-label>SNF Avg: <b style="color: brown;">{{avgSnf}}</b></mat-label>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <!-- <mat-form-field appearance="outline" class="desc">
             <mat-label> Avg Fat</mat-label>
             <input type="number" matInput placeholder=" Avg Fat" [(ngModel)]="avgFat" [ngModelOptions]="{standalone:true}"
@@ -110,7 +127,7 @@
           </mat-form-field> -->
           <mat-label>Fat Avg: <b style="color: brown;">{{avgFat}}</b></mat-label>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <!-- <mat-form-field appearance="outline" class="desc">
             <mat-label>Avg Total</mat-label>
             <input type="number" matInput placeholder="Avg Total" [(ngModel)]="avgTotal"
@@ -120,7 +137,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-4">
           <mat-form-field appearance="outline" class="desc">
             <mat-label>Notes</mat-label>
             <textarea matInput type="textarea" placeholder="Notes" formControlName="notes"></textarea>
@@ -146,7 +163,7 @@
     </div>
     <div>
       <ag-grid-angular style="width:auto;height:200px;"  [gridOptions]="gridOptions"
-       class="ag-theme-alpine" [columnDefs]="colDefs"  [rowHeight]="20"
+       class="ag-theme-alpine" [columnDefs]="colDefs"  [rowHeight]="20" (rowClicked)="onRowClicked($event)"
         [rowData]="rowData">
       </ag-grid-angular>
     </div>

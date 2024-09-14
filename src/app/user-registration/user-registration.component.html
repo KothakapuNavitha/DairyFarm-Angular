@@ -19,7 +19,7 @@
             <input matInput type="password" placeholder="Password" formControlName="password" required>
             <mat-error *ngIf="isFieldInvalid('password')">
               <span *ngIf="form.get('password')?.hasError('required')">Please inform your password.</span>
-              <span *ngIf="form.get('password')?.hasError('pattern')">Password must be at least 6 characters long and can contain letters, numbers, and special characters (@, #, *, _).</span>
+              <span *ngIf="form.get('password')?.hasError('pattern')">Password must be at least 6 characters long and can contain letters, numbers, and special characters ( #, *, _).</span>
             </mat-error>
           </mat-form-field>
           <!-- <div class="text-right forget-pass">

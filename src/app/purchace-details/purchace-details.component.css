@@ -17,7 +17,8 @@
 margin-bottom:20px ;
  }
 mat-form-field{
-  font-size: 8px  !important;
+  font-size: 12px  !important;
+  width :20px;
 }
 .desc{
   width: 100%;
@@ -55,9 +56,9 @@ mat-form-field{
 
 .ag-theme-alpine .ag-header {
   font-family: cursive;
-}
-.ag-theme-alpine .ag-header-group-cell {
-  font-weight: normal;
+ }
+ .ag-theme-alpine .ag-header-group-cell {
+  font-weight:normal;
   font-size: 22px;
 
 }
@@ -67,6 +68,7 @@ mat-form-field{
 }
  ::ng-deep .mat-mdc-text-field-wrapper {
   height: 40px !important;
+  width:20px
 }
 ::ng-deep .mat-mdc-form-field-flex {
   margin-top: -10px !important;
@@ -74,7 +76,7 @@ mat-form-field{
 
 
 /* ::ng-deep .mat-mdc-form-field-infix {
-  min-height: 39px;
+  min-height: 10px;
   font-size: x-small;
 }
  mat-mdc-text-field-wrapper
