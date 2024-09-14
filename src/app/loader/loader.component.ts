@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { LoaderService } from '../loader.service';
 import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-loader',
@@ -13,11 +14,10 @@ import { Observable } from 'rxjs';
 export class LoaderComponent {
   // [x: string]: any;
   // name = 'NGX-UI-LOADER';
-  isLoading:Observable<boolean>;
-  constructor(private http: HttpClient,
-    private ngxLoader: NgxUiLoaderService, private loader:LoaderService) {
-      this.isLoading = this.loader.isLooading;
-    }
+  isLoading: boolean = false;
+  private loadingSubscription: Subscription | undefined;
+  constructor(private loaderService: LoaderService) { }
+    
       ngOnInit() {
 
         // this.ngxLoader.start(); // start foreground spinner of the master loader with 'default' taskId
@@ -46,6 +46,17 @@ export class LoaderComponent {
         //     console.log('NgxUiLoader stopped'); // Log for debugging
         //   }
         // });
+
+        this.loadingSubscription = this.loaderService.isLoading.subscribe(
+          (loading) => {
+            this.isLoading = loading;
+          }
+        );
+      }
+      ngOnDestroy(): void {
+        if (this.loadingSubscription) {
+          this.loadingSubscription.unsubscribe();
+        }
       }
 
-}
+    }

@@ -15,14 +15,14 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
 // pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-
 @Component({
   selector: 'app-purchace-details',
   templateUrl: './purchace-details.component.html',
   styleUrls: ['./purchace-details.component.css'],
 })
 export class PurchaceDetailsComponent implements OnInit {
- 
+  totalPrice: number = 0;
+  amount:number=12345678;
   rowData: any = [];
   gridOptions = {
     headerHeight: 24, // Set the header height here
@@ -30,7 +30,6 @@ export class PurchaceDetailsComponent implements OnInit {
       this.gridApi = params.api;
       this.getAllPurchaseDetails();
     }
-
   };
 
   colDefs: any[] = [
@@ -73,8 +72,15 @@ export class PurchaceDetailsComponent implements OnInit {
     this.purchaseCls = new purchaseDetailsCls();
   }
   exportToPdf(): void {
-    this.pdfGeneratorService.exportToPdf('pdfTable', 'sample');
-  }
+    // Map data to match table format
+    // const tableData = this.rowData.map((item: { clientId: any; phoneNumber: any; date: any; milkType: any; quantity:any;snf:any;fat:any;pricePerLiter:any;totalPrice:any;notes:any;}) =>
+    //    [item.clientId, item.phoneNumber, item.date, item.milkType,item.quantity,item.snf,item.fat,item.pricePerLiter,item.totalPrice,item.notes,]);
+
+    // Call service to generate the PDF
+    const colDefs = ['clientId', 'phoneNumber', 'date','milkType','quantity','snf','fat','pricePerLiter','totalPrice','notes']; // Define the columns based on object keys
+    const title = 'Purchase Details'; // PDF title
+    this.pdfGeneratorService.generatePdf(this.rowData, colDefs, title);
+    }
  
   ngOnInit() {
     this.getAllPurchaseDetails();
@@ -92,12 +98,12 @@ export class PurchaceDetailsComponent implements OnInit {
   }
 
   formInit() {
-    // const today = new Date();
+    
+    const today = new Date();
     this.PurchaseDetailsForm = this.fb.group({
       phoneNumber: ['', Validators.required],
-      date: ['', Validators.required],
+      date: [today, Validators.required],
       milkType: ['', Validators.required],
-
       quantity: ['', Validators.required],
       pricePerLiter: ['', Validators.nullValidator],
       SNF: ['', Validators.required],
@@ -207,7 +213,6 @@ export class PurchaceDetailsComponent implements OnInit {
         this.msg = res.dbMsg;
         this.textcolor = 'green';
         this.rowData = [res];
-
         let totalQuantity = 0;
         let totalSnf = 0;
         let totalFat = 0;

@@ -33,6 +33,10 @@ import { UserRegistrationComponent } from './user-registration/user-registration
 import { CommonModule } from '@angular/common';
 import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver';
+import { IndianCurrencyPipe } from './indian-currency.pipe';
+import { LoaderinterceptorService } from './loaderinterceptor.service';
+
+
 
 
 
@@ -65,6 +69,7 @@ import * as FileSaver from 'file-saver';
     HeaderComponent,
     LoaderComponent,
     UserRegistrationComponent,
+    IndianCurrencyPipe,
 
 
 
@@ -96,8 +101,7 @@ import * as FileSaver from 'file-saver';
   providers: [
     ExcelExportService,
    // LoaderService,
-    {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}
-  ],
+   { provide: HTTP_INTERCEPTORS, useClass: LoaderinterceptorService, multi: true }  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
