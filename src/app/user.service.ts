@@ -38,7 +38,7 @@ export class UserService {
     return this.loggedIn.asObservable();
   }
 
-  url = "https://localhost:7219/api/LogInDetails/";
+  url = "https://localhost:7023/api/LogInDetails/";
 
   constructor(
     private router: Router,
@@ -69,7 +69,7 @@ export class UserService {
       );
   }
   signup(user: userDetailsCls): Observable<any> {
-    return this.http.post<any>("https://localhost:7219/api/signup/SignupDetails", user)
+    return this.http.post<any>("https://localhost:7023/api/signup/SignupDetails", user)
       .pipe(
         map(response => {
           if (response && response.status === "success") {

@@ -27,19 +27,30 @@ import { RouterModule } from '@angular/router';
 import { LoaderComponent } from './loader/loader.component';
 import { ExcelExportService } from './excel-export.service';
 import { AuthInterceptor } from './auth.interceptor';
-import { NgxUiLoaderModule,NgxUiLoaderConfig } from 'ngx-ui-loader';
+// import { NgxUiLoaderModule,NgxUiLoaderConfig } from 'ngx-ui-loader';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SalesComponent } from './sales/sales.component';
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 //import { LoaderService } from './loader.service';
+import { CommonModule } from '@angular/common';
+import * as XLSX from 'xlsx';
+import * as FileSaver from 'file-saver';
+import { IndianCurrencyPipe } from './indian-currency.pipe';
+import { LoaderinterceptorService } from './loaderinterceptor.service';
 
 
-const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-  fgsType: 'three-strings',
-  fgsColor: '#ff0000',
-  hasProgressBar: false,
-};
+
+
+
+
+
+
+// const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+//   fgsType: 'three-strings',
+//   fgsColor: '#ff0000',
+//   hasProgressBar: false,
+// };
 
 
 @NgModule({
@@ -62,8 +73,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     LoaderComponent,
     UserRegistrationComponent,
     SalesComponent,
-    CustomerDetailsComponent
-
+    CustomerDetailsComponent,
+    IndianCurrencyPipe,
 
 
 
@@ -81,6 +92,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgbPaginationModule,
     NgbAlertModule,
     NgFor,
+    CommonModule,
     AgGridModule,
     MaterialdesignModule, // Make sure this is imported
     MaterialdesignModule,
@@ -90,13 +102,12 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
+    // NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
   providers: [
     ExcelExportService,
    // LoaderService,
-    {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}
-  ],
+   { provide: HTTP_INTERCEPTORS, useClass: LoaderinterceptorService, multi: true }  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

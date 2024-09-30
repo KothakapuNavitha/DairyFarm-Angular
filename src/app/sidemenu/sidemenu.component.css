@@ -37,3 +37,8 @@ table {
 .Logout{
   margin-left:850px ;
 }
+mat-list-item:hover, .menu-button:hover {
+  background-color: peachpuff !important;
+  transition: background-color 0.3s ease;
+}
+

@@ -18,6 +18,10 @@
 } 
 
 
+.mat-card-header{
+  background-color: rgb(166, 198, 198) !important;
+  margin-bottom: 30px;
+}
 mat-form-field {
   gap: 1;
   padding-right: 10px;

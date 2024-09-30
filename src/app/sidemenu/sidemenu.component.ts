@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy ,ViewChildren, QueryList } from '@angular/core';
 import { NavItem } from '../Classes/nav-item';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { MatExpansionPanel } from '@angular/material/expansion';
 import { Observable } from 'rxjs';
 import { UserService } from '../user.service';
+
 
 @Component({
   selector: 'app-sidemenu',
@@ -11,9 +13,12 @@ import { UserService } from '../user.service';
 })
 export class SidemenuComponent {
   isLoggedIn$!: Observable<boolean>;
+
   mobileQuery!: MediaQueryList;
-  fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
+  fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
   private _mobileQueryListener!: () => void;
+
+
   menu: NavItem [] = [
     {
       displayName: 'Home',
@@ -60,36 +65,17 @@ export class SidemenuComponent {
             iconName: 'restaurant',
             route: '/feedDetails'
           }
-        ]
-      },
-      {
-        displayName: 'Purchase',
-        iconName: 'monetization_on',
-        children: [
-             {
+          ,  {
             displayName: 'Purchase Details',
-            iconName: 'monetization_on',
+            iconName: 'list_alt',
             route: '/purchaseDetails'
-          },
-          {
+          },{
             displayName: 'Purchase Reports',
             iconName: 'new_releases',
             route: '/purchaseReports'
           }
-
         ]
       },
-      {
-        displayName: 'Sales',
-        iconName :'business',
-        children :[
-          {
-            displayName :'Sales Details',
-            iconName : 'receipt',
-            route : '/salesDetails'
-          }
-        ]
-      }
   ]
 
   constructor(media: MediaMatcher,private userService: UserService){
@@ -106,6 +92,4 @@ export class SidemenuComponent {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-
-
 }

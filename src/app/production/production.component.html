@@ -1,11 +1,16 @@
-<form  id="form" align="center" [formGroup]="ProductionForm" >
-    <div class="heading">
+<mat-card class="example-card" >
+  <mat-card-title class="mat-card-header">Production <button mat-raised-button color="accent" class="details"  (click)="openDialog()">Details</button></mat-card-title>
+  <br>
+  <mat-card-content>
+
+<form   [formGroup]="ProductionForm" >
+    <!-- <div class="heading">
         <h1 ><b>Production  <button mat-raised-button color="accent" class="details"  (click)="openDialog()">Details</button>
         </b></h1>
-    </div>
-    <div class="container fluid">
+    </div> -->
+    <div class="container-fluid">
     <div class="col" align="center">
-        <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline">
             <mat-label>TranNo</mat-label>
             <input matInput type="number" placeholder="TranNo" [(ngModel)]="TranNo" [ngModelOptions]="{standalone:true}">
           </mat-form-field>
@@ -33,7 +38,7 @@
       </mat-form-field>
     </div>
    </div>
-<div  [ngStyle]="{'background-color':textcolor,'color':'white'}">{{msg}}</div>
+<div [ngStyle]="{'background-color':textcolor,'color':'white'}">{{msg}}</div>
 
 <div>
     <button mat-raised-button  color="primary" id="btn"  type="submit" [disabled]="!ProductionForm.valid" (click)="submit()"><mat-icon>save</mat-icon>Submit</button>

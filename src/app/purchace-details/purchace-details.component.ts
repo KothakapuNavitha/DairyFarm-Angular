@@ -9,6 +9,12 @@ import { Client } from '../purchase-details.service';
 import { GridApi } from 'ag-grid-community';
 import { HttpErrorResponse } from '@angular/common/http';
 import { map, Observable, startWith } from 'rxjs';
+import { PdfgeneratorService } from '../pdfgenerator.service';
+
+//import * as pdfMake from 'pdfmake/build/pdfmake';
+//import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-purchace-details',
@@ -16,6 +22,8 @@ import { map, Observable, startWith } from 'rxjs';
   styleUrls: ['./purchace-details.component.css'],
 })
 export class PurchaceDetailsComponent implements OnInit {
+  totalPrice: number = 0;
+  amount:number=12345678;
   rowData: any = [];
   gridOptions = {
     headerHeight: 24,
@@ -23,7 +31,6 @@ export class PurchaceDetailsComponent implements OnInit {
       this.gridApi = params.api;
       this.getAllPurchaseDetails();
     }
-
   };
 
   colDefs: any[] = [
@@ -77,6 +84,7 @@ export class PurchaceDetailsComponent implements OnInit {
     private fb: FormBuilder,
     private snackbar: MatSnackBar,
     private toastr: ToastrService,
+    private pdfGeneratorService: PdfgeneratorService,
     private ExcelService:ExcelExportService
   ) {
     this.formInit();
@@ -85,6 +93,17 @@ export class PurchaceDetailsComponent implements OnInit {
   displayClientName(client: any): string {
     return client ? client.name : '';
   }
+  exportToPdf(): void {
+    // Map data to match table format
+    // const tableData = this.rowData.map((item: { clientId: any; phoneNumber: any; date: any; milkType: any; quantity:any;snf:any;fat:any;pricePerLiter:any;totalPrice:any;notes:any;}) =>
+    //    [item.clientId, item.phoneNumber, item.date, item.milkType,item.quantity,item.snf,item.fat,item.pricePerLiter,item.totalPrice,item.notes,]);
+
+    // Call service to generate the PDF
+    const colDefs = ['clientId', 'phoneNumber', 'date','milkType','quantity','snf','fat','pricePerLiter','totalPrice','notes']; // Define the columns based on object keys
+    const title = 'Purchase Details'; // PDF title
+    this.pdfGeneratorService.generatePdf(this.rowData, colDefs, title);
+    }
+
   ngOnInit() {
     this.getAllPurchaseDetails();
     this.loadClients();
@@ -129,6 +148,9 @@ onRowClicked(event: any): void {
     this.purchaseSrv.getClients().subscribe(data => {
       this.clients = data;
       this.setupClientFiltering();
+    });
+    this.PurchaseDetailsForm = this.fb.group({
+      milkType: ['Buffalo Milk']  // Set default value here
     });
   }
   setupClientFiltering() {
@@ -432,8 +454,5 @@ getAllPurchaseDetails() {
     this.msg = '';
     this.textcolor = '';
   }
-
-  ngOnDestroy(): void {}
-
 }
 
