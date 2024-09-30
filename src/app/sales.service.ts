@@ -19,6 +19,9 @@ export class SalesService {
   return this.http.post(this.url +"Sales/InsertSalesDetails",salecls)
  }
 
+ GetSalesDetails(SaleCls :SalesCls){
+  return this.http.post(this.url +"Sales/Get_SalesData",SaleCls)
+ }
  getAllSales(){
   return this.http.get(this.url +"salesDetails/GetAllSalesData")
  }

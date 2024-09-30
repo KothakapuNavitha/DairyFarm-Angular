@@ -14,7 +14,15 @@
   background: linear-gradient(to bottom,rgb(126, 126, 246),rgb(20, 100, 198));
  }
  mat-card-title{
-margin-bottom:20px ;
+margin-bottom:-12px ;
+color:brown;
+font-size: medium;
+margin-left: 10px;
+/* background-color: white; */
+ }
+ mat-card{
+  margin-bottom: 5px;
+  text-align: center;
  }
 mat-form-field{
   font-size: 12px  !important;
@@ -29,18 +37,40 @@ mat-form-field{
 
 #btn{
   margin-left:20px !important;
-  margin-bottom:10px !important;
+  margin-bottom:-5px !important;
   font-size: 9px;
  height: 24px !important;
 }
-
 .btn btn-md btn-outline-info {
   margin-left:20px !important;
-  margin-bottom:10px !important;
+  margin-top:20px !important;
   font-size: 9px;
  height: 24px !important;
 }
-
+.button-container{
+  text-align: center;
+}
+.search-field{
+  width:20%;
+  margin-left: 60px;
+  height: -80px !important;
+  /* height:10px; */
+}
+.search-field .mat-input-element {
+  height: 30px; /* Adjust the input element height */
+  padding: 5px; /* Adjust padding for better fit */
+}
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-weight: bold;
+  margin-left:650px ;
+  margin-right: 20px;
+}
+.total-row span {
+  margin-right: 10px;
+}
 .ag-theme-alpine{
   width:auto;
   max-width: 100%;
@@ -67,13 +97,17 @@ mat-form-field{
 
 }
  ::ng-deep .mat-mdc-text-field-wrapper {
-  height: 40px !important;
+  height: 30px !important;
+  gap :3px;
   width:20px
 }
 ::ng-deep .mat-mdc-form-field-flex {
   margin-top: -10px !important;
 }
-
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: -0.3em 0px !important;}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-label { margin-top:-50px; }
+/* ::ng-deep label.ng-star-inserted { transform: translateY(-0.59375em) scale(.75) !important; } */
+ ::ng-deep label.ng-star-inserted {transform: translateZ(-0.29355em) scale(.75) !important;}
 
 /* ::ng-deep .mat-mdc-form-field-infix {
   min-height: 10px;
@@ -91,4 +125,5 @@ top: -1.5em !important;
 ::ng-deep .mat-mdc-text-field-wrapper {
   top: -1.5em !important;
 } */
+
 

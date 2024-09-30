@@ -16,7 +16,7 @@ import { MaterialdesignModule } from './materialdesign/materialdesign.module';
 import { ProductionDetailsComponent } from './production-details/production-details.component';
 import { FeedDetailsComponent } from './feed-details/feed-details.component';
 import { MilkPurchaseComponent } from './milk-purchase/milk-purchase.component';
-import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
+// import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { PurchaceDetailsComponent } from './purchace-details/purchace-details.component';
 import { PurchaseReportsComponent } from './purchase-reports/purchase-reports.component';
@@ -38,13 +38,7 @@ import * as XLSX from 'xlsx';
 import * as FileSaver from 'file-saver';
 import { IndianCurrencyPipe } from './indian-currency.pipe';
 import { LoaderinterceptorService } from './loaderinterceptor.service';
-
-
-
-
-
-
-
+import { IndianCurrencyDirective } from './indian-currency.directive';
 
 // const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 //   fgsType: 'three-strings',
@@ -62,7 +56,7 @@ import { LoaderinterceptorService } from './loaderinterceptor.service';
     ProductionDetailsComponent,
     ProductDetailsComponent,
     MilkPurchaseComponent,
-    CattleDetailsComponent,
+    // CattleDetailsComponent,
     FeedDetailsComponent,
     MilkPurchaseComponent,
     PurchaceDetailsComponent,
@@ -75,8 +69,7 @@ import { LoaderinterceptorService } from './loaderinterceptor.service';
     SalesComponent,
     CustomerDetailsComponent,
     IndianCurrencyPipe,
-
-
+    IndianCurrencyDirective,
 
   ],
   imports: [
@@ -107,7 +100,7 @@ import { LoaderinterceptorService } from './loaderinterceptor.service';
   providers: [
     ExcelExportService,
    // LoaderService,
-   { provide: HTTP_INTERCEPTORS, useClass: LoaderinterceptorService, multi: true }  ],
+   { provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor , multi: true }  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

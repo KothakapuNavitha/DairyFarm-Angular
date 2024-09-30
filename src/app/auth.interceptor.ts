@@ -4,7 +4,7 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor,
+  HttpInterceptor, // used to transmit tokens. types -  rs 256 / hs 256.
   HttpResponse
 } from '@angular/common/http';
 import { catchError, finalize, Observable, tap, throwError } from 'rxjs';
@@ -16,6 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private loaderService:LoaderService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    //debugger;
     const token = localStorage.getItem('token');
     if(token){
       request = request.clone({

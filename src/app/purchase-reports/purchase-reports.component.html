@@ -72,7 +72,7 @@
     <form  class="form"  [formGroup]="PurchaseReportsForm">
     <div class="container-fluid">
       <div  class="row">
-        <div class="col-3">
+        <div class="col-2">
           <mat-form-field appearance="outline" class="desc">
             <mat-label>Clients</mat-label>
             <mat-select formControlName="clientId">
@@ -81,7 +81,7 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <mat-form-field  appearance="outline" class="Date">
             <mat-label>From Date</mat-label>
             <input matInput [matDatepicker]="picker1" formControlName="from_date">
@@ -89,7 +89,7 @@
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <mat-form-field  appearance="outline" class="Date">
             <mat-label>To Date</mat-label>
             <input matInput [matDatepicker]="picker2" formControlName="to_date">
@@ -97,7 +97,7 @@
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
         </div>
-        <div class="col-3">
+        <div class="col-2">
           <button id="btn" type="button" mat-raised-button color="accent" (click)="Get()"><mat-icon>cached</mat-icon>Get</button>
        </div>
       </div>
@@ -121,11 +121,20 @@
         <div class="col-12">
           <div align="center" [ngStyle]="{'background-color':textcolor,'color':'white'}">
             {{msg}}</div>
-          <button class="btn btn-md btn-outline-info" style="margin-left:40px;margin-bottom:10px;height:30px ;" (click)="exportToExcel()">Export to Excel</button>
-          <h3><b style="color:red;">Purchase Data :</b></h3>
+            <div>
+             <!-- <h3><b style="color:red;">Purchase Data :</b></h3> -->
+             <!-- <button  class="btn btn-md btn-outline-info" style="margin-right:10px;margin-bottom:10px;height:30px;width:40px;">
+              <img src="assets\pdf_109.webp"  style="width:25px; height:25px;margin-right:-0.3em;margin-left: -0.3em;margin-top: -0.5em;">
+              </button> -->
+          <button class="btn btn-md btn-outline-info" style="margin-left:880px;height:30px ;" (click)="exportToExcel()">
+            <img src="assets\icons8-excel-48.png"  style="width: 25px; height: 25px; margin-right:-0.3em;margin-left: -0.3em;margin-top: -0.5em;">
+          </button>
+            </div>
+            <div>
           <ag-grid-angular style="width: 100%; height: 400px;"
            class="ag-theme-alpine" [rowData]="rowData"  [rowHeight]="20" [columnDefs]="colDefs"
            [gridOptions]="gridOptions"></ag-grid-angular>
+           </div>
         </div>
       </div>
     </div>

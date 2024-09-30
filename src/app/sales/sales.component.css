@@ -5,13 +5,50 @@
   overflow: hidden;
 }
 mat-card-title{
-  margin-bottom:20px ;
+  /* margin-bottom:20px ; */
+  text-align: left;
+  margin-left: 25px;
+  margin-top: 10px;
    }
-  mat-form-field{
+   mat-card{
+    /* text-align: center; */
+   }
+  /* mat-form-field{
     font-size: 12px  !important;
+
+  } */
+  Copy code
+  /* Mat-form-field container styling */
+  mat-form-field {
+    font-size: 8px !important;
+    margin: 5px !important;  /* Adds spacing between fields */
+    width: 200px;  /* Adjust the width of the form fields */
+  }
+
+  mat-form-field .mat-form-field-flex {
+    height: 40px !important;  /* Controls the height of the form fields */
+    margin-top: -20px;  /* Adjusts vertical alignment of the fields */
+  }
+
+  /* Align the labels inside the form field */
+  mat-form-field .mat-form-field-label {
+    font-size: 8px;
+    transform: translateY(-1.3em) scale(0.75);  /* Adjust label scaling */
+  }
+
+  /* Adjusts label behavior when the input field is focused */
+  mat-form-field.mat-form-field-should-float .mat-form-field-label {
+    transform: translateY(-1.5em) scale(0.75);
+  }
+
+  /* Adjust the input field element */
+  input[matInput] {
+    padding: 10px;  /* Add padding inside the input */
+    height: 30px !important;  /* Set input height */
   }
   .desc{
     width: 100%;
+    text-align: center;
   }
   .Date{
     width:100%;
@@ -64,12 +101,21 @@ input[matInput] {
 
 #btn{
   margin-left:20px !important;
-  margin-bottom:10px !important;
+  /* margin-bottom:10px !important; */
   font-size: 9px;
   height: 24px !important;
 }
 .button-container{
-  margin-right:300px;
+  text-align: center;
+}
+.search-field{
+  margin-left: 60px;
+  height: -80px !important;
+  /* height:10px; */
+}
+.search-field .mat-input-element {
+  height: 30px; /* Adjust the input element height */
+  padding: 5px; /* Adjust padding for better fit */
 }
 /* .btn btn-md btn-outline-info {
   margin-left:10px !important;
@@ -120,7 +166,7 @@ input[matInput] {
 }
 
  ::ng-deep .mat-mdc-text-field-wrapper {
-  height: 40px !important;
+  height: 30px !important;
 }
 ::ng-deep .mat-mdc-form-field-flex {
   margin-top: -10px !important;

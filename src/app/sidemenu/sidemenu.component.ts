@@ -4,6 +4,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { Observable } from 'rxjs';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -35,11 +36,11 @@ export class SidemenuComponent {
           iconName: 'how_to_reg',
           route: '/clientDetails'
         },
-        {
-          displayName: 'Cattle Details',
-          iconName: 'pets',
-          route: '/cattleDetails'
-        },
+        // {
+        //   displayName: 'Cattle Details',
+        //   iconName: 'pets',
+        //   route: '/cattleDetails'
+        // },
         {
           displayName: 'Customer Details',
           iconName: 'people',
@@ -65,7 +66,13 @@ export class SidemenuComponent {
             iconName: 'restaurant',
             route: '/feedDetails'
           }
-          ,  {
+        ]
+      },
+      {
+        displayName: 'Purchase',
+        iconName: 'monetization_on',
+        children: [
+          {
             displayName: 'Purchase Details',
             iconName: 'list_alt',
             route: '/purchaseDetails'
@@ -76,9 +83,20 @@ export class SidemenuComponent {
           }
         ]
       },
+      {
+        displayName: 'Sales',
+        iconName: 'business',
+        children: [
+          {
+            displayName: 'Sales Details',
+            iconName: 'list_alt',
+            route: '/salesDetails'
+          }
+        ]
+      }
   ]
 
-  constructor(media: MediaMatcher,private userService: UserService){
+  constructor(private router:Router,media: MediaMatcher,private userService: UserService){
 
   }
 
@@ -86,7 +104,11 @@ export class SidemenuComponent {
     this.isLoggedIn$ = this.userService.isLoggedIn;
   }
   onLogout() {
+    // debugger;
     this.userService.logout();
+
+    this.router.navigate(['/login'])
+
   }
 
   ngOnDestroy(): void {

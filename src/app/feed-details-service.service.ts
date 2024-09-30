@@ -6,7 +6,7 @@ import{feedDetailscls}from './Classes/FeedDetailsClass'
   providedIn: 'root'
 })
 export class FeedDetailsServiceService {
-  url= "https://localhost:7023/api/";
+  url= "https://localhost:7219/api/";
 
   constructor(private http:HttpClient) {
 
@@ -14,7 +14,7 @@ export class FeedDetailsServiceService {
 
     insertFeedDetailsData(feedcls:feedDetailscls){
       return this.http.post(this.url+"FeedDetailsType/FeedDetailsData",feedcls)
-  
+
     }
     updatefeedDetails(feedcls:feedDetailscls){
       return this.http.post(this.url+"FeedDetailsType/FeedDetailsData",feedcls)

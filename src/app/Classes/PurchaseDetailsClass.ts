@@ -4,10 +4,10 @@ export class purchaseDetailsCls{
   date !:Date;
   milkType :string="" ;
   session :string="";
-  quantity !: number;
-  pricePerLiter!:number;
   SNF !: number;
   fat!:number;
+  pricePerLiter!:number;
+  quantity !: number;
   totalPrice!:number;
   // avgQuantity!: number;
   // avgSnf!: number;

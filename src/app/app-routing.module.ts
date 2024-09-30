@@ -1,6 +1,6 @@
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 import { PurchaceDetailsComponent } from './purchace-details/purchace-details.component';
-import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
+// import { CattleDetailsComponent } from './cattle-details/cattle-details.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientDetailsComponent } from './client-details/client-details.component';
@@ -32,7 +32,7 @@ Routes = [
     children:[{ path: 'homepage', component: HomePageComponent },
       { path:'clientDetails', component: ClientDetailsComponent },
       {path:'customerDetails',component:CustomerDetailsComponent},
-      { path: 'cattleDetails', component: CattleDetailsComponent },
+      // { path: 'cattleDetails', component: CattleDetailsComponent },
       { path: 'milkPurchase', component: MilkPurchaseComponent },
       { path: 'production', component: ProductionComponent },
       { path: 'products', component: ProductDetailsComponent },

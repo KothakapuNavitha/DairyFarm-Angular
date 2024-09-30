@@ -1,3 +1,4 @@
+import { PdfgeneratorService } from './../pdfgenerator.service';
 import { ExcelExportService } from './../excel-export.service';
 import { PurchaseDetailsService } from './../purchase-details.service';
 import { purchaseDetailsCls } from './../Classes/PurchaseDetailsClass';
@@ -9,12 +10,7 @@ import { Client } from '../purchase-details.service';
 import { GridApi } from 'ag-grid-community';
 import { HttpErrorResponse } from '@angular/common/http';
 import { map, Observable, startWith } from 'rxjs';
-import { PdfgeneratorService } from '../pdfgenerator.service';
-
-//import * as pdfMake from 'pdfmake/build/pdfmake';
-//import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-purchace-details',
@@ -22,8 +18,6 @@ import { PdfgeneratorService } from '../pdfgenerator.service';
   styleUrls: ['./purchace-details.component.css'],
 })
 export class PurchaceDetailsComponent implements OnInit {
-  totalPrice: number = 0;
-  amount:number=12345678;
   rowData: any = [];
   gridOptions = {
     headerHeight: 24,
@@ -31,10 +25,11 @@ export class PurchaceDetailsComponent implements OnInit {
       this.gridApi = params.api;
       this.getAllPurchaseDetails();
     }
+
   };
 
   colDefs: any[] = [
-    { headerName: 'ClientId', field: 'clientId' ,width: 80 },
+    { headerName: 'ClientId', field: 'clientId' ,width: 70 },
     {
       headerName: 'Client Name', width: 100,
       valueGetter: (params: any) => {
@@ -52,12 +47,12 @@ export class PurchaceDetailsComponent implements OnInit {
     { headerName: 'MilkType', field: 'milkType', width: 100},
     { headerName: 'Session', field: 'session',width: 80 },
     { headerName: 'Quantity', field: 'quantity' ,width: 80},
-    { headerName: 'SNF No', field: 'snf',width: 75 },
-    { headerName: 'Fat', field: 'fat',width: 60 },
-    { headerName: 'PricePerLiter', field: 'pricePerLiter',width: 100},
-    { headerName: 'TotalAmount', field: 'totalPrice',width: 105 },
+    { headerName: 'SNF', field: 'snf',width: 75 },
+    { headerName: 'Fat', field: 'fat',width: 75 },
+    { headerName: 'PricePerLiter', field: 'pricePerLiter',width: 100 },
+    { headerName: 'TotalPrice', field: 'totalPrice',width: 90 },
     // { headerName: 'Notes', field: 'notes',width: 150 },
-    {   headerName: 'Actions', width: 73,
+    {   headerName: 'Actions', width: 80,
       cellRenderer: (params: any) => this.actionCellRenderer(params)}
   ];
 
@@ -66,26 +61,30 @@ export class PurchaceDetailsComponent implements OnInit {
   public msg: string = '';
   public textcolor: string = '';
   ClientId: number=0;
-  public avgQuantity: number = 0;
+  public totalQuantity: number = 0;
+  public totalAmount: number = 0;
+  public avgQuantity :number = 0;
+  public avgTotal :number = 0;
   public avgSnf: number = 0;
   public avgFat: number = 0;
   public avgPricePerLiter: number = 0;
-  public avgTotal: number = 0;
   public gridApi!:GridApi;
   lastRecord :any;
   filteredClients!: Observable<any[]>;
   clients: Client[] = [];
   selectedClientId: number | null = null;
   selectedID: any;
-
+  public originalData: any;
+  word!: string;
+  filteredData: any[] = [];
 
   constructor(
     private purchaseSrv: PurchaseDetailsService,
     private fb: FormBuilder,
     private snackbar: MatSnackBar,
     private toastr: ToastrService,
-    private pdfGeneratorService: PdfgeneratorService,
-    private ExcelService:ExcelExportService
+    private ExcelService:ExcelExportService,
+    private PdfgeneratorService:PdfgeneratorService
   ) {
     this.formInit();
     this.purchaseCls = new purchaseDetailsCls();
@@ -93,28 +92,17 @@ export class PurchaceDetailsComponent implements OnInit {
   displayClientName(client: any): string {
     return client ? client.name : '';
   }
-  exportToPdf(): void {
-    // Map data to match table format
-    // const tableData = this.rowData.map((item: { clientId: any; phoneNumber: any; date: any; milkType: any; quantity:any;snf:any;fat:any;pricePerLiter:any;totalPrice:any;notes:any;}) =>
-    //    [item.clientId, item.phoneNumber, item.date, item.milkType,item.quantity,item.snf,item.fat,item.pricePerLiter,item.totalPrice,item.notes,]);
-
-    // Call service to generate the PDF
-    const colDefs = ['clientId', 'phoneNumber', 'date','milkType','quantity','snf','fat','pricePerLiter','totalPrice','notes']; // Define the columns based on object keys
-    const title = 'Purchase Details'; // PDF title
-    this.pdfGeneratorService.generatePdf(this.rowData, colDefs, title);
-    }
-
   ngOnInit() {
     this.getAllPurchaseDetails();
     this.loadClients();
     this.setupValueChanges();
-
+    this.refreshData();
   }
   formInit() {
     const today = new Date();
     this.PurchaseDetailsForm = this.fb.group({
     clientId:[''],
-    date: ['today', Validators.required],
+    date: ['', Validators.required],
     milkType: ['Buffalo Milk', Validators.required],
     session: ['', Validators.required],
     quantity: ['', Validators.required],
@@ -126,7 +114,35 @@ export class PurchaceDetailsComponent implements OnInit {
 
   });
 }
-
+search(){
+  if (this.word === '') {
+    this.rowData = this.originalData;
+  } else {
+    this.rowData = this.filterData(this.originalData, this.word);
+  }
+}
+filterData(data: any[], word: string) {
+  const lowercasedWord = word.toLowerCase();
+  return data.filter((d: any) => {
+    return d.clientId?.toString().toLowerCase().includes(lowercasedWord)
+      || d.date?.toString().toLowerCase().includes(lowercasedWord)
+      || d.milkType?.toLowerCase().includes(lowercasedWord)
+      || d.session?.toLowerCase().includes(lowercasedWord)
+      || d.SNF?.toString().toLowerCase().includes(lowercasedWord)
+      || d.fat?.toString().toLowerCase().includes(lowercasedWord)
+      || d.quantity?.toString().toLowerCase().includes(lowercasedWord)
+      // || d.pricePerLiter?.toString()toLowerCase().includes(lowercasedWord)
+      // || d.totalPrice?.toString()toLowerCase().includes(lowercasedWord);
+  });
+}
+refreshData() {
+  this.purchaseSrv.getAllPurchaseData().subscribe((res: any) => {
+    console.log('Refreshed Data:', res);
+    this.rowData = res;
+    this.originalData = [res];
+    // this.gridOptions.api.setRowData(this.rowData);
+  });
+}
 onRowClicked(event: any): void {
   const selectedData = event.data;
   const formattedDate = new Date(selectedData.date);
@@ -143,14 +159,10 @@ onRowClicked(event: any): void {
     notes: selectedData.notes
   });
 }
-
   loadClients() {
     this.purchaseSrv.getClients().subscribe(data => {
       this.clients = data;
       this.setupClientFiltering();
-    });
-    this.PurchaseDetailsForm = this.fb.group({
-      milkType: ['Buffalo Milk']  // Set default value here
     });
   }
   setupClientFiltering() {
@@ -173,35 +185,6 @@ onRowClicked(event: any): void {
     console.log(filterValue);
     return this.clients.filter(client => client.name.toLowerCase().includes(filterValue));
   }
-  calculatePricePerLiter() {
-    const snf = this.PurchaseDetailsForm.controls['SNF'].value;
-    const fat = this.PurchaseDetailsForm.controls['fat'].value;
-
-    const priceMapping = [
-      { snf: 8.00, fat: 5.00, pricePerLiter: 38.95 },
-      { snf: 8.00, fat: 5.10, pricePerLiter: 39.75 },
-      { snf: 8.00, fat: 5.20, pricePerLiter: 40.55 },
-      { snf: 8.00, fat: 5.30, pricePerLiter: 41.35 },
-      { snf: 8.00, fat: 5.40, pricePerLiter: 42.15 },
-      { snf: 8.00, fat: 5.50, pricePerLiter: 42.95 },
-      { snf: 8.00, fat: 5.60, pricePerLiter: 43.74 },
-      { snf: 8.00, fat: 5.70, pricePerLiter: 44.54 },
-      { snf: 8.00, fat: 5.80, pricePerLiter: 45.34 },
-      { snf: 8.00, fat: 5.90, pricePerLiter: 46.14 },
-      { snf: 8.00, fat: 6.00, pricePerLiter: 46.94 },
-      { snf: 8.00, fat: 6.10, pricePerLiter: 47.74 }
-    ];
-
-    const foundPrice = priceMapping.find(p => p.snf === snf && p.fat === fat);
-
-    if (foundPrice) {
-      this.PurchaseDetailsForm.controls['pricePerLiter'].setValue(foundPrice.pricePerLiter.toFixed(2));
-    } else {
-      this.PurchaseDetailsForm.controls['pricePerLiter'].setValue('');
-    }
-
-    //  this.calculateTotalPrice();
-  }
   calculateTotalPrice() {
     const pricePerLiter = this.PurchaseDetailsForm.controls['pricePerLiter'].value;
     const quantity = this.PurchaseDetailsForm.controls['quantity'].value;
@@ -213,7 +196,38 @@ onRowClicked(event: any): void {
       this.PurchaseDetailsForm.controls['totalPrice'].setValue('');
     }
   }
+  calculatePricePerLiter() {
+    const snf = this.PurchaseDetailsForm.controls['SNF'].value;
+    const fat = this.PurchaseDetailsForm.controls['fat'].value;
 
+    const priceMapping = [
+      { snf: 8.00, fat: 5.00, price: 38.95 },
+      { snf: 8.00, fat: 5.10, price: 39.75 },
+      { snf: 8.00, fat: 5.20, price: 40.55 },
+      { snf: 8.00, fat: 5.30, price: 41.35 },
+      { snf: 8.00, fat: 5.40, price: 42.15 },
+      { snf: 8.00, fat: 5.50, price: 42.95 },
+      { snf: 8.00, fat: 5.60, price: 43.74 },
+      { snf: 8.00, fat: 5.70, price: 44.54 },
+      { snf: 8.00, fat: 5.80, price: 45.34 },
+      { snf: 8.00, fat: 5.90, price: 46.14 },
+      { snf: 8.00, fat: 6.00, price: 46.94 },
+      { snf: 8.00, fat: 6.10, price: 47.74 }
+    ];
+
+    const foundPrice = priceMapping.find(p => p.snf === snf && p.fat === fat);
+
+    if (foundPrice) {
+      this.PurchaseDetailsForm.controls['pricePerLiter'].setValue(foundPrice.price.toFixed(2));
+    } else {
+      this.PurchaseDetailsForm.controls['pricePerLiter'].setValue(''); // Or set to a default price or handle the error as needed
+    }
+  }
+  exportToPdf(): void {
+    const colDefs = ['clientId','date','milkType','quantity','snf','fat','pricePerLiter','totalPrice','notes']; // Define the columns based on object keys
+    const title = 'Purchase Details';
+    this.PdfgeneratorService.generatePdf( colDefs,this.rowData, title);
+    }
   exportToExcel(){
     this.ExcelService.exportAsExcelFile(this.rowData,'sample');
   }
@@ -248,12 +262,6 @@ onRowClicked(event: any): void {
     this.toastr.info('Record loaded for editing', 'Edit Mode');
   }
 
-getAllPurchaseDetails() {
-  this.purchaseSrv.getAllPurchaseData().subscribe((res: any) => {
-    this.rowData = res;
-  });
-}
-
   submit() {
     //debugger
     // console.log('from submit');
@@ -267,23 +275,12 @@ getAllPurchaseDetails() {
          this.calculatePricePerLiter();
          this.calculateTotalPrice()
         this.prepareCls('Insert');
-        // const formValues = this.PurchaseDetailsForm.value;
-        // this.purchaseCls.mode = 'Insert';
-        // this.purchaseCls.clientId = formValues.clientId;
-        // this.purchaseCls.date = formValues.date;
-        // this.purchaseCls.milkType = formValues.milkType;
-        // this.purchaseCls.session = formValues.session;
-        // this.purchaseCls.quantity = formValues.quantity;
-        // this.purchaseCls.pricePerLiter = formValues.pricePerLiter;
-        // this.purchaseCls.SNF = formValues.SNF;
-        // this.purchaseCls.fat = formValues.fat;
-        // this.purchaseCls.totalPrice = formValues.totalPrice;
-        // this.purchaseCls.notes = formValues.notes;
         this.purchaseSrv.insertPurchaseDetails(this.purchaseCls).subscribe((res: any) => {
           console.log(res);
           if (res.status === 'Success') {
             this.msg = res.dbMsg;
             this.textcolor = 'green';
+            this.refreshData();
            // this.getAllPurchaseDetails();
           } else {
             this.msg = res.dbMsg;
@@ -315,6 +312,7 @@ getAllPurchaseDetails() {
           if (res.status === 'Success') {
             this.msg = 'updated successfully';
             this.textcolor = 'green';
+            this.refreshData();
            // this.getAllPurchaseDetails();
           } else {
             this.msg = 'not updated';
@@ -330,8 +328,6 @@ getAllPurchaseDetails() {
 
   prepareCls(mode: string){
     const formValues = this.PurchaseDetailsForm.value;
-    console.log(formValues.clientId.clientId);
-
     this.purchaseCls.mode = mode;
     this.purchaseCls.clientId = formValues.clientId.clientId;
     this.purchaseCls.date = formValues.date;
@@ -343,8 +339,7 @@ getAllPurchaseDetails() {
     this.purchaseCls.fat = formValues.fat;
     this.purchaseCls.totalPrice = formValues.totalPrice;
     this.purchaseCls.notes = formValues.notes;
-
-    console.log('Prepared purchaseCls:', this.purchaseCls);
+    purchaseId: this.selectedID;
   }
 
 
@@ -407,52 +402,131 @@ getAllPurchaseDetails() {
   }
 
   GetMultiple() {
-    this.purchaseSrv.getAllPurchaseData().subscribe((res: any) => {
-      this.rowData = res.filter((item: any) => item.clientId === this.ClientId);
-      let totalQuantity = 0;
-      let totalSnf = 0;
-      let totalFat = 0;
-      let totalPricePerLiter = 0;
-      let totalPrice = 0;
+    // this.purchaseSrv.getAllPurchaseData().subscribe((res: any) => {
+    //   this.rowData = res.filter((item: any) => item.clientId === this.ClientId);
+    //   let totalQuantity = 0;
+    //   let totalSnf = 0;
+    //   let totalFat = 0;
+    //   let totalPricePerLiter = 0;
+    //   let totalPrice = 0;
 
-      for (let i = 0; i < this.rowData.length; i++) {
-        totalQuantity += this.rowData[i].quantity;
-        totalSnf += this.rowData[i].snf;
-        totalFat += this.rowData[i].fat;
-        totalPricePerLiter += this.rowData[i].pricePerLiter;
-        totalPrice += this.rowData[i].totalPrice;
-      }
+    //   for (let i = 0; i < this.rowData.length; i++) {
+    //     totalQuantity += this.rowData[i].quantity;
+    //     totalSnf += this.rowData[i].snf;
+    //     totalFat += this.rowData[i].fat;
+    //     totalPricePerLiter += this.rowData[i].pricePerLiter;
+    //     totalPrice += this.rowData[i].totalPrice;
+    //   }
 
-      const len = this.rowData.length;
-      this.avgQuantity = totalQuantity / len;
-      this.avgSnf = totalSnf / len;
-      this.avgFat = totalFat / len;
-      this.avgPricePerLiter = totalPricePerLiter / len;
-      this.avgTotal = totalPrice / len;
+    //   const len = this.rowData.length;
+    //   this.avgQuantity = totalQuantity / len;
+    //   this.avgSnf = totalSnf / len;
+    //   this.avgFat = totalFat / len;
+    //   this.avgPricePerLiter = totalPricePerLiter / len;
+    //   this.avgTotal = totalPrice / len;
 
-    });
+    // });
 
   }
+
+  calculateTotals() {
+    let totalQuantity = 0;
+    let totalAmount = 0;
+    if (this.rowData && this.rowData.length > 0) {
+      this.rowData.forEach((row: any) => {
+        const quantity = row.quantity || 0;
+        const totalPrice = row.totalPrice || 0;
+
+        totalQuantity += quantity;
+        totalAmount += totalPrice;
+      });
+      this.totalQuantity = totalQuantity;
+      this.totalAmount = totalAmount;
+    }
+  }
 
   delete() {
-    this.purchaseCls.mode = 'Delete';
-    this.purchaseCls.clientId = this.ClientId;
-    this.purchaseSrv.GetPurchaseDetails(this.purchaseCls).subscribe((res: any) => {
-      if (res.status === 'Success') {
-        this.msg = res.dbMsg;
-        this.textcolor = 'green';
-        this.PurchaseDetailsForm.reset();
-        this.getAllPurchaseDetails();
-      } else {
-        this.msg = res.dbMsg;
+    console.log(this.PurchaseDetailsForm.value);
+    if (this.PurchaseDetailsForm.invalid) {
+      this.toastr.error('Please fill in the required fields', 'ERROR');
+      return;
+    }
+     else {
+      try {
+         this.calculatePricePerLiter();
+         this.calculateTotalPrice()
+        this.prepareCls('Delete');
+        this.purchaseSrv.insertPurchaseDetails(this.purchaseCls).subscribe((res: any) => {
+          console.log(res);
+          if (res.status === 'Success') {
+            this.msg = res.dbMsg;
+            this.textcolor = 'green';
+            this.refreshData();
+           // this.getAllPurchaseDetails();
+          } else {
+            this.msg = res.dbMsg;
+            this.textcolor = 'red';
+          }
+          (error: HttpErrorResponse) => {
+            console.error('Error Response:', error);
+            this.msg = 'An error occurred. Please try again.';
+            this.textcolor = 'red';
+          }
+        });
+      } catch (ex: any) {
+        this.msg = ex.message;
         this.textcolor = 'red';
       }
+    }
+  }
+
+
+  getAllPurchaseDetails() {
+    this.purchaseSrv.getAllPurchaseData().subscribe((res: any) => {
+      this.rowData = res;
+      this.calculateTotals();
+      this.originalData = res;
+      this.filteredData = res;
     });
   }
+  onSelectionChanged(event: any) {
+    const selectedRow = event.api.getSelectedRows()[0];
+    if (selectedRow) {
+      this.selectedID = selectedRow.purchaseId;
+      this.PurchaseDetailsForm.patchValue(selectedRow);
+    }
+  }
+  onDateChange(event: MatDatepickerInputEvent<Date>) {
+    const selectedDate = event.value;
+
+    // Filter the grid data based on the selected date
+    if (selectedDate) {
+      const formattedDate = this.formatDate(selectedDate);
+      this.filteredData = this.rowData.filter((row: { saleDate: string | number | Date; })  =>
+        this.formatDate(new Date(row.saleDate)) === formattedDate
+      );
+    } else {
+      this.filteredData = this.rowData;
+    }
+    this.getAllPurchaseDetails();
+
+  }
+  formatDate(saleDate: Date): string {
+    const d = new Date(saleDate);
+    const month = '' + (d.getMonth() + 1);
+    const day = '' + d.getDate();
+    const year = d.getFullYear();
+
+    return [year, month.padStart(2, '0'), day.padStart(2, '0')].join('-');
+  }
+
   clear() {
     this.PurchaseDetailsForm.reset();
     this.msg = '';
     this.textcolor = '';
+    this.refreshData();
   }
-}
 
+  ngOnDestroy(): void {}
+
+}

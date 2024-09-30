@@ -1,25 +1,14 @@
 <mat-card>
   <mat-card-title>Purchase Details</mat-card-title>
-  <br>
   <mat-card-content>
-  <form class="form" [formGroup]="PurchaseDetailsForm">
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    <form class="form" [formGroup]="PurchaseDetailsForm">
     <div class="container-fluid">
       <div class="row">
-        <!-- <div class="col-4">
-          <mat-form-field appearance="outline" class="desc">
-            <mat-label>Client Id</mat-label>
-            <input id="clientid" matInput placeholder="Client Id" [(ngModel)]="ClientId"
-              [ngModelOptions]="{standalone:true}">
-          </mat-form-field>
-        </div> -->
-        <div class="col-2">
-          <!-- <mat-form-field appearance="outline" class="desc">
-            <mat-label>Clients</mat-label>
-            <mat-select  [(ngModel)]="ClientId" [ngModelOptions]="{standalone:true}" >
-              <mat-option class="ClientId" *ngFor="let client of clients" [value]="client.clientId">
-              {{client.name}}</mat-option>
-            </mat-select>
-          </mat-form-field> -->
+        <div class="col-3">
           <mat-form-field appearance="outline" class="desc">
             <mat-label>Clients</mat-label>
             <input type="text"
@@ -40,9 +29,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-3">
+        <div class="col-2">
           <mat-form-field appearance="outline" class="Date">
-            <mat-label>Purchase Date</mat-label>
+            <mat-label>PurchaseDate</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="date">
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
@@ -92,7 +81,7 @@
         <div class="col-2">
           <mat-form-field appearance="outline" class="desc">
             <mat-label>Quantity</mat-label>
-            <input id="quantity" type="number" matInput placeholder="Quantity" formControlName="quantity">
+            <input id="quantity" type="number"   matInput placeholder="Quantity" formControlName="quantity">
           </mat-form-field>
         </div>
         <div class="col-2">
@@ -102,42 +91,21 @@
             <!-- <p>Formatted Total Price: {{ totalPrice | indianCurrency }}</p> -->
           </mat-form-field>
         </div>
-        
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-2">
-          <!-- <mat-form-field  appearance="outline" class="desc">
-            <mat-label>Avg Quantity</mat-label>
-            <input type="number" matInput placeholder=" Avg Quantity" [(ngModel)]="avgQuantity"
-              [ngModelOptions]="{standalone:true}" readonly>
-          </mat-form-field> -->
           <mat-label>Quantity Avg: <b style="color: brown;">{{avgSnf}}</b></mat-label>
         </div>
         <div class="col-2">
-          <!-- <mat-form-field appearance="outline" class="desc">
-            <mat-label>Avg SNF</mat-label>
-            <input type="number" matInput placeholder="Avg SNF" [(ngModel)]="avgSnf" [ngModelOptions]="{standalone:true}"
-              readonly>
-          </mat-form-field> -->
           <mat-label>SNF Avg: <b style="color: brown;">{{avgSnf}}</b></mat-label>
         </div>
         <div class="col-2">
-          <!-- <mat-form-field appearance="outline" class="desc">
-            <mat-label> Avg Fat</mat-label>
-            <input type="number" matInput placeholder=" Avg Fat" [(ngModel)]="avgFat" [ngModelOptions]="{standalone:true}"
-              readonly >
-          </mat-form-field> -->
           <mat-label>Fat Avg: <b style="color: brown;">{{avgFat}}</b></mat-label>
         </div>
         <div class="col-2">
-          <!-- <mat-form-field appearance="outline" class="desc">
-            <mat-label>Avg Total</mat-label>
-            <input type="number" matInput placeholder="Avg Total" [(ngModel)]="avgTotal"
-              [ngModelOptions]="{standalone:true}" readonly >
-          </mat-form-field> -->
           <mat-label>Total Avg: <b style="color: brown;">{{avgTotal}}</b></mat-label>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-4">
           <mat-form-field appearance="outline" class="desc">
@@ -146,36 +114,43 @@
           </mat-form-field>
         </div>
       </div>
-    </div>
-    <div  [ngStyle]="{'background-color':textcolor,'color':'white'}">
+      <div  [ngStyle]="{'background-color':textcolor,'color':'white'}">
       {{msg}}</div>
-    <div class="button-container">
+     <div class="button-container">
       <button id="btn" mat-raised-button color="primary" type="submit"
         (click)="submit()"><mat-icon>save</mat-icon>Apply</button>
       <button id="btn" type="button" mat-raised-button color="accent"
         (click)="update()"><mat-icon>cached</mat-icon>Update</button>
       <button id="btn" type="button" mat-raised-button color="warn"
-        (click)="delete()"><mat-icon>clear_all</mat-icon>Delete</button>
+        (click)="delete()"><mat-icon>delete</mat-icon>Delete</button>
       <button id="btn" type="button" mat-raised-button color="red"
        (click)="clear()" ><mat-icon>clear</mat-icon>Clear</button>
-      <button id="btn" type="button" mat-raised-button color="accent" (click)="GetMultiple()">
+      <mat-form-field class="search-field"  appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" placeholder="Search..." [(ngModel)]="word" (ngModelChange)="search()"
+               [ngModelOptions]="{standalone: true}" autocomplete="off">
+      </mat-form-field>
+      <!-- <button id="btn" type="button" mat-raised-button color="accent" (click)="GetMultiple()">
           <mat-icon>search</mat-icon>Get Multiple
+        </button> -->
+        <button  class="btn btn-md btn-outline-info" style="margin-left:20px;margin-bottom:10px;height:30px;width:40px;" (click)="exportToPdf()">
+        <img src="assets\pdf_109.webp"  style="width:25px; height:25px;margin-right:-0.3em;margin-left: -0.3em;margin-top: -0.5em;">
         </button>
-
-        <button mat-raised-button color="primary" (click)="exportToPdf()">
-          <mat-icon>picture_as_pdf</mat-icon>
-        </button>        
-      <button class="btn btn-md btn-outline-info" style="margin-left:40px;margin-bottom:10px;height:30px;" (click)="exportToExcel()">
+      <button class="btn btn-md btn-outline-info" style="margin-left:10px; margin-bottom:10px;height:30px;width:40px;" (click)="exportToExcel()">
         <img src="assets\icons8-excel-48.png"  style="width: 25px; height: 25px; margin-right:-0.3em;margin-left: -0.3em;margin-top: -0.5em;">
         </button>
-
-    </div>
-    <div>
-      <ag-grid-angular style="width:auto;height:200px;"  [gridOptions]="gridOptions"
-       class="ag-theme-alpine" [columnDefs]="colDefs"  [rowHeight]="20" (rowClicked)="onRowClicked($event)"
-        [rowData]="rowData">
-      </ag-grid-angular>
-    </div>
-  </form>
+      </div>
+<div>
+  <ag-grid-angular style="width:auto;height:200px;"  [gridOptions]="gridOptions"
+   class="ag-theme-alpine" [columnDefs]="colDefs"  [rowHeight]="20" (rowClicked)="onRowClicked($event)"
+    [rowData]="rowData">
+  </ag-grid-angular>
+</div>
+<div class="total-row">
+  <div>Total Quantity: <b style="color: brown;">{{ totalQuantity }}</b></div>
+  <div>Total Amount:<b style="color: brown;">{{ totalAmount }}</b></div>
+</div>
+</div>
+</form>
 </mat-card-content>
 </mat-card>

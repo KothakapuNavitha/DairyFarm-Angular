@@ -13,7 +13,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   box-sizing: border-box;
   font-size: small;
 }
-
+/* mat-form-field{
+  margin-left:160px ;
+} */
 mat-card{
   margin-top: 10px;
 }

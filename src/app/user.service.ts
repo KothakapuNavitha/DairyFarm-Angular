@@ -38,7 +38,7 @@ export class UserService {
     return this.loggedIn.asObservable();
   }
 
-  url = "https://localhost:7023/api/LogInDetails/";
+  url = "https://localhost:7219/api/LogInDetails/";
 
   constructor(
     private router: Router,
@@ -55,9 +55,12 @@ export class UserService {
     return this.http.post<any>(this.url + "LoginTypeData", useCls)
       .pipe(
         map(response => {
+          console.log('API Response:', response);  // Log the API response
+
           if (response && response.status === "Success") {
+            console.log(response);
             // Store the token in localStorage
-            localStorage.setItem('token', response.token); // Note: response.Token should be response.token
+            localStorage.setItem('token',JSON.stringify(response.token)); // Note: response.Token should be response.token
             localStorage.setItem('currentUser', JSON.stringify(response));
             this.loggedIn.next(true);
             this.router.navigate(['/home']);
@@ -69,7 +72,7 @@ export class UserService {
       );
   }
   signup(user: userDetailsCls): Observable<any> {
-    return this.http.post<any>("https://localhost:7023/api/signup/SignupDetails", user)
+    return this.http.post<any>("https://localhost:7219/api/signup/SignupDetails", user)
       .pipe(
         map(response => {
           if (response && response.status === "success") {
@@ -85,8 +88,10 @@ export class UserService {
   logout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
+    sessionStorage.clear();
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
+
   }
 }
 

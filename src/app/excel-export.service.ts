@@ -15,7 +15,22 @@ export class ExcelExportService {
 
   public exportAsExcelFile(rowData: any[], excelFileName: string):void {
     console.log(rowData);
-    const worksheet: XLSX.WorkSheet=XLSX.utils.json_to_sheet(rowData);
+
+    const filteredData = rowData.map((row: any) => {
+      return {
+        clientId: row.clientId,
+        // clientName: row.clientName,
+        date: row.date,
+        milkType: row.milkType,
+        session: row.session,
+        quantity: row.quantity,
+        pricePerLiter: row.pricePerLiter,
+        snf: row.snf,
+        fat: row.fat,
+        totalPrice: row.totalPrice
+      };
+    });
+    const worksheet: XLSX.WorkSheet=XLSX.utils.json_to_sheet(filteredData);
     const workbook: XLSX.WorkBook={Sheets:{'data1': worksheet }, SheetNames: ['data1']};
     const excelBuffer: any=XLSX.write(workbook,{bookType:'xlsx', type: 'array'});
 

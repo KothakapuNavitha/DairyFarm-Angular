@@ -17,22 +17,26 @@ custId!:number;
 word:string="";
 public msg:string="";
 public textcolor:string="";
+public originalData :any;
+selectedID: any;
 
 customerTypes = new FormControl([]);
 CustomerTypesList: any = [
   { itemCode: 'Retail', itemName: 'Retail' },
   { itemCode: 'Wholesale', itemName: 'Wholesale' },
   { itemCode: 'Distributors', itemName: 'Distributors' },
-  { itemCode: 'Local Shops', itemName: 'Local Shops' },
+  { itemCode: 'Local Shops', itemName: 'Local Shops' }
 ];
 
 rowData:any = [];
 colDefs :any[] =[
   {headerName: 'CustomerId',field:'customerId',width: 160},
-  {headerName:'CustomerName',field:'customerName',width: 180},
-  {headerName:'CustomerType',field:'customerType',width: 180},
-  {headerName:'PhoneNumber',field:'phoneNumber',width: 160},
-  {headerName:'Address',field:'address',width: 180}
+  {headerName:'CustomerName',field:'customerName',width: 160},
+  {headerName:'CustomerType',field:'customerType',width: 160},
+  {headerName:'PhoneNumber',field:'phoneNumber',width: 150},
+  {headerName:'Address',field:'address',width: 150},
+  {headerName:'Actions', width: 120,
+    cellRenderer: (params: any) => this.actionCellRenderer(params)}
 ];
 gridOptions = {
   headerHeight :24
@@ -50,17 +54,33 @@ getAllCustomerData(){
   this.customerSrv.GetAllCustomerData().subscribe((res: any) => {
     console.log(res);
     this.rowData = res;
+    this.originalData = res;
    });
 }
-Search(){
-  console.log('Before filtering:', this.rowData);
-  const filteredData = this.filterData(this.rowData, this.word);
-  console.log('After filtering:', filteredData);
-  this.rowData = filteredData;
+search(){
+  if (this.word === '') {
+    this.rowData = this.originalData;
+  } else {
+    this.rowData = this.filterData(this.originalData, this.word);
+  }
 }
 filterData(data: any[], word: string) {
+  const lowercasedWord = word.toLowerCase();
   return data.filter((d: any) => {
-    return d.CustomerId?.toString().includes(word) || d.CustomerName?.toString().includes(word) ;
+    return d.customerId?.toString().toLowerCase().includes(lowercasedWord)
+      || d.customerName?.toString().toLowerCase().includes(lowercasedWord)
+      || d.customerType?.toLowerCase().includes(lowercasedWord)
+      || d.phoneNumber?.toLowerCase().includes(lowercasedWord)
+      || d.address?.toLowerCase().includes(lowercasedWord);
+  });
+}
+refreshData() {
+  this.customerSrv.GetAllCustomerData().subscribe((res: any) => {
+    console.log('Refreshed Data:', res);
+    this.rowData = res;
+    this.originalData = [res];
+    // this.gridOptions.api.setRowData(this.rowData);
+
   });
 }
 
@@ -73,6 +93,26 @@ onRowClicked(event: any): void {
     PhoneNumber: selectedData.phoneNumber,
     Address: selectedData.address,
   });
+}
+actionCellRenderer(params: any) {
+  const element = document.createElement('button');
+  element.innerText = 'Edit';
+  element.addEventListener('click', () => this.onEditClick(params));
+  return element;
+}
+onEditClick(params: any) {
+  const selectedData = params.data;
+  console.log('Selected Data:', selectedData);
+  console.log('Item Field:', selectedData.item);
+  this.selectedID = selectedData.id;
+  this.CustomerDetailsForm.patchValue({
+    CustomerId: selectedData.CustomerId,
+    CustomerName: selectedData.customerName,
+    CustomerType:selectedData.customerType,
+    PhoneNumber: selectedData.phoneNumber,
+    Address:selectedData.address
+  })
+  this.toastr.info('Record loaded for editing', 'Edit Mode');
 }
 
 formInit(){
@@ -98,7 +138,7 @@ submit(){
         if (res.status === 'Success') {
           this.msg = res.dbMsg;
           this.textcolor = 'green';
-         // this.getAllPurchaseDetails();
+          this.refreshData();
         } else {
           this.msg = res.dbMsg;
           this.textcolor = 'red';
@@ -134,6 +174,7 @@ update(){
         if (res.status === 'Success') {
           this.msg = 'updated successfully';
           this.textcolor = 'green';
+          this.refreshData();
 
 }
 else {
@@ -187,6 +228,7 @@ Delete(){
       {
         this.msg=res.dbMsg;
         this.textcolor="green";
+        this.refreshData();
       }
       else{
         this.msg=res.dbMsg;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { NgxUiLoaderConfig, NgxUiLoaderService } from 'ngx-ui-loader';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Subject } from 'rxjs';
 

@@ -2,13 +2,23 @@
   <mat-card-title>Sales Details</mat-card-title>
     <br>
     <mat-card-content>
-    <form class="form" [formGroup]="SalesDetailsForm" >
       <div class="container-fluid">
+      <div class="row">
+        <div class="col-2">
+          <mat-form-field  appearance="outline">
+            <mat-label>Search</mat-label>
+            <input matInput type="text" placeholder="Search..." [(ngModel)]="word" (ngModelChange)="search()"
+                   [ngModelOptions]="{standalone: true}" autocomplete="off">
+          </mat-form-field>
+      <!-- {{word}} -->
+       </div>
+      </div>
+      <form class="form" [formGroup]="SalesDetailsForm" >
         <div class="row">
           <div class="col-2">
             <mat-form-field appearance="outline" class="desc">
               <mat-label>Customer</mat-label>
-              <input matInput [matAutocomplete]="auto">
+              <input matInput formControlName="customerId" [matAutocomplete]="auto">
               <mat-autocomplete #auto="matAutocomplete"  [displayWith]="displayClientName">
                 <mat-option *ngFor="let customer of filteredCustomers | async" [value]="customer">
                   {{customer.customerName}}
@@ -19,23 +29,24 @@
           <div class="col-2">
               <mat-form-field appearance="outline"  class="Date">
                 <mat-label>Sale Date</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="saleDate">
+                <input matInput [matDatepicker]="picker" formControlName="saleDate" (dateChange)="onDateChange($event)"
+                >
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
           </div>
+          <div class="col-2">
+            <mat-form-field appearance="outline"  class="desc">
+               <mat-label>Item</mat-label>
+               <mat-select #mode value="Select" aria-placeholder="Item" formControlName="item">
+                 <mat-option value="">Select</mat-option>
+                 <mat-option value="AM">Milk</mat-option>
+                 <mat-option value="PM">Curd</mat-option>
+               </mat-select>
+             </mat-form-field>
+           </div>
         </div>
               <div class="row">
-                <div class="col-2">
-                  <mat-form-field appearance="outline"  class="desc">
-                     <mat-label>Item</mat-label>
-                     <mat-select #mode value="Select" aria-placeholder="Item" formControlName="item">
-                       <mat-option value="">Select</mat-option>
-                       <mat-option value="AM">Milk</mat-option>
-                       <mat-option value="PM">Curd</mat-option>
-                     </mat-select>
-                   </mat-form-field>
-                 </div>
                   <div class="col-2">
                     <mat-form-field appearance="outline"  class="desc">
                       <mat-label>Quantity</mat-label>
@@ -71,25 +82,35 @@
                         <input matInput type="number" value="0">
                       </mat-form-field>
                    </div>-->
-                </div>
                 <div  [ngStyle]="{'background-color':textcolor,'color':'white'}">
                   {{msg}}</div>
           <div class="button-container">
             <button id="btn" mat-raised-button color="primary" type="submit" (click)="submit()"><mat-icon>save</mat-icon>Submit</button>
             <button id="btn" type="button" mat-raised-button color="warn" (click)="clear()"><mat-icon>clear</mat-icon>Clear</button>
-            <button class="btn btn-md btn-outline-info" style="margin-left:40px;margin-bottom:10px;height:30px ;" (click)="exportToExcel()">Export to Excel</button>
-
+            <button id="btn" type="button" mat-raised-button color="accent" (click)="Update()"><mat-icon>cached</mat-icon>Update</button>
+            <button id="btn" type="button" mat-raised-button color="accent" (click)="Get()"><mat-icon>cached</mat-icon>Get</button>
+          <button id="btn" type="button" mat-raised-button color="warn" (click)="delete()"><mat-icon>delete</mat-icon>Delete</button>
+            <mat-form-field class="search-field" appearance="outline">
+              <mat-label>Search</mat-label>
+              <input matInput type="text" placeholder="Search..." [(ngModel)]="word" (ngModelChange)="search()"
+                     [ngModelOptions]="{standalone: true}" autocomplete="off">
+            </mat-form-field>
+        <!-- {{word}} -->
+            <button class="btn btn-md btn-outline-info" style="margin-left:40px;margin-bottom:10px;height:30px ;" (click)="exportToExcel()">
+              <img src="assets\icons8-excel-48.png"  style="width: 25px; height: 25px; margin-right:-0.3em;margin-left: -0.3em;margin-top: -0.5em;">
+            </button>
           </div>
-    </form>
     <div>
       <ag-grid-angular style="width:auto;height:200px;"  [gridOptions]="gridOptions"
        class="ag-theme-alpine" [columnDefs]="colDefs"  [rowHeight]="20" (rowClicked)="onRowClicked($event)"
-        [rowData]="rowData">
+        [rowData]="filteredData">
       </ag-grid-angular>
     </div>
+    </form>
 <div class="total-row">
   <div>Total Liters: <b style="color: brown;">{{ totalLiters }}</b></div>
   <div>Total Amount:<b style="color: brown;">{{ totalAmount }}</b></div>
+</div>
 </div>
   </mat-card-content>
 </mat-card>

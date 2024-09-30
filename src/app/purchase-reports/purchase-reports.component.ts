@@ -35,13 +35,15 @@ export class PurchaseReportsComponent {
   })
  }
  ngOnInit(){
- this.purchaseService.getClients().subscribe((data) => {
-   console.log(data);
-  this.clients = data;
- });
+ this.loadClients();
  this.loadPurchaseData();
  }
-
+loadClients(){
+  this.purchaseService.getClients().subscribe((data) => {
+    console.log(data);
+   this.clients = data;
+  });
+}
 
   Get(){
    // debugger;
@@ -77,11 +79,6 @@ export class PurchaseReportsComponent {
     })
   }
 }
-
-//  clear(){
-
-//  }
-
 rowData: any[] = [];
 
 gridOptions = {
@@ -115,7 +112,7 @@ colDefs = [
     { headerName: 'SNF No', field: 'snf',width: 80 },
     { headerName: 'Fat', field: 'fat',width: 80 },
     { headerName: 'PricePerLiter', field: 'pricePerLiter',width: 110 },
-    { headerName: 'TotalAmount', field: 'totalPrice',width: 120 },
+    { headerName: 'TotalAmount', field: 'totalPrice',width: 110 },
     // { headerName: 'Notes', field: 'notes',width: 150 },
 
 ];

@@ -30,9 +30,9 @@ export class ClientDetailsComponent implements OnInit {
   colDefs: any[] = [
     { headerName: 'ClientId', field: 'clientId',width:100 },
     { headerName: 'Name', field: 'name',width:100  },
-    { headerName: 'Type', field: 'type' ,width:100 },
-    { headerName: 'ContactNumber1', field: 'contactNumber1',width:130  },
-    { headerName: 'ContactNumber2', field: 'contactNumber2' ,width:130 },
+    { headerName: 'ClientType', field: 'type' ,width:100 },
+    { headerName: 'Phone1', field: 'contactNumber1',width:130  },
+    { headerName: 'Phone2', field: 'contactNumber2' ,width:130 },
     { headerName: 'ContactName', field: 'contactName' ,width:130 },
     { headerName: 'Email', field: 'email',width:130  },
     { headerName: 'Department', field: 'department',width:120  },
@@ -43,7 +43,9 @@ export class ClientDetailsComponent implements OnInit {
     { headerName: 'City', field: 'city' ,width:110 },
     { headerName: 'State', field: 'state',width:110  },
     { headerName: 'Country', field: 'country' ,width:110 },
-    { headerName: 'Description', field: 'description',width:120  },
+    // { headerName: 'Description', field: 'description',width:120 },
+    {headerName:'Actions', width: 120,
+      cellRenderer: (params: any) => this.actionCellRenderer(params)}
   ];
 
   gridOptions = {
@@ -58,7 +60,8 @@ export class ClientDetailsComponent implements OnInit {
   ClientId!: number;
   data: any;
   word: string = "";
-  originalData: any;
+  public originalData: any;
+  selectedID: any;
 
   constructor(
     private clientService: ClientsDetailsService,
@@ -79,40 +82,46 @@ export class ClientDetailsComponent implements OnInit {
   //   console.log(parsedData);
   //   }
 this.getAllClientData();
+this.refreshData();
 
   }
-  getAllClientData(){
+  getAllClientData() {
     this.clientService.getData().subscribe((res: any) => {
       console.log(res);
       this.rowData = res;
-     });
+      this.originalData = res;
+    });
   }
   search(){
-    // console.log('Before filtering:', this.rowData);
-    // const filteredData = this.filterData(this.rowData, this.word);
-    // console.log('After filtering:', filteredData);
-    // this.rowData = filteredData;
     if (this.word === '') {
       this.rowData = this.originalData;
     } else {
       this.rowData = this.filterData(this.originalData, this.word);
     }
-
   }
   filterData(data: any[], word: string) {
     const lowercasedWord = word.toLowerCase();
     return data.filter((d: any) => {
       return d.clientId?.toString().toLowerCase().includes(lowercasedWord)
-         || d.name?.toLowerCase().includes(lowercasedWord)
-         || d.contactNumber1?.toLowerCase().includes(lowercasedWord)
-         || d.contactName?.toLowerCase().includes(lowercasedWord)
-         || d.email?.toString().toLowerCase().includes(lowercasedWord)
-         || d.address1?.toLowerCase().includes(lowercasedWord)
-         || d.city?.toLowerCase().includes(lowercasedWord)
-         || d.state?.toLowerCase().includes(lowercasedWord);
-    });
-  }
+        || d.name?.toString().toLowerCase().includes(lowercasedWord)
+        || d.type?.toLowerCase().includes(lowercasedWord)
+        || d.contactNumber1?.toLowerCase().includes(lowercasedWord)
+        || d.contactName?.toLowerCase().includes(lowercasedWord)
+        || d.email?.toLowerCase().includes(lowercasedWord)
+        || d.address1?.toLowerCase().includes(lowercasedWord)
+        || d.city?.toLowerCase().includes(lowercasedWord)
+        || d.state?.toLowerCase().includes(lowercasedWord);
+    });
+  }
+  refreshData() {
+    this.clientService.getData().subscribe((res: any) => {
+      console.log('Refreshed Data:', res);
+      this.rowData = res;
+      this.originalData = [res];
+      // this.gridOptions.api.setRowData(this.rowData);
 
+    });
+  }
   onRowClicked(event: any): void {
     const selectedData = event.data;
     this.clientDetailsForm.patchValue({
@@ -133,6 +142,37 @@ this.getAllClientData();
       country: selectedData.country,
       description: selectedData.description
     });
+  }
+  actionCellRenderer(params: any) {
+    const element = document.createElement('button');
+    element.innerText = 'Edit';
+    element.addEventListener('click', () => this.onEditClick(params));
+    return element;
+  }
+  onEditClick(params: any) {
+    const selectedData = params.data;
+    console.log('Selected Data:', selectedData);
+    this.selectedID = selectedData.id;
+    this.clientDetailsForm.patchValue({
+      clientId: selectedData.clientId,
+      name: selectedData.name,
+      type:selectedData.type,
+      Phone1: selectedData.contactNumber1,
+      Phone2: selectedData.contactNumber2,
+      contactName: selectedData.contactName,
+      email: selectedData.email,
+      department: selectedData.department,
+      designation: selectedData.designation,
+      Address1:selectedData.address1,
+      Address2:selectedData.address2,
+      Address3:selectedData.address3,
+      city:selectedData.city,
+      state:selectedData.state,
+      country:selectedData.country,
+      description:selectedData.description,
+
+    })
+    this.toastr.info('Record loaded for editing', 'Edit Mode');
   }
 
   formInit() {
